@@ -1,14 +1,116 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/jpeg" href="https://res.cloudinary.com/dfbsqy5ul/image/upload/v1777156756/quiero_quitar_el_202604252346_rxsy54.jpg" />
-    <title>Impulsa Studio</title>
+
+    <!--
+      NAMING PENDING: every occurrence of "[NEW BRAND NAME]" below is the same
+      placeholder used as NEW_BRAND_NAME in src/config/brand.ts. When the name
+      (currently shortlisted: Umbral / Escruta / Cauce / Zarium) is formally
+      verified and approved, update it in BOTH this file and brand.ts.
+      SITE_URL below is also a placeholder (https://example.com) until a real
+      domain is registered — update canonical/og:url/schema @id/url together.
+    -->
+    <title>Consultor de IA para Empresas | Detecto Fugas Ocultas – [NEW BRAND NAME]</title>
+    <meta
+      name="description"
+      content="Consultor de IA para empresas. Detecto dónde pierdes tiempo, dinero y clientes y lo resuelvo con IA, automatización y desarrollo. Diagnóstico gratis."
+    />
+    <link rel="canonical" href="https://example.com/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="[NEW BRAND NAME]" />
+    <meta property="og:title" content="Consultor de IA para Empresas | Detecto Fugas Ocultas – [NEW BRAND NAME]" />
+    <meta
+      property="og:description"
+      content="Consultor de IA para empresas. Detecto dónde pierdes tiempo, dinero y clientes y lo resuelvo con IA, automatización y desarrollo. Diagnóstico gratis."
+    />
+    <meta property="og:url" content="https://example.com/" />
+    <meta property="og:locale" content="es_ES" />
+    <!-- OG_IMAGE_PLACEHOLDER: no share image has been supplied yet. Add one (1200x630)
+         and point og:image / twitter:image at it once available. -->
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Consultor de IA para Empresas | Detecto Fugas Ocultas – [NEW BRAND NAME]" />
+    <meta
+      name="twitter:description"
+      content="Consultor de IA para empresas. Detecto dónde pierdes tiempo, dinero y clientes y lo resuelvo con IA, automatización y desarrollo. Diagnóstico gratis."
+    />
+
+    <meta name="theme-color" content="#111111" />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Jaime Bernáldez" />
+
+    <!-- FAVICON_PLACEHOLDER: neutral geometric mark (black square + lime dot),
+         generated as a functional stand-in — not a designed logo. Replace the
+         files in /public once the final brand icon is supplied. -->
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Schema.org: Person + ProfessionalService, linked by @id so search engines
+         and LLMs associate Jaime with the brand as the same trusted source. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "@id": "https://example.com/#jaime",
+        "name": "Jaime Bernáldez",
+        "jobTitle": "Consultor de Inteligencia Artificial para Empresas",
+        "url": "https://example.com/",
+        "worksFor": { "@id": "https://example.com/#organizacion" },
+        "knowsAbout": [
+          "Inteligencia artificial aplicada a negocio",
+          "Automatización de procesos",
+          "Desarrollo de software",
+          "Marketing digital"
+        ],
+        "sameAs": [
+          "https://www.linkedin.com/in/jaimebernaldez/",
+          "https://www.instagram.com/jaime4bernal/?hl=es"
+        ]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "@id": "https://example.com/#organizacion",
+        "name": "[NEW BRAND NAME]",
+        "url": "https://example.com/",
+        "description": "Consultoría de inteligencia artificial para empresas: análisis de negocio, detección de fugas de tiempo, dinero y clientes, e implementación de soluciones con IA, automatización, desarrollo y marketing.",
+        "founder": { "@id": "https://example.com/#jaime" },
+        "areaServed": "España",
+        "sameAs": ["https://www.linkedin.com/in/jaimebernaldez/"]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "url": "https://example.com/",
+        "name": "[NEW BRAND NAME]",
+        "publisher": { "@id": "https://example.com/#organizacion" },
+        "inLanguage": "es-ES"
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "serviceType": "Diagnóstico de negocio con IA",
+        "provider": { "@id": "https://example.com/#organizacion" },
+        "areaServed": "España",
+        "description": "Análisis inicial del negocio para detectar dónde se está perdiendo tiempo, dinero y clientes, previo a cualquier recomendación tecnológica."
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
-
