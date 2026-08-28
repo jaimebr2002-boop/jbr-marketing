@@ -1,39 +1,57 @@
-export const herramientas = {
-  kicker: 'CÓMO LO HAGO',
+// 13 named services, grouped into 4 categories for scanability — every service
+// keeps its own visible name + description (nothing folded away) so both a
+// visitor who wants "desarrollo de apps" and a crawler indexing services can
+// find it directly, per the brief's explicit requirement to never bury them.
+export const servicios = {
+  kicker: 'SERVICIOS',
   headlinePre: 'Localizado el problema, esto es ',
   headlineEmphasis: 'con lo que lo resolvemos.',
   intro:
-    'No empiezo por la tecnología, pero aquí tienes las herramientas — IA y automatización, desarrollo de apps y software, marketing y captación, web y diseño — que uso para resolver lo que detecto.',
+    'No empiezo por la tecnología, pero aquí tienes los servicios — IA y automatización, desarrollo de apps y software, marketing y captación, web y diseño — que uso para resolver lo que detecto.',
   permission:
-    'Si ya sabes exactamente qué necesitas, no hace falta pasar por un diagnóstico completo: lo hablamos en la misma llamada de 15 minutos y, si tiene sentido, nos ponemos a construirlo directamente.',
+    'No necesitas saber cuál de estos servicios necesitas. Puedes contarme qué está pasando en tu negocio y yo te ayudo a identificar por dónde empezar.',
   categorias: [
     {
       n: '01',
       title: 'IA & Automatización',
-      subtitle: 'Agentes de IA, automatización de procesos y chatbots que hacen el trabajo repetitivo por ti.',
-      chips: ['Agentes de IA', 'Automatización de procesos', 'Chatbots', 'Integraciones'],
+      items: [
+        { n: '12', title: 'Inteligencia Artificial', body: 'Aplicación de IA a procesos, operaciones, atención, ventas y toma de decisiones.' },
+        { n: '13', title: 'Agentes de IA', body: 'Agentes inteligentes capaces de ejecutar tareas, asistir equipos e interactuar con clientes.' },
+        { n: '07', title: 'Automatizaciones', body: 'Automatización de procesos y eliminación de tareas repetitivas.' },
+      ],
     },
     {
       n: '02',
       title: 'Desarrollo & Producto',
-      subtitle: 'Apps, SaaS, MVPs y software a medida — para cuando la solución que necesitas todavía no existe.',
-      chips: ['Apps a medida', 'SaaS / MVP', 'Software interno', 'Integraciones técnicas'],
+      items: [
+        { n: '01', title: 'Desarrollo Web', body: 'Webs corporativas, landings y experiencias digitales orientadas a conversión.' },
+        { n: '10', title: 'Desarrollo de Apps a medida', body: 'Aplicaciones y software adaptados a necesidades concretas del negocio.' },
+        { n: '09', title: 'CRM y ERPs', body: 'Implementación, integración y optimización de sistemas de gestión.' },
+      ],
     },
     {
       n: '03',
       title: 'Marketing & Captación',
-      subtitle: 'SEO, GEO, contenido y funnels de captación — para que te encuentren y conviertan más visitas en clientes.',
-      chips: ['SEO', 'GEO', 'Funnels', 'Contenido', 'Captación de leads'],
+      items: [
+        { n: '02', title: 'Gestión de Redes Sociales', body: 'Estrategia, contenido y gestión de presencia social.' },
+        { n: '03', title: 'Campañas Publicitarias', body: 'Publicidad digital y campañas orientadas a captación.' },
+        { n: '04', title: 'SEO y Posicionamiento', body: 'Optimización para buscadores y crecimiento orgánico.' },
+        { n: '05', title: 'GEO', body: 'Optimización de contenido y presencia digital para motores generativos y respuestas de IA.' },
+      ],
     },
     {
       n: '04',
-      title: 'Web & Diseño',
-      subtitle: 'Webs, landings, e-commerce y diseño de marca — la cara visible de todo lo demás.',
-      chips: ['Diseño web', 'Landing pages', 'E-commerce', 'Identidad de marca'],
+      title: 'Estrategia & Marca',
+      items: [
+        { n: '11', title: 'Estrategia Digital', body: 'Diagnóstico, estrategia y priorización de acciones digitales.' },
+        { n: '08', title: 'Diseño y Branding', body: 'Identidad visual, diseño y sistemas de marca.' },
+        { n: '06', title: 'Formación Digital', body: 'Formación para equipos y empresas en herramientas digitales e inteligencia artificial.' },
+      ],
     },
   ],
-  remate: 'Ninguna de estas herramientas es el punto de partida. El punto de partida es tu diagnóstico.',
-  cta: 'Quiero mi diagnóstico',
+  remate: 'Ninguno de estos servicios es el punto de partida. El punto de partida es tu diagnóstico.',
+  ctaPrimary: 'Reserva tu diagnóstico gratuito',
+  ctaSecondary: 'Solicita diagnóstico digital',
   microcopy: 'Válido también si ya sabes lo que necesitas — no es obligatorio pasar por un diagnóstico largo.',
 };
 
