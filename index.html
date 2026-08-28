@@ -2,30 +2,48 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
     <!--
-      NAMING PENDING: every occurrence of "[NEW BRAND NAME]" below is the same
-      placeholder used as NEW_BRAND_NAME in src/config/brand.ts. When the name
-      (currently shortlisted: Umbral / Escruta / Cauce / Zarium) is formally
-      verified and approved, update it in BOTH this file and brand.ts.
-      SITE_URL below is also a placeholder (https://example.com) until a real
-      domain is registered — update canonical/og:url/schema @id/url together.
+      Sets data-theme before first paint so there's no light-flash-then-dark
+      (or vice versa) on load. Reads an explicit user choice first, then falls
+      back to the OS preference. Kept tiny and inline on purpose — this has to
+      run before any CSS/JS bundle loads. See src/hooks/useTheme.ts.
     -->
-    <title>Consultor de IA para Empresas | Detecto Fugas Ocultas – [NEW BRAND NAME]</title>
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme-preference');
+          var theme = stored === 'light' || stored === 'dark'
+            ? stored
+            : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {}
+      })();
+    </script>
+
+    <!--
+      NAMING PENDING: the brand name shown across the UI is Jaime's real name
+      (see BRAND_NAME in src/config/brand.ts) rather than an invented company
+      name — naming (Umbral / Escruta / Cauce / Zarium) is still pending formal
+      OEPM/EUIPO + domain + social verification. SITE_URL below is a placeholder
+      (https://example.com) until a real domain is registered — update
+      canonical/og:url/schema @id/url together when both are decided.
+    -->
+    <title>Consultor de IA para Empresas | Jaime Bernáldez — Detecto Fugas Ocultas</title>
     <meta
       name="description"
-      content="Consultor de IA para empresas. Detecto dónde pierdes tiempo, dinero y clientes y lo resuelvo con IA, automatización y desarrollo. Diagnóstico gratis."
+      content="Consultor de IA y tecnología digital para empresas. Analizo tu negocio, detecto dónde pierdes tiempo, dinero y clientes, y lo resuelvo con IA, automatización, desarrollo y marketing."
     />
     <link rel="canonical" href="https://example.com/" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="[NEW BRAND NAME]" />
-    <meta property="og:title" content="Consultor de IA para Empresas | Detecto Fugas Ocultas – [NEW BRAND NAME]" />
+    <meta property="og:site_name" content="Jaime Bernáldez — Consultoría de IA" />
+    <meta property="og:title" content="Consultor de IA para Empresas | Jaime Bernáldez" />
     <meta
       property="og:description"
-      content="Consultor de IA para empresas. Detecto dónde pierdes tiempo, dinero y clientes y lo resuelvo con IA, automatización y desarrollo. Diagnóstico gratis."
+      content="Analizo tu negocio, detecto dónde pierdes tiempo, dinero y clientes, y lo resuelvo con IA, automatización, desarrollo y marketing. Diagnóstico gratis."
     />
     <meta property="og:url" content="https://example.com/" />
     <meta property="og:locale" content="es_ES" />
@@ -34,10 +52,10 @@
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Consultor de IA para Empresas | Detecto Fugas Ocultas – [NEW BRAND NAME]" />
+    <meta name="twitter:title" content="Consultor de IA para Empresas | Jaime Bernáldez" />
     <meta
       name="twitter:description"
-      content="Consultor de IA para empresas. Detecto dónde pierdes tiempo, dinero y clientes y lo resuelvo con IA, automatización y desarrollo. Diagnóstico gratis."
+      content="Analizo tu negocio, detecto dónde pierdes tiempo, dinero y clientes, y lo resuelvo con IA, automatización, desarrollo y marketing."
     />
 
     <meta name="theme-color" content="#111111" />
@@ -66,8 +84,9 @@
         "knowsAbout": [
           "Inteligencia artificial aplicada a negocio",
           "Automatización de procesos",
-          "Desarrollo de software",
-          "Marketing digital"
+          "Desarrollo de software y aplicaciones",
+          "Marketing digital y SEO/GEO",
+          "Estrategia digital"
         ],
         "sameAs": [
           "https://www.linkedin.com/in/jaimebernaldez/",
@@ -80,12 +99,20 @@
         "@context": "https://schema.org",
         "@type": "ProfessionalService",
         "@id": "https://example.com/#organizacion",
-        "name": "[NEW BRAND NAME]",
+        "name": "Jaime Bernáldez — Consultoría de IA",
         "url": "https://example.com/",
-        "description": "Consultoría de inteligencia artificial para empresas: análisis de negocio, detección de fugas de tiempo, dinero y clientes, e implementación de soluciones con IA, automatización, desarrollo y marketing.",
+        "description": "Consultoría de inteligencia artificial y tecnología digital para empresas: análisis de negocio, detección de fugas de tiempo, dinero y clientes, e implementación de soluciones con IA, automatización, desarrollo web y de apps, y marketing digital.",
         "founder": { "@id": "https://example.com/#jaime" },
         "areaServed": "España",
-        "sameAs": ["https://www.linkedin.com/in/jaimebernaldez/"]
+        "sameAs": ["https://www.linkedin.com/in/jaimebernaldez/"],
+        "makesOffer": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "serviceType": "Inteligencia Artificial y Agentes de IA" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "serviceType": "Automatizaciones" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "serviceType": "Desarrollo Web y Desarrollo de Apps a medida" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "serviceType": "CRM y ERPs" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "serviceType": "SEO, GEO y Campañas Publicitarias" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "serviceType": "Estrategia Digital, Diseño y Branding" } }
+        ]
       }
     </script>
     <script type="application/ld+json">
@@ -93,7 +120,7 @@
         "@context": "https://schema.org",
         "@type": "WebSite",
         "url": "https://example.com/",
-        "name": "[NEW BRAND NAME]",
+        "name": "Jaime Bernáldez — Consultoría de IA",
         "publisher": { "@id": "https://example.com/#organizacion" },
         "inLanguage": "es-ES"
       }
