@@ -1,0 +1,16 @@
+export const SERVICE_OPTIONS = [
+  'Desarrollo Web',
+  'Gestión de Redes Sociales',
+  'Campañas Publicitarias',
+  'SEO y Posicionamiento',
+  'GEO',
+  'Formación Digital',
+  'Automatizaciones',
+  'Diseño y Branding',
+  'CRM y ERPs',
+  'Desarrollo de Apps a medida',
+  'Estrategia Digital',
+  'Inteligencia Artificial',
+  'Agentes de IA',
+  'No estoy seguro / Necesito orientación',
+];
