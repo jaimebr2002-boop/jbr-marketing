@@ -6,22 +6,27 @@ interface CtaButtonProps {
   variant?: 'primary' | 'secondary';
   className?: string;
   ariaLabel?: string;
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+  target?: '_blank' | '_self';
 }
 
-// Primary = filled lime, inverts to black+lime on hover (matches the existing Impulsa CTA).
-// Secondary = outlined, fills to canvas on hover.
-export function CtaButton({ href, children, variant = 'primary', className = '', ariaLabel }: CtaButtonProps) {
+// Primary = filled lime, inverts to a solid dark chip on hover (stays dark in both
+// themes — see --surface-inverse). Secondary = outlined in ink, fills to the same
+// dark chip on hover. Text sitting directly on the lime fill uses --accent-ink,
+// a fixed dark value, never the theme-reactive ink (white-on-lime would be unreadable).
+export function CtaButton({ href, children, variant = 'primary', className = '', ariaLabel, onClick, target = '_blank' }: CtaButtonProps) {
   const isPrimary = variant === 'primary';
   return (
     <a
       href={href}
-      target="_blank"
-      rel="noopener noreferrer"
+      target={target}
+      rel={target === '_blank' ? 'noopener noreferrer' : undefined}
       aria-label={ariaLabel}
-      className={`group inline-flex items-center gap-2 font-sans font-bold uppercase tracking-[0.12em] text-[13px] px-8 py-4 rounded transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-black ${
+      onClick={onClick}
+      className={`group inline-flex items-center gap-2 font-sans font-bold uppercase tracking-[0.12em] text-[13px] px-8 py-4 rounded transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-accent ${
         isPrimary
-          ? 'bg-brand-accent text-brand-black hover:bg-brand-black hover:text-brand-accent'
-          : 'bg-transparent text-brand-black border border-brand-black hover:bg-brand-black hover:text-white'
+          ? 'bg-brand-accent text-accent-ink hover:bg-surface-inverse hover:text-brand-accent'
+          : 'bg-transparent text-ink border border-ink hover:bg-surface-inverse hover:text-white hover:border-surface-inverse'
       } ${className}`}
     >
       {children}
@@ -34,5 +39,5 @@ export function CtaButton({ href, children, variant = 'primary', className = '',
 
 // Under-CTA reassurance line, kept in one place so its type treatment stays consistent.
 export function CtaMicrocopy({ children }: { children: React.ReactNode }) {
-  return <p className="mt-3 font-sans text-[13px] text-brand-gray tracking-[0.01em]">{children}</p>;
+  return <p className="mt-3 font-sans text-[13px] text-ink-secondary tracking-[0.01em]">{children}</p>;
 }

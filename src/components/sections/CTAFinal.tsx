@@ -5,7 +5,7 @@ import { CtaButton, CtaMicrocopy } from '../ui/Button';
 
 export function CTAFinal() {
   return (
-    <section id="cta" className="w-full bg-brand-black text-white py-24 md:py-32">
+    <section id="cta" className="w-full bg-surface-inverse text-white py-24 md:py-32">
       <div className="max-w-2xl mx-auto px-6 text-center">
         <h2 className="reveal font-serif italic font-medium text-[clamp(2rem,5vw,3rem)] leading-tight">
           {ctaFinal.headline}

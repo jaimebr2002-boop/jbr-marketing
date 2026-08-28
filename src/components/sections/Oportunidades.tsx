@@ -6,16 +6,16 @@ import { RevealStagger } from '../ui/Reveal';
 
 export function Oportunidades() {
   return (
-    <section id="oportunidades" className="w-full bg-white py-20 md:py-28">
+    <section id="oportunidades" className="w-full bg-surface py-20 md:py-28">
       <div className="max-w-3xl mx-auto px-6 text-center">
-        <h2 className="reveal font-sans font-bold text-brand-black leading-[1.15] text-[clamp(1.75rem,4vw,2.5rem)] text-balance">
+        <h2 className="reveal font-sans font-bold text-ink leading-[1.15] text-[clamp(1.75rem,4vw,2.5rem)] text-balance">
           {oportunidades.headline}
         </h2>
-        <p className="reveal mt-5 font-sans text-brand-gray leading-relaxed max-w-xl mx-auto">{oportunidades.subhead}</p>
+        <p className="reveal mt-5 font-sans text-ink-secondary leading-relaxed max-w-xl mx-auto">{oportunidades.subhead}</p>
 
         <RevealStagger as="ul" className="mt-12 flex flex-col gap-4 text-left list-none">
           {oportunidades.bullets.map((b) => (
-            <li key={b} className="font-sans text-brand-black text-[1.05rem] leading-relaxed border-l-2 border-brand-accent pl-5 py-1">
+            <li key={b} className="font-sans text-ink text-[1.05rem] leading-relaxed border-l-2 border-brand-accent pl-5 py-1">
               {b}
             </li>
           ))}

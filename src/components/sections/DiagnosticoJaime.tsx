@@ -6,7 +6,7 @@ import { Reveal } from '../ui/Reveal';
 
 export function DiagnosticoJaime() {
   return (
-    <section id="diagnostico" className="w-full bg-brand-black text-white py-20 md:py-28">
+    <section id="diagnostico" className="w-full bg-surface-inverse text-white py-20 md:py-28">
       <div className="max-w-5xl mx-auto px-6">
         {/* Diagnóstico framing */}
         <div className="max-w-2xl reveal">

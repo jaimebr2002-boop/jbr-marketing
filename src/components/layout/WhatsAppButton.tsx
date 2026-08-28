@@ -20,7 +20,7 @@ export function WhatsAppButton() {
         onMouseLeave={() => setShowTooltip(false)}
         onFocus={() => setShowTooltip(true)}
         onBlur={() => setShowTooltip(false)}
-        className="group relative flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full bg-[#111111] text-[#B4FF00] shadow-lg transition-transform duration-300 hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-black"
+        className="group relative flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full bg-surface-inverse text-brand-accent shadow-lg transition-transform duration-300 hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-accent"
       >
         <span className="absolute inset-0 rounded-full animate-wa-pulse" aria-hidden="true" />
         <WhatsAppIcon className="w-6 h-6 md:w-7 md:h-7 relative" />
@@ -28,7 +28,7 @@ export function WhatsAppButton() {
         {/* Desktop hover tooltip */}
         <span
           role="tooltip"
-          className={`hidden md:block absolute right-full mr-3 whitespace-nowrap rounded bg-brand-black text-white text-xs font-sans px-3 py-2 transition-opacity duration-200 ${
+          className={`hidden md:block absolute right-full mr-3 whitespace-nowrap rounded bg-surface-inverse text-white text-xs font-sans px-3 py-2 transition-opacity duration-200 ${
             showTooltip ? 'opacity-100' : 'opacity-0 pointer-events-none'
           }`}
         >

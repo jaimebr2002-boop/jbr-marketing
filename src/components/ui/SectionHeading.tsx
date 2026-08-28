@@ -28,9 +28,9 @@ export function SectionHeading({
   return (
     <div className={`reveal max-w-3xl ${alignClass} ${className}`}>
       {kicker && (
-        <p className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-brand-gray mb-4">{kicker}</p>
+        <p className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-ink-secondary mb-4">{kicker}</p>
       )}
-      <Tag className="font-sans font-bold text-brand-black leading-[1.1] text-[clamp(1.9rem,4vw,2.75rem)] text-balance">
+      <Tag className="font-sans font-bold text-ink leading-[1.1] text-[clamp(1.9rem,4vw,2.75rem)] text-balance">
         {headline
           ? headline
           : (
@@ -45,7 +45,7 @@ export function SectionHeading({
             </>
           )}
       </Tag>
-      {subhead && <p className="mt-5 font-sans text-[1.0625rem] leading-relaxed text-brand-gray max-w-xl">{subhead}</p>}
+      {subhead && <p className="mt-5 font-sans text-[1.0625rem] leading-relaxed text-ink-secondary max-w-xl">{subhead}</p>}
     </div>
   );
 }
