@@ -21,7 +21,6 @@ export function Resultados() {
             <li key={b.titulo} className="border-t-2 border-brand-accent pt-4">
               <p className="font-sans font-bold text-ink">{b.titulo}</p>
               <p className="mt-1.5 font-sans text-sm text-ink-secondary leading-relaxed">{b.body}</p>
-              {b.placeholder && <p className="mt-1.5 font-sans text-xs italic text-ink-secondary/60">{b.placeholder}</p>}
             </li>
           ))}
         </RevealStagger>

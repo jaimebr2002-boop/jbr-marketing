@@ -4,22 +4,16 @@ export const resultados = {
   remate:
     'Horas que vuelven a tu equipo, leads que ya no se enfrían, procesos que escalan sin contratar. El resultado no es una herramienta nueva — es crecimiento medible donde antes había fricción.',
   bullets: [
-    { titulo: 'Horas', body: 'Las que tu equipo quema en tareas repetitivas vuelven a estar disponibles para lo que de verdad mueve el negocio.', placeholder: '[Caso a incorporar]' },
+    { titulo: 'Horas', body: 'Las que tu equipo quema en tareas repetitivas vuelven a estar disponibles para lo que de verdad mueve el negocio.' },
     { titulo: 'Oportunidades comerciales', body: 'Las que antes se perdían por falta de seguimiento pasan a tener un proceso que no se olvida de ellas.' },
     { titulo: 'Leads', body: 'Dejas de pagar por captar contactos que luego nadie contesta a tiempo.' },
     { titulo: 'Clientes potenciales', body: 'Los que hoy eligen a la competencia por tardar en responder, empiezan a elegirte a ti.' },
     { titulo: 'Productividad', body: 'Tu equipo deja de ser el cuello de botella de procesos manuales y pasa a dedicarse a lo que de verdad depende de las personas.' },
-    { titulo: 'Ingresos', body: 'El dinero que se escapaba por procesos lentos, leads mal gestionados o atención tardía empieza a quedarse dentro del negocio.', placeholder: '[Cifra real a incorporar]' },
+    { titulo: 'Ingresos', body: 'El dinero que se escapaba por procesos lentos, leads mal gestionados o atención tardía empieza a quedarse dentro del negocio.' },
   ],
   honesty:
     'Si encontramos una oportunidad real, te diremos exactamente qué haríamos y por qué. Si no la encontramos, te lo diremos igual de claro — no inventamos proyectos para justificar la reunión.',
   cta: 'Reserva tu diagnóstico gratuito',
-};
-
-export const pruebaSocial = {
-  headline: 'Preparado para casos reales.',
-  body: 'Todavía no hay clientes ni casos publicados con esta marca. En cuanto existan, con su autorización explícita, aparecerán aquí — con nombre y resultado real, nunca inventados.',
-  placeholderCount: 3,
 };
 
 export const faq = [
