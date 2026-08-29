@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { BRAND_NAME, POSITIONING, calLinkWithCampaign } from '../../config/brand';
+import { BRAND_NAME, calLinkWithCampaign } from '../../config/brand';
 import { navLinks } from '../../content/copy';
 import { ThemeToggle } from '../ui/ThemeToggle';
 
@@ -69,15 +69,15 @@ export function Navbar() {
           {/* justify-between has no built-in minimum gap — at 1024-1280px the
               brand block and nav measured out to touching with zero space
               between them before this gap-4 was added (confirmed against the
-              live 1440px layout, not just a guess). The positioning subline
-              also only reappears at xl (1280px): keeping it hidden through
-              lg reclaims ~120px exactly in the range that was tightest. */}
+              live 1440px layout, not just a guess). The positioning line
+              ("Consultoría de IA...") used to live here as a subtitle — it
+              never had room to breathe in a single-line navbar and reads far
+              better as the Hero's own eyebrow line, so this is just the
+              wordmark now: marca -> qué somos -> propuesta de valor lives in
+              the Hero, not stacked into the nav. */}
           <div className="h-16 sm:h-[68px] px-4 sm:px-5 lg:px-7 flex justify-between items-center gap-4">
-            <a href="/" onClick={handleBrandClick} className="flex flex-col leading-none group shrink-0">
+            <a href="/" onClick={handleBrandClick} className="flex items-center leading-none group shrink-0">
               <span className="font-serif font-bold text-ink text-[17px] sm:text-[18px]">{BRAND_NAME}</span>
-              <span className="hidden xl:block font-sans text-[10px] uppercase tracking-[0.14em] text-ink-secondary mt-0.5">
-                {POSITIONING}
-              </span>
             </a>
 
             {/* Desktop nav — lg+ only, see note above on why md was too tight */}
