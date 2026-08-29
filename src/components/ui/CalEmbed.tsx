@@ -59,7 +59,7 @@ function loadCalScript() {
 // internally-scrollable box — never a giant permanently-visible calendar.
 function CalLauncher({ onExpand }: { onExpand: () => void }) {
   return (
-    <div className="w-full rounded-xl border border-brand-border bg-surface p-8 flex flex-col items-center text-center gap-4">
+    <div className="w-full rounded-panel border border-brand-border bg-surface p-8 flex flex-col items-center text-center gap-4">
       <span className="w-12 h-12 rounded-full bg-canvas flex items-center justify-center text-ink" aria-hidden="true">
         <CalendarGlyph />
       </span>
@@ -72,7 +72,7 @@ function CalLauncher({ onExpand }: { onExpand: () => void }) {
       <button
         type="button"
         onClick={onExpand}
-        className="mt-1 font-sans font-bold uppercase tracking-[0.1em] text-[13px] px-7 py-3.5 rounded bg-surface-inverse text-white hover:bg-brand-accent hover:text-accent-ink transition-colors duration-300"
+        className="mt-1 font-sans font-bold uppercase tracking-[0.1em] text-[13px] px-7 py-3.5 rounded-full bg-surface-inverse text-white transition-all duration-200 hover:bg-brand-accent hover:text-accent-ink hover:scale-[1.03] active:scale-[0.98]"
       >
         Ver disponibilidad
       </button>
@@ -120,7 +120,7 @@ export function CalEmbed() {
   }
 
   return (
-    <div className="relative w-full max-h-[640px] overflow-y-auto rounded-xl border border-brand-border bg-surface">
+    <div className="relative w-full max-h-[640px] overflow-y-auto rounded-panel border border-brand-border bg-surface">
       {/* The Cal target div is never given React-managed children — Cal's script
           injects an iframe into it directly, and letting React also try to
           render/remove children there causes DOM-reconciliation errors. */}
