@@ -69,6 +69,8 @@ export const sistemas = {
     { name: 'Piloto Automático', tag: 'automatización de operaciones', resuelve: 'Horas semanales quemadas en tareas repetitivas y copiar-pegar entre programas que no se hablan.' },
     { name: 'Máquina de Contenido', tag: 'sistema de contenido', resuelve: 'Marketing que se publica sin plan y no genera ni una oportunidad comercial.' },
     { name: 'Embudo Sin Fugas', tag: 'funnel automatizado + integraciones', resuelve: 'Leads y datos que se pierden porque las herramientas del negocio no se hablan entre ellas.' },
+    { name: 'Radiografía 360', tag: 'auditoría técnica y estratégica a medida', resuelve: 'Decisiones tecnológicas y de marketing tomadas sin datos reales sobre en qué punto está realmente el negocio, qué usa y qué le falta.' },
+    { name: 'Playbook Operativo', tag: 'documentación y formación de adopción', resuelve: 'Herramientas y automatizaciones ya implementadas que el equipo no llega a usar, no entiende o abandona a las pocas semanas.' },
   ],
   pricePlaceholder: 'A definir en el diagnóstico',
   cta: 'Reserva tu diagnóstico gratuito',
