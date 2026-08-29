@@ -1,6 +1,6 @@
 import React from 'react';
 import { Marquee } from '../ui/Marquee';
-import { LogoTile } from '../ui/LogoTile';
+import { LogoTile, PendingLogoTile } from '../ui/LogoTile';
 import higgsfield from '../../assets/tools/higgsfield.png';
 import n8n from '../../assets/tools/n8n.png';
 import claude from '../../assets/tools/claude.png';
@@ -9,16 +9,19 @@ import gohighlevel from '../../assets/tools/gohighlevel.png';
 import retell from '../../assets/tools/retell.png';
 import nanobanana from '../../assets/tools/nanobanana.png';
 
-// Only real assets are used here (see /PAGINA WEB in the project) — no stock
-// logos, and no "Make" tile since that logo file wasn't found among the
-// provided assets. Every entry appears exactly once — the Marquee component
-// duplicates the *rendered track* for its infinite-loop illusion, but the
-// underlying data list itself must never contain the same tool twice.
+// Real assets only (see /PAGINA WEB in the project) — no stock logos, and no
+// "Make" tile since that logo file wasn't found among the provided assets.
+// Every entry appears exactly once — the Marquee component duplicates the
+// *rendered track* for its infinite-loop illusion, but the underlying data
+// list itself must never contain the same tool twice.
 //
-// To add the next tool: drop its logo file in src/assets/tools/, import it
-// above, and add one { name, src } entry below. The current count is 7
-// (odd) only because that 8th tool hasn't been supplied yet — adding it
-// brings this back to the even count the design calls for.
+// `src: null` marks a confirmed tool whose logo file hasn't been supplied
+// yet (currently Claude Code and Codex — no matching asset exists in
+// /PAGINA WEB): it renders as an honest "logo pendiente" slot via
+// PendingLogoTile instead of a fabricated mark. To add the real asset later:
+// drop the file in src/assets/tools/, import it above, and set that entry's
+// `src` to the import. To add an entirely new tool: append one more
+// { name, src } entry — nothing else needs to change.
 const TOOLS = [
   { name: 'Higgsfield', src: higgsfield },
   { name: 'n8n', src: n8n },
@@ -27,18 +30,29 @@ const TOOLS = [
   { name: 'GoHighLevel', src: gohighlevel },
   { name: 'Retell AI', src: retell },
   { name: 'Nano Banana', src: nanobanana },
+  { name: 'Claude Code', src: null },
+  { name: 'Codex', src: null },
 ];
 
 export function ToolsMarquee() {
   return (
-    <section aria-label="Herramientas y plataformas con las que trabajo" className="w-full bg-canvas py-10 md:py-12 border-y border-brand-border">
-      <p className="reveal text-center font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-ink-tertiary mb-7">
-        Trabajamos con las herramientas que tu negocio necesita
-      </p>
-      <Marquee ariaLabel="Herramientas y plataformas: Higgsfield, n8n, Claude AI, ChatGPT, GoHighLevel, Retell AI, Nano Banana" durationSeconds={30}>
+    <section aria-label="Herramientas y plataformas con las que trabajo" className="w-full bg-surface py-10 md:py-12 border-y border-brand-border">
+      <div className="max-w-2xl mx-auto px-6 text-center mb-7">
+        <p className="reveal font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-ink-tertiary mb-2">
+          Siempre a la última, nunca por moda
+        </p>
+        <p className="reveal font-sans text-[13.5px] text-ink-secondary leading-relaxed">
+          Seguimos de cerca la tecnología puntera, pero solo la incorporamos cuando es la opción más fiable y útil
+          para el caso concreto — el criterio decide, no la novedad.
+        </p>
+      </div>
+      <Marquee
+        ariaLabel="Herramientas y plataformas: Higgsfield, n8n, Claude AI, ChatGPT, GoHighLevel, Retell AI, Nano Banana, Claude Code, Codex"
+        durationSeconds={32}
+      >
         {TOOLS.map((tool) => (
           <div key={tool.name}>
-            <LogoTile src={tool.src} alt={tool.name} />
+            {tool.src ? <LogoTile src={tool.src} alt={tool.name} /> : <PendingLogoTile name={tool.name} />}
           </div>
         ))}
       </Marquee>

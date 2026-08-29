@@ -24,3 +24,21 @@ export function LogoTile({ src, alt, className = '' }: LogoTileProps) {
     </div>
   );
 }
+
+// Same footprint as LogoTile (so a marquee mixing real and pending logos keeps
+// its rhythm), for a tool that's confirmed but whose logo file hasn't been
+// supplied yet — an honest "coming soon" slot instead of a fabricated mark.
+// Swap it for <LogoTile src={realAsset} alt={name} /> the moment the asset
+// arrives; nothing else about the surrounding marquee needs to change.
+export function PendingLogoTile({ name, className = '' }: { name: string; className?: string }) {
+  return (
+    <div
+      className={`flex items-center justify-center h-9 md:h-10 w-[104px] md:w-[120px] shrink-0 px-2 ${className}`}
+      title={`${name} — logo pendiente de incorporar`}
+    >
+      <span className="w-full text-center rounded border border-dashed border-brand-border px-2 py-1.5 font-sans text-[10px] font-semibold uppercase tracking-[0.04em] text-ink-tertiary leading-tight">
+        {name}
+      </span>
+    </div>
+  );
+}
