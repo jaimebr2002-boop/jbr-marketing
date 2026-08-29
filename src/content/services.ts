@@ -505,22 +505,22 @@ export const SERVICES: ServiceDetail[] = [
     title: 'Producción de Vídeos y Spots con Inteligencia Artificial',
     category: 'marketing',
     shortDescription:
-      'Producción audiovisual profesional apoyada en inteligencia artificial: spots, creatividades para Meta Ads, vídeos de producto, avatares virtuales y adaptación multiformato.',
-    h1: 'Vídeos publicitarios con inteligencia artificial y criterio humano',
+      'Producción audiovisual profesional asistida por IA: spots, creatividades para Meta Ads, Reels y Shorts, vídeos de producto, avatares virtuales y adaptación multiformato.',
+    h1: 'Producción audiovisual profesional asistida por inteligencia artificial',
     intro:
-      'Combino motores de generación de vídeo con inteligencia artificial (como Runway, Kling o Veo) con dirección creativa humana para producir spots, creatividades para Meta Ads y TikTok, vídeos de producto y contenido en varios idiomas sin repetir cada rodaje desde cero. La IA se usa donde aporta velocidad y volumen —variantes, formatos, fondos, presentadores virtuales— y la dirección humana entra donde el resultado tiene que ser perfecto: guion, ritmo, marca y validación final. El objetivo es tener más piezas de vídeo publicitario, mejor testadas, sin multiplicar el presupuesto de una producción tradicional.',
+      'Esto es un servicio de producción audiovisual y publicitaria, con la IA como motor de velocidad y volumen — no una fábrica de vídeos genéricos. Combino motores de generación de vídeo e imagen (Runway, Kling, Veo) con dirección creativa humana para producir spots, creatividades para Meta Ads, TikTok y Shorts, vídeos de producto y contenido en varios idiomas sin repetir cada rodaje desde cero. La IA se usa donde aporta velocidad y volumen —variantes, formatos, fondos, presentadores virtuales— y la dirección humana entra donde el resultado tiene que ser perfecto: guion, ritmo, marca y validación final.',
     valueProp:
-      'Este servicio combina inteligencia artificial y dirección audiovisual humana para producir vídeo publicitario a un ritmo que la producción tradicional no permite: más variantes de un mismo spot, más idiomas y más formatos, sin repetir rodaje cada vez. Está pensado para negocios que necesitan volumen de creatividades para Meta Ads, TikTok Ads o YouTube —o vídeo de producto y explicativos— pero no tienen presupuesto para rodar cada variante con equipo completo. Aporta valor donde de verdad importa: acelera el ciclo de test de mensajes y ganchos, permite adaptar una pieza maestra a decenas de formatos sin recrearla desde cero, y localiza un mismo vídeo explicativo a varios idiomas sin volver a grabar, dejando la dirección creativa humana en lo que tiene que quedar perfecto: la pieza hero, la marca y el guion final.',
+      'Detrás de este servicio hay criterio de estudio creativo y publicitario, no solo acceso a herramientas de IA: la tecnología acelera la producción, pero el guion, la dirección de arte y la validación de marca siguen siendo trabajo humano. Está pensado para negocios que necesitan volumen de creatividades para Meta Ads, TikTok Ads, Reels o Shorts —o vídeo de producto y explicativos— pero no tienen presupuesto para rodar cada variante con equipo completo. Aporta valor donde de verdad importa: acelera el ciclo de test de mensajes y ganchos para campañas de performance, permite adaptar una pieza maestra a decenas de formatos sin recrearla desde cero, y localiza un mismo vídeo explicativo a varios idiomas sin volver a grabar — dejando la pieza hero, la marca y el guion final siempre en manos de dirección creativa humana.',
     benefits: [
       { title: 'Volumen sin perder control', body: 'La IA genera variantes de formato, fondo y mensaje a escala, mientras la dirección humana revisa y valida cada pieza antes de publicarse.' },
-      { title: 'Ciclos de test más rápidos', body: 'Puedes probar más ganchos y mensajes en Meta Ads y TikTok Ads en el tiempo que antes llevaba producir una sola variante.' },
+      { title: 'Ciclos de test más rápidos', body: 'Pruebas más ganchos y mensajes para campañas de performance en el tiempo que antes llevaba producir una sola variante.' },
       { title: 'Multiidioma sin regrabar', body: 'Con avatares virtuales, un mismo vídeo explicativo o de formación se localiza a varios idiomas sin convocar de nuevo un rodaje.' },
     ],
     forYouIf: [
-      'Necesitas decenas de creatividades para Meta Ads o TikTok Ads y no puedes rodar una sesión distinta para cada variante.',
+      'Necesitas decenas de creatividades para Meta Ads, TikTok o Shorts y no puedes rodar una sesión distinta para cada variante.',
       'Tienes fotos reales de producto pero cada campaña estacional implica organizar una sesión fotográfica nueva.',
-      'Quieres un vídeo explicativo o de formación en varios idiomas sin repetir la grabación con un presentador para cada uno.',
-      'Inviertes en Ads pero testas pocos mensajes porque cada variante de vídeo cuesta tiempo y producción.',
+      'Quieres validar un concepto publicitario con storyboard y previsualización antes de comprometer presupuesto de producción.',
+      'Inviertes en campañas de performance pero testas pocos mensajes porque cada variante de vídeo cuesta tiempo y producción.',
     ],
     process: [
       { title: 'Diagnóstico y guion', body: 'Analizamos qué piezas necesitas —spot, UGC, producto, explicativo— y definimos guion, mensaje y dirección de arte antes de generar nada.' },
