@@ -29,6 +29,18 @@
   --border-clr: rgba(17,17,17,0.08);
   --border-strong: rgba(17,17,17,0.16);
   --shadow-clr: rgba(17,17,17,0.10);
+
+  /* Liquid Glass — light. Deliberately subtle: a glass surface should read as
+     "premium translucent panel", never as the loud blur+gradient look of
+     generic glassmorphism kits. Used for the floating navbar, the mobile
+     menu panel, and a small number of deliberately elevated panels — never
+     as a default card treatment applied everywhere. */
+  --glass-bg: rgba(255, 255, 255, 0.62);
+  --glass-bg-strong: rgba(255, 255, 255, 0.82);
+  --glass-border: rgba(17, 17, 17, 0.09);
+  --glass-highlight: rgba(255, 255, 255, 0.55);
+  --glass-shadow: rgba(17, 17, 17, 0.08);
+  --accent-glow: rgba(180, 255, 0, 0.35);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -52,6 +64,13 @@
     --border-clr: rgba(245,245,245,0.10);
     --border-strong: rgba(245,245,245,0.18);
     --shadow-clr: rgba(0,0,0,0.5);
+
+    --glass-bg: rgba(28, 28, 28, 0.58);
+    --glass-bg-strong: rgba(20, 20, 20, 0.78);
+    --glass-border: rgba(245, 245, 245, 0.10);
+    --glass-highlight: rgba(255, 255, 255, 0.06);
+    --glass-shadow: rgba(0, 0, 0, 0.35);
+    --accent-glow: rgba(195, 255, 51, 0.3);
   }
 }
 :root[data-theme="dark"] {
@@ -74,12 +93,25 @@
   --border-clr: rgba(245,245,245,0.10);
   --border-strong: rgba(245,245,245,0.18);
   --shadow-clr: rgba(0,0,0,0.5);
+
+  --glass-bg: rgba(28, 28, 28, 0.58);
+  --glass-bg-strong: rgba(20, 20, 20, 0.78);
+  --glass-border: rgba(245, 245, 245, 0.10);
+  --glass-highlight: rgba(255, 255, 255, 0.06);
+  --glass-shadow: rgba(0, 0, 0, 0.35);
+  --accent-glow: rgba(195, 255, 51, 0.3);
 }
 
-/* Suppress transition flicker only during the deliberate theme toggle —
-   set/removed by useTheme, not a permanent global transition. */
-.theme-transitioning, .theme-transitioning * {
-  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease !important;
+/* Theme-toggle crossfade — scoped to background-color only, and only on
+   elements that actually paint one (the [class*="bg-"] filter), not a
+   universal `*` selector. Transitioning color/border-color on every single
+   text node and border in the DOM (hundreds of elements on this page) is
+   what was making the toggle feel like a full re-render — it's paint work
+   on a huge element count, not layout, but at that scale it still shows up
+   as a stall. A short, narrow transition reads as "instant and polished"
+   instead of "the whole page just redrew". */
+.theme-transitioning [class*="bg-"] {
+  transition: background-color 0.12s ease-out !important;
 }
 
 @theme {
@@ -105,6 +137,15 @@
 
   --color-brand-border: var(--border-clr);
   --color-border-strong: var(--border-strong);
+
+  /* Radius scale — additive to Tailwind's built-in rounded-*, not a redefinition
+     of it, so existing rounded-lg/rounded-full usage elsewhere is untouched.
+     rounded-control: buttons, inputs, small interactive chips.
+     rounded-card: cards.
+     rounded-panel: major blocks — hero panel, Cal.com container, mobile menu. */
+  --radius-control: 14px;
+  --radius-card: 22px;
+  --radius-panel: 30px;
 }
 
 body {
@@ -309,4 +350,41 @@ html, body {
 }
 @media (prefers-reduced-motion: reduce) {
   .step-ring circle.step-ring-fill { transition: stroke 0.3s ease; }
+}
+
+/* ---------------------------------------------------------------------
+   Liquid Glass utilities. Reserved for a small number of deliberately
+   elevated surfaces (floating navbar, mobile menu panel, Cal.com container,
+   a couple of hero/panel accents) — never a default card treatment applied
+   everywhere. Each includes a fallback for browsers without backdrop-filter
+   support, since a glass panel with no blur still needs to read as opaque
+   enough to keep its content legible.
+------------------------------------------------------------------------ */
+.glass-subtle,
+.glass,
+.glass-strong {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: inset 0 1px 0 var(--glass-highlight), 0 1px 2px var(--glass-shadow);
+}
+.glass {
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  box-shadow: inset 0 1px 0 var(--glass-highlight), 0 8px 30px var(--glass-shadow);
+}
+.glass-strong {
+  background: var(--glass-bg-strong);
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  box-shadow: inset 0 1px 0 var(--glass-highlight), 0 12px 40px var(--glass-shadow);
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass { background: var(--glass-bg-strong); }
+  .glass-strong { background: var(--glass-bg-strong); }
+}
+
+/* Subtle lime glow — an accent/state signal (active controls, focus,
+   emphasis), never a permanent background treatment. */
+.accent-glow {
+  box-shadow: 0 0 0 1px var(--accent), 0 0 24px var(--accent-glow);
 }

@@ -46,7 +46,7 @@ export function useTheme() {
       /* private browsing / storage disabled — theme just won't persist */
     }
     setThemeState(next);
-    window.setTimeout(() => document.documentElement.classList.remove('theme-transitioning'), 300);
+    window.setTimeout(() => document.documentElement.classList.remove('theme-transitioning'), 150);
   }, []);
 
   const toggle = useCallback(() => setTheme(theme === 'dark' ? 'light' : 'dark'), [theme, setTheme]);
