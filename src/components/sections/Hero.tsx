@@ -5,37 +5,41 @@ import { calLinkWithCampaign } from '../../config/brand';
 import { hero } from '../../content/copy';
 import { CtaButton, CtaMicrocopy } from '../ui/Button';
 
-// Real transparent cutouts (confirmed via alpha channel, not just visual guess)
-// of the same "reaching hands" artwork, replacing the old 640px-wide flat
-// photo that was being upscaled 2-3x on any screen wider than 640px — that
-// upscaling, not a CSS filter or Cloudinary compression, was the actual
-// source of the "blurry hero" complaint. <picture> serves the mobile crop
-// (tighter, more vertical) below 768px and the desktop crop (wide, low)
-// above it — only one ever downloads.
-//
-// Composited over a designed gradient (built entirely from the existing
-// theme tokens, so it re-themes for free) instead of behaving like a
-// full-bleed photo — that's what a transparent cutout calls for, and it's
-// what lets the Hero's text go back to being theme-reactive (ink/canvas)
-// instead of hardcoded white-on-dark-photo.
+// The reference site (impulsastudioai.vercel.app) uses this exact technique
+// for its own hero, inspected directly rather than guessed: the transparent
+// hands cutout is NOT floated as a small contained graphic — it's stretched
+// full-bleed with object-cover, grayscale + contrast filtered, then the
+// whole layer gets mix-blend-mode (multiply on light, screen on dark) at a
+// partial opacity. That's what makes the transparent pixels read as the
+// page's own surface instead of a hard rectangular image edge, and it's why
+// their hero feels "integrated" instead of "a PNG pasted on top" — the
+// problem with the previous version here. Same underlying artwork (same
+// Cloudinary asset for desktop); the mobile crop is their own purpose-built
+// portrait version, not the landscape one used previously, since a portrait
+// cutout composes far better in a tall mobile viewport than a wide one does.
 export function Hero() {
   return (
     <section
       id="hero"
-      className="relative flex flex-col items-center justify-start w-full min-h-[88vh] pt-32 pb-10 md:pt-40 md:pb-16 overflow-hidden bg-canvas"
+      className="relative flex flex-col items-center justify-center w-full min-h-[90vh] pt-32 pb-14 md:pt-28 md:pb-20 overflow-hidden bg-canvas"
     >
-      {/* Designed backdrop: a soft top-to-bottom surface shift plus one very
-          controlled lime glow behind the hands' meeting point — no photo,
-          no particles, nothing competing with the composition. */}
-      <div
-        className="absolute inset-0 z-0"
-        style={{
-          background:
-            'radial-gradient(ellipse 55% 45% at 50% 78%, var(--accent-glow), transparent 70%), linear-gradient(180deg, var(--canvas-alt) 0%, var(--canvas) 55%, var(--surface) 100%)',
-        }}
-        aria-hidden="true"
-      />
+      <div className="absolute inset-0 z-0 hero-image-layer" aria-hidden="true">
+        <picture>
+          <source media="(min-width: 768px)" srcSet={heroDesktopWebp} type="image/webp" />
+          <img
+            src={heroMobileWebp}
+            alt=""
+            fetchPriority="high"
+            decoding="async"
+            className="w-full h-full object-cover object-[center_52%] md:object-[center_50%] scale-[1.06] md:scale-[1.08] grayscale contrast-125"
+          />
+        </picture>
+      </div>
 
+      {/* No lime glow here — the reference implementation doesn't use one in
+          the hero either, and an early attempt at one large-radius glow read
+          as a flat green wash rather than a controlled accent. Lime stays on
+          the CTA button, which is exactly the "action" role it should play. */}
       <div className="relative z-10 max-w-2xl mx-auto text-center px-6">
         <p className="reveal font-sans text-[11px] md:text-xs font-bold uppercase tracking-[0.22em] text-ink-secondary mb-6">
           {hero.kicker}
@@ -53,33 +57,6 @@ export function Hero() {
             <span className="text-ink-secondary">{hero.microcopy}</span>
           </CtaMicrocopy>
         </div>
-      </div>
-
-      {/* Hands graphic — a supporting visual anchored to the bottom of the
-          composition, never overlapping the text or CTA above it. */}
-      <div
-        className="relative z-[5] w-full mt-10 md:mt-16 animate-hero-image-reveal"
-        aria-hidden="true"
-      >
-        {/* WebP-only, no PNG fallback: transparency rules out JPG, and
-            WebP-with-alpha support is effectively universal now, so a ~1.6MB
-            fallback pair would only ever load for a vanishingly small,
-            already-legacy slice of browsers. */}
-        <picture>
-          <source media="(min-width: 768px)" srcSet={heroDesktopWebp} type="image/webp" />
-          {/* aspect-* reserves the right box per breakpoint before the image
-              decodes — the mobile and desktop crops have very different
-              ratios (1.5:1 vs 3.79:1), so a single static width/height
-              would reserve the wrong space and cause a jump on one of them. */}
-          <img
-            src={heroMobileWebp}
-            alt=""
-            fetchPriority="high"
-            width={1400}
-            height={933}
-            className="w-[82%] max-w-[420px] md:max-w-[1100px] md:w-[78%] mx-auto h-auto object-contain aspect-[1400/933] md:aspect-[2200/581]"
-          />
-        </picture>
       </div>
     </section>
   );

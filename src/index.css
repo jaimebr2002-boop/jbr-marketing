@@ -41,6 +41,15 @@
   --glass-highlight: rgba(255, 255, 255, 0.55);
   --glass-shadow: rgba(17, 17, 17, 0.08);
   --accent-glow: rgba(180, 255, 0, 0.35);
+
+  /* Hero image integration: multiply blend darkens the grayscale hands onto
+     a light background so transparent pixels read as the page itself rather
+     than a hard image edge — the technique the reference site uses instead
+     of floating a contained photo on top of a gradient. Multiply goes toward
+     black on a dark background, so dark mode switches to screen (which goes
+     toward white) at a lower opacity instead. */
+  --hero-blend: multiply;
+  --hero-image-opacity: 0.5;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -71,6 +80,9 @@
     --glass-highlight: rgba(255, 255, 255, 0.06);
     --glass-shadow: rgba(0, 0, 0, 0.35);
     --accent-glow: rgba(195, 255, 51, 0.3);
+
+    --hero-blend: screen;
+    --hero-image-opacity: 0.32;
   }
 }
 :root[data-theme="dark"] {
@@ -100,6 +112,9 @@
   --glass-highlight: rgba(255, 255, 255, 0.06);
   --glass-shadow: rgba(0, 0, 0, 0.35);
   --accent-glow: rgba(195, 255, 51, 0.3);
+
+  --hero-blend: screen;
+  --hero-image-opacity: 0.32;
 }
 
 /* Theme-toggle crossfade — scoped to background-color only, and only on
@@ -317,13 +332,35 @@ html, body {
   .animate-hero-image-reveal { animation: none; }
 }
 
+/* Hero image, blended into the background rather than floated as a contained
+   photo — mix-blend-mode lets transparent pixels in the cutout read as the
+   page itself instead of a hard rectangular edge. Multiply (light) darkens
+   onto a light surface; screen (dark) brightens onto a dark one, at lower
+   opacity so it doesn't wash out — see --hero-blend/--hero-image-opacity.
+   Animates in to the theme's target opacity, not to 1, since the resting
+   state is already partly transparent by design. */
+@keyframes hero-image-reveal-blend {
+  from { opacity: 0; transform: scale(1.06); }
+  to { opacity: var(--hero-image-opacity); transform: scale(1); }
+}
+.hero-image-layer {
+  mix-blend-mode: var(--hero-blend);
+  animation: hero-image-reveal-blend 1.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-image-layer { animation: none; opacity: var(--hero-image-opacity); }
+}
+
 /* Infinite marquee — used by ToolsMarquee and ClientsMarquee.
-   Duplicated content track scrolls exactly -50%, so the loop point is seamless. */
+   Duplicated content track scrolls exactly -50%, so the loop point is seamless.
+   Fade zone widened from 8%/92% to 18%/82% now that tiles are much larger —
+   with fewer, bigger logos on screen at once a narrow fade left the edge
+   tiles fully legible right up to the section boundary instead of easing in/out. */
 .marquee-viewport {
   position: relative;
   overflow: hidden;
-  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 18%, black 82%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 18%, black 82%, transparent);
 }
 .marquee-track {
   display: flex;
