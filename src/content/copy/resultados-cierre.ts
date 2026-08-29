@@ -53,6 +53,26 @@ export const faq = [
     q: '¿Con quién hablo en la llamada de diagnóstico?',
     a: 'Conmigo, Jaime Bernáldez. No hay un equipo comercial intermedio: el diagnóstico inicial lo hago yo directamente.',
   },
+  {
+    q: '¿Sois una agencia de IA o una consultoría?',
+    a: 'Funciono como consultoría: primero analizo y decido qué tiene sentido, no vendo un paquete de servicios cerrado desde el principio. Una vez está claro qué hace falta, sí que ejecuto ese trabajo — desarrollo, automatización, marketing o lo que corresponda — igual que haría una agencia, pero la tecnología llega después del diagnóstico, no antes.',
+  },
+  {
+    q: '¿Qué diferencia hay entre automatizar un proceso y usar un agente de IA?',
+    a: 'Una automatización sigue reglas fijas: "si pasa X, haz Y siempre igual". Un agente de IA puede interpretar información variable, tomar pequeñas decisiones dentro de un margen definido y usar herramientas para completar una tarea, no solo repetir un paso. La mayoría de negocios necesitan automatización de procesos primero — es más barata y predecible — y solo añaden agentes de IA donde de verdad hace falta ese criterio adicional.',
+  },
+  {
+    q: '¿Qué puede automatizar mi empresa con IA?',
+    a: 'Depende del negocio, pero lo más habitual es automatizar seguimiento de leads, respuestas y clasificación de mensajes, generación de documentos o presupuestos repetitivos, y el traspaso de datos entre herramientas que hoy se hace a mano. Se identifica en el diagnóstico, no antes — automatizar por automatizar no ahorra nada si el proceso no era realmente un problema.',
+  },
+  {
+    q: '¿Cómo empiezo a implementar IA en mi empresa si no sé por dónde?',
+    a: 'Por un diagnóstico, no por comprar una herramienta de IA de moda. El punto de partida realista es entender qué procesos consumen más tiempo o generan más errores hoy, y valorar ahí si la IA aporta algo concreto. Empezar al revés — eligiendo la herramienta antes de saber el problema — es la forma más habitual de gastar presupuesto sin ver resultado.',
+  },
+  {
+    q: '¿Hacéis desarrollo web o solo consultoría de IA?',
+    a: 'Ambas cosas. El desarrollo web, de apps o de automatizaciones es parte de los servicios que se ejecutan una vez el diagnóstico dice que tiene sentido — la IA no sustituye al desarrollo cuando lo que hace falta es una web o una aplicación bien construida, lo acelera en algunas partes del proceso.',
+  },
 ];
 
 export const ctaFinal = {
@@ -67,11 +87,16 @@ export const footer = {
 };
 
 export const navLinks = [
+  // Every entry is an anchor into this single landing page, in the order the
+  // narrative actually unfolds — this is deliberately not the full list of
+  // every section (Fugas/Resultados stay reachable by scrolling, just not
+  // promoted to the top nav) to keep the navbar itself uncluttered. Servicios
+  // scrolls to the on-page summary, not a route — the standalone /servicios
+  // pages still exist for SEO but aren't part of primary navigation.
   { label: 'El problema', href: '#problema' },
   { label: 'Método', href: '#metodo' },
-  { label: 'Fugas', href: '#fugas' },
-  { label: 'Servicios', href: '/servicios' },
+  { label: 'Servicios', href: '#servicios' },
   { label: 'Sistemas', href: '#sistemas' },
-  { label: 'Resultados', href: '#resultados' },
+  { label: 'Cómo trabajamos', href: '#como-trabajamos' },
   { label: 'FAQ', href: '#faq' },
 ];
