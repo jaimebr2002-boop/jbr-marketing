@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  TODO: replace every https://example.com below with the final production
+  domain once it's set (must match SITE_URL in src/config/brand.ts).
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://example.com/</loc><priority>1.0</priority></url>
+  <url><loc>https://example.com/servicios</loc><priority>0.9</priority></url>
+  <url><loc>https://example.com/servicios/desarrollo-web</loc><priority>0.8</priority></url>
+  <url><loc>https://example.com/servicios/redes-sociales</loc><priority>0.8</priority></url>
+  <url><loc>https://example.com/servicios/campanas-publicitarias</loc><priority>0.8</priority></url>
+  <url><loc>https://example.com/servicios/seo</loc><priority>0.8</priority></url>
+  <url><loc>https://example.com/servicios/geo</loc><priority>0.8</priority></url>
+  <url><loc>https://example.com/servicios/formacion-digital</loc><priority>0.8</priority></url>
+  <url><loc>https://example.com/servicios/automatizaciones</loc><priority>0.8</priority></url>
+  <url><loc>https://example.com/servicios/diseno-branding</loc><priority>0.8</priority></url>
+  <url><loc>https://example.com/servicios/crm-erp</loc><priority>0.8</priority></url>
+  <url><loc>https://example.com/servicios/desarrollo-apps</loc><priority>0.8</priority></url>
+  <url><loc>https://example.com/servicios/estrategia-digital</loc><priority>0.8</priority></url>
+  <url><loc>https://example.com/servicios/videos-ia</loc><priority>0.8</priority></url>
+  <url><loc>https://example.com/aviso-legal</loc><priority>0.3</priority></url>
+  <url><loc>https://example.com/politica-privacidad</loc><priority>0.3</priority></url>
+  <url><loc>https://example.com/politica-cookies</loc><priority>0.3</priority></url>
+</urlset>

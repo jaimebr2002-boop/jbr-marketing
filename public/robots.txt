@@ -1,0 +1,27 @@
+# Standard crawlers: full access.
+User-agent: *
+Allow: /
+
+# AI/GEO crawlers explicitly allowed — blocking these would work against the
+# site's GEO strategy (being cited by ChatGPT, Perplexity, Google AI Overviews).
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# TODO: update once the final production domain is set (see SITE_URL in
+# src/config/brand.ts — must match this value).
+Sitemap: https://example.com/sitemap.xml
