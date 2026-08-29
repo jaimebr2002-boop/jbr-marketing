@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 declare global {
   interface Window {
@@ -8,9 +8,10 @@ declare global {
 
 const CAL_LINK_PATH = 'jaime-bernaldez-reina/30min';
 
-// Cal.com's official inline embed, loaded lazily (only once this section is
-// actually near the viewport) rather than eagerly on page load — a visitor who
-// never scrolls this far never pays for the extra script.
+// Cal.com's official inline embed, loaded lazily — only once the visitor
+// explicitly asks to see availability (see CalEmbed below), not on page load
+// or even on scroll proximity. Nobody who never clicks "Ver disponibilidad"
+// pays for the script.
 function loadCalScript() {
   if (window.Cal) return;
   (function (C: any, A: string, L: string) {
@@ -46,33 +47,54 @@ function loadCalScript() {
   window.Cal!('init', { origin: 'https://cal.com' });
 }
 
-// The Cal target div is never given React-managed children — Cal's script injects
-// an iframe into it directly, and letting React also try to render/remove children
-// there causes DOM-reconciliation errors. The loading state renders as a sibling
-// overlay instead, so React only ever toggles that overlay's presence.
+// Cal.com's own hosted booking page always pre-selects the earliest available
+// day and shows its times immediately below/beside the calendar — that's true
+// at every layout ("month_view"/"week_view"/"column_view") and at every width,
+// verified directly against the live booking page. It's not something the
+// embed's config can defer, since the calendar and the time list live inside
+// Cal's own cross-origin iframe. What we DO fully control is the outer
+// experience: instead of an iframe that's always present and grows to ~1800px
+// tall, this stays a compact card in our own design until the visitor asks to
+// see availability, and even once expanded it sits in a height-capped,
+// internally-scrollable box — never a giant permanently-visible calendar.
+function CalLauncher({ onExpand }: { onExpand: () => void }) {
+  return (
+    <div className="w-full rounded-xl border border-brand-border bg-surface p-8 flex flex-col items-center text-center gap-4">
+      <span className="w-12 h-12 rounded-full bg-canvas flex items-center justify-center text-ink" aria-hidden="true">
+        <CalendarGlyph />
+      </span>
+      <div>
+        <p className="font-sans font-bold text-ink">Elige el día y la hora que mejor te venga.</p>
+        <p className="mt-1.5 font-sans text-[13.5px] text-ink-secondary max-w-xs mx-auto">
+          Se abre el calendario en el sitio: primero el día, después las horas disponibles para ese día.
+        </p>
+      </div>
+      <button
+        type="button"
+        onClick={onExpand}
+        className="mt-1 font-sans font-bold uppercase tracking-[0.1em] text-[13px] px-7 py-3.5 rounded bg-surface-inverse text-white hover:bg-brand-accent hover:text-accent-ink transition-colors duration-300"
+      >
+        Ver disponibilidad
+      </button>
+    </div>
+  );
+}
+
+function CalendarGlyph() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className="w-5 h-5" aria-hidden="true">
+      <rect x="3.5" y="5" width="17" height="15" rx="2" />
+      <path d="M3.5 9.5h17M8 3v3.5M16 3v3.5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 export function CalEmbed() {
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const [shouldLoad, setShouldLoad] = useState(false);
+  const [expanded, setExpanded] = useState(false);
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    const el = wrapperRef.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setShouldLoad(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: '400px' }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (!shouldLoad) return;
+    if (!expanded) return;
     try {
       loadCalScript();
       window.Cal!('inline', {
@@ -91,11 +113,18 @@ export function CalEmbed() {
     } catch {
       setReady(false);
     }
-  }, [shouldLoad]);
+  }, [expanded]);
+
+  if (!expanded) {
+    return <CalLauncher onExpand={() => setExpanded(true)} />;
+  }
 
   return (
-    <div ref={wrapperRef} className="relative w-full min-h-[560px] rounded-xl border border-brand-border bg-surface overflow-hidden">
-      <div id="cal-inline-embed" className="w-full h-full min-h-[560px]" />
+    <div className="relative w-full max-h-[640px] overflow-y-auto rounded-xl border border-brand-border bg-surface">
+      {/* The Cal target div is never given React-managed children — Cal's script
+          injects an iframe into it directly, and letting React also try to
+          render/remove children there causes DOM-reconciliation errors. */}
+      <div id="cal-inline-embed" className="w-full min-h-[560px]" />
       {!ready && (
         <div className="absolute inset-0 flex items-center justify-center bg-surface pointer-events-none">
           <p className="font-sans text-sm text-ink-tertiary">Cargando calendario…</p>
