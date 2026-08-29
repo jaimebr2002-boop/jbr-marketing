@@ -13,9 +13,16 @@ interface LogoTileProps {
 // ends up presenting at the same visual size as its neighbours, because the
 // *container* defines the scale, not the image's own canvas. Always full
 // color: no grayscale/opacity treatment (logos should stay true to brand).
+//
+// Desktop (md:) is sized large (80px tall) so only a handful of logos are
+// ever visible at once, reading as a premium partners marquee rather than a
+// dense row of small icons. Mobile keeps its own, smaller tier: the desktop
+// sizing ported over 1:1 made mobile feel oversized and left too few logos
+// on screen at once, so mobile stays close to its original ~36-40px density
+// (slightly nudged up for legibility) while desktop is untouched.
 export function LogoTile({ src, alt, className = '' }: LogoTileProps) {
   return (
-    <div className={`group flex items-center justify-center h-9 md:h-10 w-[104px] md:w-[120px] shrink-0 px-2 ${className}`}>
+    <div className={`group flex items-center justify-center h-10 md:h-20 w-[112px] md:w-[220px] shrink-0 px-2.5 md:px-4 ${className}`}>
       <img
         src={src}
         alt={alt}
@@ -33,10 +40,10 @@ export function LogoTile({ src, alt, className = '' }: LogoTileProps) {
 export function PendingLogoTile({ name, className = '' }: { name: string; className?: string }) {
   return (
     <div
-      className={`flex items-center justify-center h-9 md:h-10 w-[104px] md:w-[120px] shrink-0 px-2 ${className}`}
+      className={`flex items-center justify-center h-10 md:h-20 w-[112px] md:w-[220px] shrink-0 px-2.5 md:px-4 ${className}`}
       title={`${name} — logo pendiente de incorporar`}
     >
-      <span className="w-full text-center rounded border border-dashed border-brand-border px-2 py-1.5 font-sans text-[10px] font-semibold uppercase tracking-[0.04em] text-ink-tertiary leading-tight">
+      <span className="w-full text-center rounded-control border border-dashed border-brand-border px-2 py-1.5 md:px-3 md:py-2.5 font-sans text-[9.5px] md:text-[11px] font-semibold uppercase tracking-[0.04em] text-ink-tertiary leading-tight">
         {name}
       </span>
     </div>

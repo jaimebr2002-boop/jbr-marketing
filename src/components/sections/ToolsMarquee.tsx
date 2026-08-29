@@ -46,9 +46,16 @@ export function ToolsMarquee() {
           para el caso concreto — el criterio decide, no la novedad.
         </p>
       </div>
+      {/* durationSeconds=58 matches desktop's larger tiles (~1.8x wider track)
+          to keep the same px/s scroll speed there. Mobile uses its own,
+          smaller tiles again (see LogoTile), so its speed is overridden back
+          down via the .tools-marquee CSS rule in index.css instead of here —
+          Marquee only takes one duration, and mobile/desktop need different
+          ones for the same perceived speed. */}
       <Marquee
         ariaLabel="Herramientas y plataformas: Higgsfield, n8n, Claude AI, ChatGPT, GoHighLevel, Retell AI, Nano Banana, Claude Code, Codex"
-        durationSeconds={32}
+        durationSeconds={58}
+        className="tools-marquee"
       >
         {TOOLS.map((tool) => (
           <div key={tool.name}>

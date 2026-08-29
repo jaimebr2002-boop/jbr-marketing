@@ -353,14 +353,21 @@ html, body {
 
 /* Infinite marquee — used by ToolsMarquee and ClientsMarquee.
    Duplicated content track scrolls exactly -50%, so the loop point is seamless.
-   Fade zone widened from 8%/92% to 18%/82% now that tiles are much larger —
-   with fewer, bigger logos on screen at once a narrow fade left the edge
-   tiles fully legible right up to the section boundary instead of easing in/out. */
+   Fade is mobile-first at the original 8%/92% (denser, smaller tiles need less
+   easing-in), then widens to 18%/82% at md: to match the larger desktop tiles
+   — that wider fade was tuned for desktop specifically and was too aggressive
+   once mobile went back to smaller, denser tiles below. */
 .marquee-viewport {
   position: relative;
   overflow: hidden;
-  -webkit-mask-image: linear-gradient(to right, transparent, black 18%, black 82%, transparent);
-  mask-image: linear-gradient(to right, transparent, black 18%, black 82%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+@media (min-width: 768px) {
+  .marquee-viewport {
+    -webkit-mask-image: linear-gradient(to right, transparent, black 18%, black 82%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 18%, black 82%, transparent);
+  }
 }
 .marquee-track {
   display: flex;
@@ -378,6 +385,17 @@ html, body {
 @media (prefers-reduced-motion: reduce) {
   .marquee-track { animation: none; }
   .marquee-viewport { overflow-x: auto; }
+}
+
+/* ToolsMarquee sets durationSeconds={58} to match its now-larger desktop
+   tiles (~1.8x wider track). Mobile reverted to smaller tiles below 768px,
+   so that duration would otherwise feel too slow there — override just the
+   custom property the component sets inline, scoped to this one marquee so
+   ClientsMarquee's own (untouched) speed isn't affected. */
+@media (max-width: 767px) {
+  .tools-marquee .marquee-track {
+    --marquee-duration: 34s !important;
+  }
 }
 
 /* Circular step progress (Metodo) — stroke draws in via stroke-dashoffset,
