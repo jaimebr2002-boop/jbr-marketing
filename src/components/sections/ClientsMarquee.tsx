@@ -1,5 +1,6 @@
 import React from 'react';
 import { Marquee } from '../ui/Marquee';
+import { LogoTile } from '../ui/LogoTile';
 import { clients } from '../../content/clients';
 
 // No client logos exist yet — see src/content/clients.ts. This renders a discreet,
@@ -20,12 +21,13 @@ export function ClientsMarquee() {
 
       {clients.length > 0 ? (
         <div className="mt-12">
+          {/* Same LogoTile system as ToolsMarquee: consistent visual size across
+              logos regardless of each file's own padding/aspect ratio, always
+              full color (never grayscale), no duplicate entries in `clients`. */}
           <Marquee ariaLabel="Logos de clientes" durationSeconds={26}>
             {clients.map((client) => (
-              <div key={client.name} className="flex items-center justify-center h-12 px-10 shrink-0">
-                {/* Not lazy — same reasoning as ToolsMarquee: an animated marquee
-                    is a bad fit for viewport-intersection lazy loading. */}
-                <img src={client.logo} alt={client.name} className="h-full w-auto object-contain opacity-80" />
+              <div key={client.name}>
+                <LogoTile src={client.logo} alt={client.name} />
               </div>
             ))}
           </Marquee>

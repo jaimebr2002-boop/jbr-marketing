@@ -1,5 +1,6 @@
 import React from 'react';
 import { Marquee } from '../ui/Marquee';
+import { LogoTile } from '../ui/LogoTile';
 import higgsfield from '../../assets/tools/higgsfield.png';
 import n8n from '../../assets/tools/n8n.png';
 import claude from '../../assets/tools/claude.png';
@@ -8,8 +9,16 @@ import gohighlevel from '../../assets/tools/gohighlevel.png';
 import retell from '../../assets/tools/retell.png';
 import nanobanana from '../../assets/tools/nanobanana.png';
 
-// Only real assets are used here (see /PAGINA WEB in the project) — no stock logos,
-// and no "Make" tile since that logo file wasn't found among the provided assets.
+// Only real assets are used here (see /PAGINA WEB in the project) — no stock
+// logos, and no "Make" tile since that logo file wasn't found among the
+// provided assets. Every entry appears exactly once — the Marquee component
+// duplicates the *rendered track* for its infinite-loop illusion, but the
+// underlying data list itself must never contain the same tool twice.
+//
+// To add the next tool: drop its logo file in src/assets/tools/, import it
+// above, and add one { name, src } entry below. The current count is 7
+// (odd) only because that 8th tool hasn't been supplied yet — adding it
+// brings this back to the even count the design calls for.
 const TOOLS = [
   { name: 'Higgsfield', src: higgsfield },
   { name: 'n8n', src: n8n },
@@ -28,16 +37,8 @@ export function ToolsMarquee() {
       </p>
       <Marquee ariaLabel="Herramientas y plataformas: Higgsfield, n8n, Claude AI, ChatGPT, GoHighLevel, Retell AI, Nano Banana" durationSeconds={30}>
         {TOOLS.map((tool) => (
-          <div key={tool.name} className="flex items-center justify-center h-10 md:h-11 px-8 md:px-10 shrink-0">
-            <img
-              src={tool.src}
-              alt={tool.name}
-              // Not lazy: these sit inside a continuously CSS-transformed marquee,
-              // so native lazy-loading (viewport-intersection based) sees copies
-              // as "off-screen" mid-slide and pops them in blank while animating.
-              // The full set is ~230KB, small enough to just load eagerly.
-              className="h-full w-auto object-contain opacity-70 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
-            />
+          <div key={tool.name}>
+            <LogoTile src={tool.src} alt={tool.name} />
           </div>
         ))}
       </Marquee>
