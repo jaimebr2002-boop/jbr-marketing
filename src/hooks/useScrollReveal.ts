@@ -1,9 +1,13 @@
 import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 // Observes every .reveal / .reveal-stagger element currently in the DOM and adds
-// .is-visible once each enters the viewport. Runs once per full page render since
-// this is a single static landing page (no client-side routing).
+// .is-visible once each enters the viewport. Re-scans on every route change (not
+// just once) now that the site has multiple pages — a freshly mounted page's
+// .reveal elements wouldn't otherwise get an observer at all.
 export function useScrollReveal() {
+  const location = useLocation();
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -17,9 +21,14 @@ export function useScrollReveal() {
       { threshold: 0.12 }
     );
 
-    const elements = document.querySelectorAll('.reveal, .reveal-stagger');
-    elements.forEach((el) => observer.observe(el));
+    // rAF lets the new route's DOM paint before we query it.
+    const raf = requestAnimationFrame(() => {
+      document.querySelectorAll('.reveal, .reveal-stagger').forEach((el) => observer.observe(el));
+    });
 
-    return () => observer.disconnect();
-  }, []);
+    return () => {
+      cancelAnimationFrame(raf);
+      observer.disconnect();
+    };
+  }, [location.pathname]);
 }
