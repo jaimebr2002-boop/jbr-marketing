@@ -81,13 +81,13 @@ export function Navbar() {
             </a>
 
             {/* Desktop nav — lg+ only, see note above on why md was too tight */}
-            <nav className="hidden lg:flex items-center gap-5 xl:gap-6" aria-label="Navegación principal">
+            <nav className="hidden lg:flex items-center gap-4 xl:gap-6" aria-label="Navegación principal">
               {navLinks.map((link) =>
                 link.href.startsWith('/') ? (
                   <Link
                     key={link.label}
                     to={link.href}
-                    className="relative font-sans text-[12px] font-medium uppercase tracking-[0.08em] text-ink-secondary hover:text-ink transition-colors duration-200 py-2"
+                    className="relative font-sans text-[12px] font-medium uppercase tracking-[0.08em] whitespace-nowrap text-ink-secondary hover:text-ink transition-colors duration-200 py-2"
                   >
                     {link.label}
                   </Link>
@@ -96,21 +96,39 @@ export function Navbar() {
                     key={link.label}
                     href={isHome ? link.href : `/${link.href}`}
                     onClick={(e) => handleAnchorClick(e, link.href)}
-                    className="relative font-sans text-[12px] font-medium uppercase tracking-[0.08em] text-ink-secondary hover:text-ink transition-colors duration-200 py-2"
+                    className="relative font-sans text-[12px] font-medium uppercase tracking-[0.08em] whitespace-nowrap text-ink-secondary hover:text-ink transition-colors duration-200 py-2"
                   >
                     {link.label}
                   </a>
                 )
               )}
               <ThemeToggle />
-              <a
-                href={calLinkWithCampaign('navbar')}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-sans text-[11px] uppercase tracking-[0.1em] bg-surface-inverse text-white px-5 py-2.5 rounded-full transition-all duration-200 hover:bg-brand-accent hover:text-accent-ink hover:scale-[1.03] active:scale-[0.98]"
-              >
-                Reserva tu diagnóstico &rarr;
-              </a>
+              {/* Two framings of the same 30-min call, not two different offers —
+                  some visitors want the structured "diagnóstico" framing, others
+                  just want to talk to Jaime directly without that label. Both
+                  open the identical Cal.com booking link. The secondary one is
+                  xl+ only: at 1024-1279px the 6 nav links + a single CTA already
+                  fill the pill exactly (confirmed against the live layout —
+                  adding a second button there wrapped "Cómo trabajamos" and
+                  "Reunión conmigo" onto two lines each). */}
+              <div className="flex items-center gap-2">
+                <a
+                  href={calLinkWithCampaign('navbar-reunion')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hidden xl:inline-block font-sans text-[11px] uppercase tracking-[0.1em] whitespace-nowrap border border-brand-border text-ink px-4 py-2.5 rounded-full transition-all duration-200 hover:border-ink hover:scale-[1.03] active:scale-[0.98]"
+                >
+                  Reunión conmigo
+                </a>
+                <a
+                  href={calLinkWithCampaign('navbar-diagnostico')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-sans text-[11px] uppercase tracking-[0.1em] whitespace-nowrap bg-surface-inverse text-white px-5 py-2.5 rounded-full transition-all duration-200 hover:bg-brand-accent hover:text-accent-ink hover:scale-[1.03] active:scale-[0.98]"
+                >
+                  Diagnóstico gratuito &rarr;
+                </a>
+              </div>
             </nav>
 
             {/* Compact header (mobile + tablet): theme toggle + persistent mini-CTA
@@ -186,6 +204,15 @@ export function Navbar() {
               className="mt-2 inline-flex items-center justify-center gap-2 text-center font-sans text-sm font-semibold uppercase tracking-[0.06em] bg-brand-accent text-accent-ink px-5 py-4 rounded-full"
             >
               Reserva tu diagnóstico gratuito &rarr;
+            </a>
+            <a
+              href={calLinkWithCampaign('navbar-mobile-reunion')}
+              target="_blank"
+              rel="noopener noreferrer"
+              tabIndex={isOpen ? 0 : -1}
+              className="mt-2 inline-flex items-center justify-center gap-2 text-center font-sans text-sm font-semibold uppercase tracking-[0.06em] border border-brand-border text-ink px-5 py-4 rounded-full"
+            >
+              O una reunión conmigo, sin más
             </a>
           </nav>
         </div>
