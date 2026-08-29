@@ -25,11 +25,17 @@ export function ClientsMarquee() {
               logos regardless of each file's own padding/aspect ratio, always
               full color (never grayscale), no duplicate entries in `clients`. */}
           <Marquee ariaLabel="Logos de clientes" durationSeconds={26}>
-            {clients.map((client) => (
-              <div key={client.name}>
-                <LogoTile src={client.logo} alt={client.name} />
-              </div>
-            ))}
+            {clients.map((client) =>
+              client.url ? (
+                <a key={client.name} href={client.url} target="_blank" rel="noopener noreferrer" aria-label={client.name}>
+                  <LogoTile src={client.logo} alt={client.name} />
+                </a>
+              ) : (
+                <div key={client.name}>
+                  <LogoTile src={client.logo} alt={client.name} />
+                </div>
+              )
+            )}
           </Marquee>
         </div>
       ) : (
