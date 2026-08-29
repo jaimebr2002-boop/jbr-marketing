@@ -1,15 +1,36 @@
 import React, { useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { BRAND_NAME, POSITIONING, calLinkWithCampaign } from '../../config/brand';
 import { navLinks } from '../../content/copy';
 import { ThemeToggle } from '../ui/ThemeToggle';
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isHome = location.pathname === '/';
 
-  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+  // Anchor links (e.g. "#metodo") only make sense on the home page — same-page
+  // smooth scroll there, or navigate to "/#anchor" from anywhere else so the
+  // hash still resolves once HomePage mounts (see useRouteScroll).
+  const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
     setIsOpen(false);
-    document.querySelector(targetId)?.scrollIntoView({ behavior: 'smooth' });
+    if (isHome) {
+      document.querySelector(targetId)?.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      navigate(`/${targetId}`);
+    }
+  };
+
+  const handleBrandClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    setIsOpen(false);
+    if (isHome) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      navigate('/');
+    }
   };
 
   return (
@@ -18,7 +39,7 @@ export function Navbar() {
       style={{ backgroundColor: 'color-mix(in srgb, var(--canvas-alt) 92%, transparent)' }}
     >
       <div className="w-full h-20 max-w-[1440px] mx-auto px-6 md:px-8 flex justify-between items-center relative">
-        <a href="#hero" onClick={(e) => handleSmoothScroll(e, '#hero')} className="flex flex-col leading-none group">
+        <a href="/" onClick={handleBrandClick} className="flex flex-col leading-none group">
           <span className="font-serif font-bold text-ink text-[19px] md:text-[18px]">{BRAND_NAME}</span>
           <span className="hidden sm:block font-sans text-[10px] uppercase tracking-[0.14em] text-ink-secondary mt-0.5">
             {POSITIONING}
@@ -27,16 +48,26 @@ export function Navbar() {
 
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-7" aria-label="Navegación principal">
-          {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              onClick={(e) => handleSmoothScroll(e, link.href)}
-              className="font-sans text-[12px] font-medium uppercase tracking-[0.08em] text-ink-secondary hover:text-ink transition-colors duration-200"
-            >
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map((link) =>
+            link.href.startsWith('/') ? (
+              <Link
+                key={link.label}
+                to={link.href}
+                className="font-sans text-[12px] font-medium uppercase tracking-[0.08em] text-ink-secondary hover:text-ink transition-colors duration-200"
+              >
+                {link.label}
+              </Link>
+            ) : (
+              <a
+                key={link.label}
+                href={isHome ? link.href : `/${link.href}`}
+                onClick={(e) => handleAnchorClick(e, link.href)}
+                className="font-sans text-[12px] font-medium uppercase tracking-[0.08em] text-ink-secondary hover:text-ink transition-colors duration-200"
+              >
+                {link.label}
+              </a>
+            )
+          )}
           <ThemeToggle />
           <a
             href={calLinkWithCampaign('navbar')}
@@ -85,17 +116,29 @@ export function Navbar() {
         }}
       >
         <nav className="flex flex-col px-8 py-6" aria-label="Navegación móvil">
-          {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              tabIndex={isOpen ? 0 : -1}
-              onClick={(e) => handleSmoothScroll(e, link.href)}
-              className="font-sans text-sm uppercase tracking-[0.08em] text-ink py-3.5 border-b border-brand-border"
-            >
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map((link) =>
+            link.href.startsWith('/') ? (
+              <Link
+                key={link.label}
+                to={link.href}
+                tabIndex={isOpen ? 0 : -1}
+                onClick={() => setIsOpen(false)}
+                className="font-sans text-sm uppercase tracking-[0.08em] text-ink py-3.5 border-b border-brand-border"
+              >
+                {link.label}
+              </Link>
+            ) : (
+              <a
+                key={link.label}
+                href={isHome ? link.href : `/${link.href}`}
+                tabIndex={isOpen ? 0 : -1}
+                onClick={(e) => handleAnchorClick(e, link.href)}
+                className="font-sans text-sm uppercase tracking-[0.08em] text-ink py-3.5 border-b border-brand-border"
+              >
+                {link.label}
+              </a>
+            )
+          )}
           <a
             href={calLinkWithCampaign('navbar-mobile')}
             target="_blank"

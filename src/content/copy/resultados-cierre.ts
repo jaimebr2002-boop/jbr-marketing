@@ -76,7 +76,7 @@ export const navLinks = [
   { label: 'El problema', href: '#problema' },
   { label: 'Método', href: '#metodo' },
   { label: 'Fugas', href: '#fugas' },
-  { label: 'Servicios', href: '#servicios' },
+  { label: 'Servicios', href: '/servicios' },
   { label: 'Sistemas', href: '#sistemas' },
   { label: 'Resultados', href: '#resultados' },
   { label: 'FAQ', href: '#faq' },
