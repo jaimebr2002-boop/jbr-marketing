@@ -7,10 +7,9 @@ export const SERVICE_OPTIONS = [
   'Formación Digital',
   'Automatizaciones',
   'Diseño y Branding',
-  'CRM y ERPs',
+  'CRM y ERP',
   'Desarrollo de Apps a medida',
   'Estrategia Digital',
-  'Inteligencia Artificial',
-  'Agentes de IA',
+  'Producción de Vídeos y Spots con IA',
   'No estoy seguro / Necesito orientación',
 ];
