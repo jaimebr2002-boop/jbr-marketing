@@ -6,7 +6,14 @@ import { Reveal } from '../ui/Reveal';
 
 export function DiagnosticoJaime() {
   return (
-    <section id="diagnostico" className="w-full bg-surface-inverse text-white py-20 md:py-28">
+    <section id="diagnostico" className="relative w-full bg-surface-inverse text-white py-20 md:py-28 overflow-hidden">
+      {/* Controlled lime accent — a single soft glow anchoring the section
+          that starts "the real work", not a lime background block. */}
+      <div
+        className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-[560px] h-[280px] rounded-full opacity-[0.12] blur-3xl"
+        style={{ background: 'var(--accent)' }}
+        aria-hidden="true"
+      />
       <div className="max-w-5xl mx-auto px-6">
         {/* Diagnóstico framing */}
         <div className="max-w-2xl reveal">
