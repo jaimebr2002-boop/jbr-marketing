@@ -1,10 +1,16 @@
 import React from 'react';
 
+// Solid bg-surface, not a glass tint: an input needs to stay fully legible,
+// and a translucent background only reads as "glass" when something worth
+// seeing sits behind it through the blur — flat form sections don't give it
+// that, so here the premium cue is generous rounding + a fast, soft lime
+// focus glow instead of transparency.
 const fieldBase =
-  'w-full rounded-lg border bg-surface text-ink placeholder:text-ink-tertiary px-4 py-3.5 font-sans text-[15px] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-brand-accent/50';
+  'w-full rounded-control border bg-surface text-ink placeholder:text-ink-tertiary px-4 py-3.5 font-sans text-[15px] transition-all duration-150 focus:outline-none';
 
 function fieldBorder(hasError?: boolean) {
-  return hasError ? 'border-brand-leak' : 'border-brand-border focus:border-brand-accent';
+  if (hasError) return 'border-brand-leak focus:shadow-[0_0_0_4px_var(--leak-soft)]';
+  return 'border-brand-border hover:border-ink-tertiary focus:border-brand-accent focus:shadow-[0_0_0_4px_var(--accent-glow)]';
 }
 
 interface FieldWrapperOwnProps {

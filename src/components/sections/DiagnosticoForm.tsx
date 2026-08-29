@@ -6,6 +6,7 @@ import { TextField, TextAreaField, SelectField, CheckboxField } from '../ui/Form
 interface FormState {
   name: string;
   email: string;
+  phone: string;
   company: string;
   website: string;
   service: string;
@@ -13,8 +14,13 @@ interface FormState {
   consent: boolean;
 }
 
-const EMPTY: FormState = { name: '', email: '', company: '', website: '', service: '', message: '', consent: false };
+const EMPTY: FormState = { name: '', email: '', phone: '', company: '', website: '', service: '', message: '', consent: false };
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+// Lenient on purpose — clients aren't only in Spain, so this accepts any
+// reasonable phone format (spaces, dashes, parens, leading +) rather than
+// enforcing a 9-digit Spanish pattern. It just checks there's a plausible
+// number of digits, not a specific country's format.
+const PHONE_RE = /^[+()\d][\d\s\-().]{7,}$/;
 
 type Status = 'idle' | 'submitting' | 'success' | 'error';
 
@@ -33,6 +39,8 @@ export function DiagnosticoForm() {
     if (!form.name.trim()) next.name = 'Cuéntanos cómo te llamas.';
     if (!form.email.trim()) next.email = 'Necesitamos un email para responderte.';
     else if (!EMAIL_RE.test(form.email)) next.email = 'Revisa el formato del email.';
+    if (!form.phone.trim()) next.phone = 'Necesitamos un teléfono de contacto.';
+    else if (!PHONE_RE.test(form.phone.trim())) next.phone = 'Revisa el formato del teléfono.';
     if (!form.consent) next.consent = 'Tienes que aceptar la política de privacidad para continuar.';
     setErrors(next);
     return Object.keys(next).length === 0;
@@ -43,6 +51,7 @@ export function DiagnosticoForm() {
     const lines = [
       `Nombre: ${form.name}`,
       `Email: ${form.email}`,
+      `Teléfono: ${form.phone}`,
       `Empresa: ${form.company || '(no indicada)'}`,
       `Web actual: ${form.website || '(no indicada)'}`,
       `Servicio de interés: ${form.service || '(no indicado)'}`,
@@ -121,9 +130,21 @@ export function DiagnosticoForm() {
         />
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <TextField
+          htmlFor="df-phone"
+          name="phone"
+          type="tel"
+          label="Teléfono"
+          required
+          placeholder="+34 600 000 000"
+          value={form.phone}
+          onChange={(v) => set('phone', v)}
+          autoComplete="tel"
+          error={errors.phone}
+        />
         <TextField htmlFor="df-company" name="company" label="Empresa" value={form.company} onChange={(v) => set('company', v)} autoComplete="organization" />
-        <TextField htmlFor="df-website" name="website" label="Web actual" placeholder="tuempresa.com" value={form.website} onChange={(v) => set('website', v)} />
       </div>
+      <TextField htmlFor="df-website" name="website" label="Web actual" placeholder="tuempresa.com" value={form.website} onChange={(v) => set('website', v)} />
       <SelectField
         htmlFor="df-service"
         name="service"
