@@ -73,13 +73,13 @@ export function ServiceDetailPage() {
           <div className="reveal mt-8 flex flex-wrap gap-4">
             <CtaButton href={calLinkWithCampaign(`servicio-${service.slug}`)}>Reserva tu diagnóstico gratuito</CtaButton>
             <CtaButton
-              href="/#diagnostico-digital"
+              href="/diagnostico"
               target="_self"
               variant="secondary"
               className="!border-white/30 !text-white hover:!bg-white hover:!text-ink"
               onClick={(e) => {
                 e.preventDefault();
-                navigate('/#diagnostico-digital');
+                navigate('/diagnostico');
               }}
             >
               Solicita diagnóstico digital

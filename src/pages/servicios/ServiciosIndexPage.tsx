@@ -1,13 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { BRAND_NAME, SITE_URL, calLinkWithCampaign } from '../../config/brand';
 import { usePageMeta } from '../../hooks/usePageMeta';
 import { SERVICES } from '../../content/services';
 import { CtaButton } from '../../components/ui/Button';
 import { RevealStagger, Reveal } from '../../components/ui/Reveal';
-import { DiagnosticoForm } from '../../components/sections/DiagnosticoForm';
 
 export function ServiciosIndexPage() {
+  const navigate = useNavigate();
+
   usePageMeta({
     title: `Servicios de Consultoría de IA y Tecnología Digital | ${BRAND_NAME}`,
     description:
@@ -87,20 +88,29 @@ export function ServiciosIndexPage() {
         </div>
       </section>
 
-      <section id="diagnostico-digital" className="w-full bg-surface py-20 md:py-28">
-        <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-[1fr_1.1fr] gap-12 md:gap-16 items-start">
+      <section className="w-full bg-surface py-20 md:py-28">
+        <div className="max-w-2xl mx-auto px-6 text-center">
           <Reveal>
             <p className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-ink-tertiary mb-4">Sin compromiso</p>
             <h2 className="font-sans font-bold text-ink text-[clamp(1.75rem,3.6vw,2.5rem)] leading-[1.15] text-balance">
               ¿No sabes cuál <em className="font-serif italic font-medium">necesitas?</em>
             </h2>
-            <p className="mt-5 font-sans text-ink-secondary leading-relaxed max-w-md">
+            <p className="mt-5 font-sans text-ink-secondary leading-relaxed max-w-md mx-auto">
               No hace falta que lo sepas. Cuéntame qué está pasando en tu negocio y te digo, con criterio y sin
               compromiso, por dónde tiene sentido empezar.
             </p>
-          </Reveal>
-          <Reveal>
-            <DiagnosticoForm />
+            <div className="mt-8 flex justify-center">
+              <CtaButton
+                href="/diagnostico"
+                target="_self"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate('/diagnostico');
+                }}
+              >
+                Solicitar diagnóstico gratuito
+              </CtaButton>
+            </div>
           </Reveal>
         </div>
       </section>
