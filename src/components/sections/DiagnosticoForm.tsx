@@ -69,14 +69,14 @@ export function DiagnosticoForm() {
     // No backend/email API is wired up yet — this opens the visitor's own mail
     // client with everything pre-filled, which is a real send, just not silent.
     // Replace with a serverless function + email API before relying on this at scale.
-    window.setTimeout(() => {
-      try {
-        window.location.href = buildMailto();
-        setStatus('success');
-      } catch {
-        setStatus('error');
-      }
-    }, 400);
+    // Opening mailto: is synchronous, so this fires immediately — no artificial
+    // delay on the one interaction here that should feel instant.
+    try {
+      window.location.href = buildMailto();
+      setStatus('success');
+    } catch {
+      setStatus('error');
+    }
   }
 
   if (status === 'success') {
