@@ -33,7 +33,7 @@ interface LogoTileProps {
 export function LogoTile({ src, alt, className = '' }: LogoTileProps) {
   return (
     <div className={`group flex items-center justify-center h-10 md:h-20 w-[112px] md:w-[220px] shrink-0 px-2.5 md:px-4 ${className}`}>
-      <div className="flex items-center justify-center h-full w-full rounded-control bg-surface-fixed-light px-3 md:px-4">
+      <div className="flex items-center justify-center h-full w-full rounded-control bg-surface-fixed-light border border-transparent transition-[border-color,box-shadow] duration-300 group-hover:border-brand-accent group-hover:shadow-[0_0_16px_var(--accent-glow)] px-3 md:px-4">
         <img
           src={src}
           alt={alt}
