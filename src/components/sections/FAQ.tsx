@@ -1,9 +1,14 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { faq } from '../../content/copy';
 
+// Home shows only the curated `home: true` subset (6 of 14) — the full list,
+// grouped by category, lives at /faq now. Still emits FAQPage JSON-LD for
+// just this subset (accurate structured data for what's actually on this
+// page); the full set's schema lives on /faq itself.
+const HOME_FAQ = faq.filter((item) => item.home);
+
 export function FAQ() {
-  // Emit FAQPage JSON-LD from the exact same data the visible accordion renders,
-  // so the structured data can never drift out of sync with what a visitor reads.
   useEffect(() => {
     const script = document.createElement('script');
     script.type = 'application/ld+json';
@@ -11,7 +16,7 @@ export function FAQ() {
     script.text = JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'FAQPage',
-      mainEntity: faq.map((item) => ({
+      mainEntity: HOME_FAQ.map((item) => ({
         '@type': 'Question',
         name: item.q,
         acceptedAnswer: { '@type': 'Answer', text: item.a },
@@ -29,7 +34,7 @@ export function FAQ() {
         <h2 className="reveal font-sans font-bold text-ink text-[clamp(1.75rem,4vw,2.5rem)]">Preguntas frecuentes</h2>
 
         <div className="reveal mt-10 flex flex-col">
-          {faq.map((item) => (
+          {HOME_FAQ.map((item) => (
             <details key={item.q} className="group border-b border-brand-border py-5">
               <summary className="flex items-center justify-between gap-4 cursor-pointer list-none font-sans font-semibold text-ink">
                 {item.q}
@@ -40,6 +45,15 @@ export function FAQ() {
               <p className="mt-3 font-sans text-ink-secondary text-sm leading-relaxed max-w-xl">{item.a}</p>
             </details>
           ))}
+        </div>
+
+        <div className="reveal mt-8">
+          <Link
+            to="/faq"
+            className="font-sans text-[13px] uppercase tracking-[0.08em] font-semibold text-ink border-b-2 border-brand-accent pb-0.5 hover:text-brand-accent transition-colors duration-200"
+          >
+            Ver todas las preguntas &rarr;
+          </Link>
         </div>
       </div>
     </section>
