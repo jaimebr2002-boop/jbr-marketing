@@ -285,11 +285,13 @@ html, body {
   .draw-underline::after { transition: none; transform: scaleX(1); }
 }
 
-/* WhatsApp button: one subtle pulse every ~6s, not constant */
+/* WhatsApp button: one subtle pulse every ~6s, not constant. Uses the theme's
+   own --accent via color-mix rather than a literal hex, so the glow tracks
+   whichever accent is active instead of a light-theme value baked in for both. */
 @keyframes wa-pulse {
-  0%, 8% { box-shadow: 0 0 0 0 rgba(180, 255, 0, 0.45); }
-  16% { box-shadow: 0 0 0 10px rgba(180, 255, 0, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(180, 255, 0, 0); }
+  0%, 8% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 45%, transparent); }
+  16% { box-shadow: 0 0 0 10px color-mix(in srgb, var(--accent) 0%, transparent); }
+  100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 0%, transparent); }
 }
 .animate-wa-pulse { animation: wa-pulse 6s ease-out infinite; }
 @media (prefers-reduced-motion: reduce) {
@@ -320,18 +322,6 @@ html, body {
 }
 @media (min-width: 768px) {
   .method-track-fill { top: 27px; left: 4%; height: 2px; width: var(--fill, 0%); }
-}
-
-/* Hero image: one quiet entrance, never a repeating/looping motion */
-@keyframes hero-image-reveal {
-  from { opacity: 0; transform: scale(1.035); }
-  to { opacity: 1; transform: scale(1); }
-}
-.animate-hero-image-reveal {
-  animation: hero-image-reveal 1.4s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-@media (prefers-reduced-motion: reduce) {
-  .animate-hero-image-reveal { animation: none; }
 }
 
 /* Hero image, blended into the background rather than floated as a contained

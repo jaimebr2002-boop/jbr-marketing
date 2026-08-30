@@ -1,8 +1,3 @@
-export const PLACEHOLDERS = {
-  yearsExperience: '[AÑOS DE EXPERIENCIA]',
-  jaimePhoto: 'FOTO_JAIME_PLACEHOLDER',
-};
-
 export const hero = {
   kicker: 'JAIME BERNÁLDEZ · CONSULTOR DE IA PARA EMPRESAS',
   headlinePre: 'Encuentro en tu negocio el tiempo, el dinero y los clientes que estás perdiendo ',
