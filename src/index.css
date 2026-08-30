@@ -298,32 +298,6 @@ html, body {
   .animate-wa-pulse { animation: none; }
 }
 
-/* Method timeline connector: vertical on mobile, horizontal on desktop */
-.method-track { position: relative; }
-.method-track::before {
-  content: "";
-  position: absolute;
-  background: var(--border-strong);
-}
-@media (max-width: 767px) {
-  .method-track::before { left: 27px; top: 8px; bottom: 8px; width: 2px; }
-}
-@media (min-width: 768px) {
-  .method-track::before { top: 27px; left: 4%; right: 4%; height: 2px; }
-}
-/* Fills in lime as each step becomes active on scroll — see Metodo.tsx */
-.method-track-fill {
-  position: absolute;
-  background: var(--accent);
-  transition: width 0.5s ease-out, height 0.5s ease-out;
-}
-@media (max-width: 767px) {
-  .method-track-fill { left: 27px; top: 8px; width: 2px; height: var(--fill, 0%); }
-}
-@media (min-width: 768px) {
-  .method-track-fill { top: 27px; left: 4%; height: 2px; width: var(--fill, 0%); }
-}
-
 /* Hero image, blended into the background rather than floated as a contained
    photo — mix-blend-mode lets transparent pixels in the cutout read as the
    page itself instead of a hard rectangular edge. Multiply (light) darkens
@@ -388,15 +362,6 @@ html, body {
   .tools-marquee .marquee-track {
     --marquee-duration: 34s !important;
   }
-}
-
-/* Circular step progress (Metodo) — stroke draws in via stroke-dashoffset,
-   controlled inline per-step from React once it's marked active. */
-.step-ring circle.step-ring-fill {
-  transition: stroke-dashoffset 0.7s cubic-bezier(0.65, 0, 0.35, 1), stroke 0.3s ease;
-}
-@media (prefers-reduced-motion: reduce) {
-  .step-ring circle.step-ring-fill { transition: stroke 0.3s ease; }
 }
 
 /* ---------------------------------------------------------------------

@@ -1,16 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { comoTrabajamos } from '../../content/copy';
+import { comoTrabajamos, metodo } from '../../content/copy';
 import { RevealStagger } from '../ui/Reveal';
 
-// Purely logistics — no CTA, no mention of "fugas", no restating of the Método
-// philosophy. See the conversion audit: this section's job is reducing operational
-// uncertainty right before Resultados, not re-selling the diagnosis.
+// This absorbs the old, separate "Método" section — two numbered-step
+// timelines back to back (Método's 5-step philosophy, this one's 4-step
+// logistics) read as the same content told twice. Kept this version because
+// its concrete time estimates (15 min / 48-72h / 7-21 días / continua) are
+// the more differentiated, useful content; metodo.kicker survives as the
+// eyebrow so "cómo pienso" and "qué pasa y cuándo" still read as one voice.
 //
-// Same narrative-numbering idea as Método (one shared observer, activeIndex only
-// moves forward, per-step transition delay so a single-row desktop layout still
-// reads as a left-to-right sequence instead of four badges lighting up at once)
-// but with a plain badge instead of an SVG ring — this is a lighter logistics
-// list, not the flagship five-step method.
+// One shared IntersectionObserver, activeIndex only moves forward, per-step
+// transition delay so a single-row desktop layout still reads as a
+// left-to-right sequence instead of four badges lighting up at once.
 export function ComoTrabajamos() {
   const stepRefs = useRef<(HTMLLIElement | null)[]>([]);
   const [activeIndex, setActiveIndex] = useState(-1);
@@ -34,6 +35,7 @@ export function ComoTrabajamos() {
   return (
     <section id="como-trabajamos" className="w-full bg-canvas py-20 md:py-28">
       <div className="max-w-5xl mx-auto px-6">
+        <p className="reveal font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-ink-tertiary mb-4">{metodo.kicker}</p>
         <h2 className="reveal font-sans font-bold text-ink leading-[1.15] text-[clamp(1.75rem,4vw,2.5rem)] max-w-2xl text-balance">
           {comoTrabajamos.headline}
         </h2>

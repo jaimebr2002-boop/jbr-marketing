@@ -1,16 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { calLinkWithCampaign } from '../../config/brand';
-import { SERVICES } from '../../content/services';
+import { getServiceBySlug } from '../../content/services';
 import { CtaButton } from '../ui/Button';
 import { RevealStagger } from '../ui/Reveal';
 import { SectionHeading } from '../ui/SectionHeading';
 
-// Condensed editorial summary for the homepage — every service name stays
-// visible (for scanability, SEO and GEO), but without the full card/traits/FAQ
-// treatment that lives on the dedicated /servicios pages. Keeps the home page
-// from turning into a 12-section wall of detail.
+// Was a 12-row text list of every service — now a curated showcase of 6,
+// as cards (same visual language as the /servicios index's own cards:
+// border, lift + accent border + glow on hover), with a clear "Ver todos"
+// escape hatch to the full 12 at /servicios. The Home's job is to prove
+// there's real depth to explore, not to list everything itself.
+const FEATURED_SLUGS = ['desarrollo-web', 'automatizaciones', 'seo', 'geo', 'estrategia-digital', 'crm-erp'];
+
 export function ServiciosResumen() {
+  const featured = FEATURED_SLUGS.map(getServiceBySlug).filter((s) => s !== undefined);
+
   return (
     <section id="servicios" className="w-full bg-canvas py-20 md:py-28">
       <div className="max-w-5xl mx-auto px-6">
@@ -18,39 +23,38 @@ export function ServiciosResumen() {
           kicker="SERVICIOS"
           headlinePre="Localizado el problema, esto es "
           headlineEmphasis="con lo que lo resolvemos."
-          subhead="No empiezo por la tecnología, pero aquí tienes los servicios que uso para resolver lo que detecto: IA y automatización, desarrollo, marketing y estrategia."
+          subhead="No empiezo por la tecnología, pero aquí tienes algunos de los servicios que uso para resolver lo que detecto: IA y automatización, desarrollo, marketing y estrategia."
         />
 
-        <RevealStagger as="ul" className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-x-10 list-none divide-y divide-brand-border md:divide-y-0">
-          {SERVICES.map((s) => (
-            <li key={s.slug} className="md:border-b md:border-brand-border">
-              {/* Negative margin lets the hover background bleed slightly past the
-                  text to the row edges without shifting the divider/grid lines —
-                  a left border-accent (not a redraw of the whole card) plus a 2px
-                  nudge keeps it in line with the site's existing hover language
-                  (Sistemas cards, /servicios detail pages) instead of introducing
-                  a new, heavier treatment just for this list. */}
-              <Link
-                to={`/servicios/${s.slug}`}
-                className="group flex items-baseline gap-4 py-4 md:py-3.5 pl-3 -ml-3 pr-3 -mr-3 rounded-control border-l-2 border-transparent transition-[background-color,border-color,transform] duration-200 hover:border-brand-accent hover:bg-[color-mix(in_srgb,var(--ink)_5%,transparent)] hover:translate-x-0.5"
-              >
-                <span className="font-serif italic text-ink-tertiary text-sm shrink-0 w-6 transition-colors duration-200 group-hover:text-brand-accent" aria-hidden="true">
-                  {s.n}
-                </span>
-                <span className="flex-1">
-                  <span className="font-sans font-semibold text-ink text-[15px] underline decoration-transparent group-hover:decoration-brand-accent decoration-2 underline-offset-4 transition-colors duration-200">
-                    {s.title}
-                  </span>
-                  <span className="block mt-0.5 font-sans text-[13px] text-ink-secondary leading-snug">{s.shortDescription}</span>
-                </span>
-                <span
-                  className="shrink-0 text-ink-tertiary group-hover:text-brand-accent group-hover:translate-x-0.5 transition-all duration-200"
-                  aria-hidden="true"
-                >
+        <RevealStagger as="div" className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {featured.map((s) => (
+            <Link
+              key={s.slug}
+              to={`/servicios/${s.slug}`}
+              className="group bg-surface rounded-card border border-brand-border p-6 flex flex-col gap-4 transition-all duration-200 ease-out hover:-translate-y-1 hover:border-brand-accent hover:shadow-[0_10px_28px_var(--accent-glow)]"
+            >
+              <div className="flex items-start justify-between gap-4">
+                <span className="font-serif italic text-ink-tertiary text-sm shrink-0 transition-colors duration-200 group-hover:text-brand-accent">{s.n}</span>
+                <span className="text-ink-tertiary group-hover:text-brand-accent group-hover:translate-x-0.5 transition-all duration-200" aria-hidden="true">
                   →
                 </span>
-              </Link>
-            </li>
+              </div>
+              <div>
+                <h3 className="font-sans font-bold text-ink text-[15px] leading-snug">{s.title}</h3>
+                <p className="mt-2 font-sans text-[13px] text-ink-secondary leading-relaxed">{s.shortDescription}</p>
+              </div>
+              <ul className="mt-auto pt-3 border-t border-brand-border flex flex-col gap-1.5">
+                {s.benefits.slice(0, 2).map((b) => (
+                  <li key={b.title} className="font-sans text-[12px] text-ink-secondary flex gap-2 items-baseline">
+                    <span className="text-brand-accent shrink-0" aria-hidden="true">—</span>
+                    {b.title}
+                  </li>
+                ))}
+              </ul>
+              <span className="font-sans text-[11px] font-bold uppercase tracking-[0.1em] text-ink group-hover:text-brand-accent transition-colors duration-200">
+                Ver servicio
+              </span>
+            </Link>
           ))}
         </RevealStagger>
 

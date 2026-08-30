@@ -9,7 +9,17 @@ import { RevealStagger } from '../ui/Reveal';
 // differentiated audit capability gets a lime-bordered card instead of the
 // plain treatment every other system gets (see the brief's ask to make that
 // capability visibly stand out, not just list it as one more item).
+//
+// Shows 4 of the 10 systems (a showcase, not the catalog) — these read as
+// packaged products that overlap conceptually with several /servicios pages
+// (e.g. "Motor a Medida" ~ Desarrollo de Apps), so there's no dedicated
+// /sistemas page yet; revisit once/if that overlap gets untangled with real
+// content to justify a standalone route.
+const FEATURED = ['Radiografía 360', 'Recepción 24/7', 'Radar de Leads', 'Embudo Sin Fugas'];
+
 export function Sistemas() {
+  const items = sistemas.items.filter((s) => FEATURED.includes(s.name));
+
   return (
     <section id="sistemas" className="w-full bg-surface-inverse text-white py-20 md:py-28">
       <div className="max-w-5xl mx-auto px-6">
@@ -22,7 +32,7 @@ export function Sistemas() {
         </div>
 
         <RevealStagger as="ul" className="mt-14 grid grid-cols-1 sm:grid-cols-2 gap-4 list-none">
-          {sistemas.items.map((s) => {
+          {items.map((s) => {
             const isFeatured = s.name === 'Radiografía 360';
             return (
               <li
