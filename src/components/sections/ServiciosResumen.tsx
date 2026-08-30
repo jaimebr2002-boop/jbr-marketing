@@ -23,9 +23,18 @@ export function ServiciosResumen() {
 
         <RevealStagger as="ul" className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-x-10 list-none divide-y divide-brand-border md:divide-y-0">
           {SERVICES.map((s) => (
-            <li key={s.slug} className="py-4 md:py-3.5 md:border-b md:border-brand-border">
-              <Link to={`/servicios/${s.slug}`} className="group flex items-baseline gap-4">
-                <span className="font-serif italic text-ink-tertiary text-sm shrink-0 w-6" aria-hidden="true">
+            <li key={s.slug} className="md:border-b md:border-brand-border">
+              {/* Negative margin lets the hover background bleed slightly past the
+                  text to the row edges without shifting the divider/grid lines —
+                  a left border-accent (not a redraw of the whole card) plus a 2px
+                  nudge keeps it in line with the site's existing hover language
+                  (Sistemas cards, /servicios detail pages) instead of introducing
+                  a new, heavier treatment just for this list. */}
+              <Link
+                to={`/servicios/${s.slug}`}
+                className="group flex items-baseline gap-4 py-4 md:py-3.5 pl-3 -ml-3 pr-3 -mr-3 rounded-control border-l-2 border-transparent transition-[background-color,border-color,transform] duration-200 hover:border-brand-accent hover:bg-[color-mix(in_srgb,var(--ink)_5%,transparent)] hover:translate-x-0.5"
+              >
+                <span className="font-serif italic text-ink-tertiary text-sm shrink-0 w-6 transition-colors duration-200 group-hover:text-brand-accent" aria-hidden="true">
                   {s.n}
                 </span>
                 <span className="flex-1">
@@ -53,7 +62,7 @@ export function ServiciosResumen() {
           <div className="flex flex-wrap gap-4 items-center">
             <Link
               to="/servicios"
-              className="font-sans text-[13px] uppercase tracking-[0.08em] font-semibold text-ink border-b-2 border-brand-accent pb-0.5 hover:text-brand-accent-onlight transition-colors duration-200"
+              className="font-sans text-[13px] uppercase tracking-[0.08em] font-semibold text-ink border-b-2 border-brand-accent pb-0.5 hover:text-brand-accent transition-colors duration-200"
             >
               Ver todos los servicios &rarr;
             </Link>
