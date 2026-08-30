@@ -1,10 +1,23 @@
 import React from 'react';
-import { useTheme } from '../../hooks/useTheme';
+import type { Theme } from '../../hooks/useTheme';
 
 // Sun/moon toggle. Deliberately not a text label ("Day"/"Night") per the brief —
 // a small icon switch that mirrors the CTA buttons' rounded/pill language.
-export function ThemeToggle({ className = '' }: { className?: string }) {
-  const { theme, toggle } = useTheme();
+//
+// Takes theme/onToggle as props rather than calling useTheme() itself: Navbar
+// renders two of these at once (desktop nav + mobile bar, swapped by a CSS
+// breakpoint — both stay mounted), and useTheme() holds its flag in local
+// useState, so two independent hook calls could desync (one instance updates
+// on click, the other — hidden by CSS, not unmounted — never re-renders and
+// keeps showing the stale icon/position until a full remount). A single
+// useTheme() call in Navbar, passed down, keeps one source of truth.
+interface ThemeToggleProps {
+  theme: Theme;
+  onToggle: () => void;
+  className?: string;
+}
+
+export function ThemeToggle({ theme, onToggle, className = '' }: ThemeToggleProps) {
   const isDark = theme === 'dark';
 
   return (
@@ -14,7 +27,7 @@ export function ThemeToggle({ className = '' }: { className?: string }) {
     // well under the touch-target minimum on the live mobile layout.
     <button
       type="button"
-      onClick={toggle}
+      onClick={onToggle}
       role="switch"
       aria-checked={isDark}
       aria-label={isDark ? 'Cambiar a modo día' : 'Cambiar a modo noche'}

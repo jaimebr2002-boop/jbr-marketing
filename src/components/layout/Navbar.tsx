@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { BRAND_NAME, calLinkWithCampaign } from '../../config/brand';
 import { navLinks } from '../../content/copy';
+import { useTheme } from '../../hooks/useTheme';
 import { ThemeToggle } from '../ui/ThemeToggle';
 
 // Full nav (brand + all links + CTA) only fits comfortably from lg (1024px) up —
@@ -14,6 +15,11 @@ export function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
   const isHome = location.pathname === '/';
+  // Called once here, not inside ThemeToggle: the desktop and mobile/tablet
+  // bars below both render their own <ThemeToggle>, and CSS (hidden/lg:flex)
+  // keeps both mounted at once rather than swapping them — two independent
+  // useTheme() calls could desync (see ThemeToggle.tsx).
+  const { theme, toggle } = useTheme();
 
   useEffect(() => {
     const onScroll = () => {
@@ -102,7 +108,7 @@ export function Navbar() {
                   </a>
                 )
               )}
-              <ThemeToggle />
+              <ThemeToggle theme={theme} onToggle={toggle} />
               {/* Two framings of the same 30-min call, not two different offers —
                   some visitors want the structured "diagnóstico" framing, others
                   just want to talk to Jaime directly without that label. Both
@@ -136,18 +142,18 @@ export function Navbar() {
                 here sits in a >=44px tappable box even though its visible glyph/pill
                 is smaller (confirmed the previous 20x20 hamburger hitbox against the
                 375px layout — well under the touch-target minimum). */}
-            <div className="lg:hidden flex items-center gap-1">
-              <ThemeToggle />
+            <div className="lg:hidden flex items-center gap-0">
+              <ThemeToggle theme={theme} onToggle={toggle} />
               <a
                 href={calLinkWithCampaign('navbar-mobile-mini')}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-sans text-[11px] uppercase tracking-[0.06em] bg-surface-inverse text-white px-4 py-2.5 rounded-full ml-1"
+                className="font-sans text-[11px] uppercase tracking-[0.05em] bg-surface-inverse text-white px-2.5 py-2.5 rounded-full"
               >
                 Diagnóstico
               </a>
               <button
-                className="flex flex-col justify-center items-center w-11 h-11 gap-[5px] shrink-0 -mr-2"
+                className="flex flex-col justify-center items-center w-11 h-11 gap-[5px] shrink-0"
                 onClick={() => setIsOpen((v) => !v)}
                 aria-expanded={isOpen}
                 aria-controls="mobile-nav"
@@ -168,7 +174,7 @@ export function Navbar() {
         <div
           id="mobile-nav"
           aria-hidden={!isOpen}
-          className={`lg:hidden glass-strong rounded-panel mt-2 origin-top transition-all duration-300 ease-out overflow-hidden ${
+          className={`lg:hidden glass-strong rounded-panel mt-2 origin-top transition-[opacity,transform] duration-300 ease-out overflow-hidden ${
             isOpen ? 'opacity-100 scale-100 max-h-[520px]' : 'opacity-0 scale-95 max-h-0 pointer-events-none'
           }`}
         >
