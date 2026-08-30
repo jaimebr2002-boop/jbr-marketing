@@ -160,9 +160,9 @@
      rounded-control: buttons, inputs, small interactive chips.
      rounded-card: cards.
      rounded-panel: major blocks — hero panel, Cal.com container, mobile menu. */
-  --radius-control: 14px;
-  --radius-card: 22px;
-  --radius-panel: 30px;
+  --radius-control: 16px;
+  --radius-card: 26px;
+  --radius-panel: 34px;
 }
 
 body {
@@ -230,6 +230,43 @@ html {
 .reveal-stagger.is-visible > :nth-child(7) { transition-delay: 0.40s; }
 .reveal-stagger.is-visible > :nth-child(8) { transition-delay: 0.46s; }
 .reveal-stagger.is-visible > :nth-child(9) { transition-delay: 0.52s; }
+
+/* Page transition — a route change re-mounts this wrapper (keyed by pathname
+   in Layout.tsx), which restarts this animation. Deliberately much faster and
+   subtler than .reveal above (that one is for content appearing on scroll,
+   this one is "the next page just arrived"): opacity + a few px of translate,
+   both cheap, transform/opacity-only properties, no layout or paint cost
+   beyond a single composited layer. Enter-only — react-router doesn't give a
+   clean hook to animate the outgoing page out before it unmounts, and
+   chasing that would add real complexity for very little visible gain when
+   the enter animation alone is already this quick. */
+@keyframes page-enter {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.page-transition {
+  animation: page-enter 200ms ease-out both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-transition { animation: none; }
+}
+
+/* FAQ accordion reveal — native <details> can't animate its own open/close
+   height without JS, so this doesn't try to; it just fades + lifts the
+   answer text in each time the <details> becomes visible (animations, unlike
+   transitions, restart on going from display:none to rendered). Keeps the
+   native element's accessibility/keyboard/performance for free while still
+   giving "el contenido aparece suavemente" on open. */
+@keyframes faq-answer-reveal {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+details[open] > .faq-answer {
+  animation: faq-answer-reveal 180ms ease-out both;
+}
+@media (prefers-reduced-motion: reduce) {
+  details[open] > .faq-answer { animation: none; }
+}
 
 @keyframes spin {
   from { transform: rotate(0deg); }

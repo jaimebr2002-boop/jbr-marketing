@@ -43,7 +43,7 @@ export function ClientsMarquee() {
           {Array.from({ length: 5 }).map((_, i) => (
             <div
               key={i}
-              className="reveal aspect-[3/2] rounded-lg border border-dashed border-brand-border flex items-center justify-center"
+              className="reveal aspect-[3/2] rounded-card border border-dashed border-brand-border flex items-center justify-center"
             >
               <span className="font-sans text-[10px] uppercase tracking-[0.08em] text-ink-tertiary">Logo próximamente</span>
             </div>

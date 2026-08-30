@@ -37,14 +37,19 @@ export function Sistemas() {
             return (
               <li
                 key={s.name}
-                className={`rounded-lg p-6 flex flex-col gap-1.5 ${
-                  isFeatured ? 'bg-white/5 border border-brand-accent' : 'bg-white/5 border border-white/10'
+                className={`rounded-card p-6 flex flex-col gap-1.5 transition-transform duration-200 ${
+                  // The one "featured" card gets the site's Liquid Glass treatment
+                  // (see index.css) instead of the flat bg-white/5 the rest use —
+                  // glass is meant for a small number of deliberately elevated
+                  // surfaces, and this is the one card on the page that should
+                  // read as elevated above its neighbours.
+                  isFeatured ? 'glass-subtle border-brand-accent hover:-translate-y-1' : 'bg-white/5 border border-white/10'
                 }`}
               >
                 <p className="font-sans font-bold">
                   {s.name} <span className="font-normal text-white/60 text-sm">— {s.tag}</span>
                   {isFeatured && (
-                    <span className="ml-2 align-middle font-sans text-[10px] font-bold uppercase tracking-[0.1em] text-accent-ink bg-brand-accent px-2 py-0.5 rounded">
+                    <span className="ml-2 align-middle font-sans text-[10px] font-bold uppercase tracking-[0.1em] text-accent-ink bg-brand-accent px-2 py-0.5 rounded-full">
                       Diferencial
                     </span>
                   )}

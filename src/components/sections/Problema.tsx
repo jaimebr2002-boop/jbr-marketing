@@ -29,7 +29,7 @@ export function Problema() {
 
         <RevealStagger as="ul" className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-4 list-none text-left">
           {causas.map((c) => (
-            <li key={c.title} className="bg-surface rounded-lg border border-brand-border p-6">
+            <li key={c.title} className="bg-surface rounded-card border border-brand-border p-6">
               <h3 className="font-sans font-bold text-ink">{c.title}</h3>
               <p className="mt-2 font-sans text-sm text-ink-secondary leading-relaxed">{c.body}</p>
             </li>

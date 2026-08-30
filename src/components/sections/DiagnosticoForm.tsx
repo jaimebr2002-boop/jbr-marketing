@@ -81,7 +81,7 @@ export function DiagnosticoForm() {
 
   if (status === 'success') {
     return (
-      <div className="reveal rounded-xl border border-brand-border bg-surface p-8 text-center">
+      <div className="reveal glass-subtle rounded-panel p-8 text-center">
         <p className="font-serif italic text-xl text-ink">Se ha abierto tu cliente de correo con todo listo.</p>
         <p className="mt-3 font-sans text-sm text-ink-secondary max-w-sm mx-auto">
           Solo tienes que darle a enviar. Si no se ha abierto nada, escríbenos directamente a{' '}
@@ -169,7 +169,7 @@ export function DiagnosticoForm() {
       <button
         type="submit"
         disabled={status === 'submitting'}
-        className="mt-1 inline-flex items-center justify-center gap-2 font-sans font-bold uppercase tracking-[0.1em] text-[13px] px-8 py-4 rounded bg-brand-accent text-accent-ink hover:bg-surface-inverse hover:text-brand-accent transition-colors duration-300 disabled:opacity-60 disabled:cursor-wait"
+        className="mt-1 inline-flex items-center justify-center gap-2 font-sans font-bold uppercase tracking-[0.1em] text-[13px] px-8 py-4 rounded-full bg-brand-accent text-accent-ink hover:bg-surface-inverse hover:text-brand-accent hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 disabled:opacity-60 disabled:cursor-wait disabled:hover:scale-100"
       >
         {status === 'submitting' ? 'Enviando…' : 'Solicitar diagnóstico gratuito'}
       </button>
