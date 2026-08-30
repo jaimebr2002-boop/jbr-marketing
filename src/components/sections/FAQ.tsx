@@ -42,7 +42,7 @@ export function FAQ() {
                   +
                 </span>
               </summary>
-              <p className="mt-3 font-sans text-ink-secondary text-sm leading-relaxed max-w-xl">{item.a}</p>
+              <p className="faq-answer mt-3 font-sans text-ink-secondary text-sm leading-relaxed max-w-xl">{item.a}</p>
             </details>
           ))}
         </div>
