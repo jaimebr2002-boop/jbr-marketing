@@ -2,9 +2,96 @@ import React from 'react';
 import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
 import { BRAND_NAME, SITE_URL, calLinkWithCampaign } from '../../config/brand';
 import { usePageMeta } from '../../hooks/usePageMeta';
-import { getRelatedServices, getServiceBySlug } from '../../content/services';
+import { getRelatedServices, getServiceBySlug, type ServiceCategory } from '../../content/services';
 import { CtaButton } from '../../components/ui/Button';
 import { Reveal, RevealStagger } from '../../components/ui/Reveal';
+
+// Gives each of the 12 service pages a bit of visual personality without
+// inventing any content or straying from the brand's one accent color — pure
+// decoration (aria-hidden, pointer-events-none, low-opacity), varying only
+// composition/motif per category so "Desarrollo Web" reads a little more
+// technical, "SEO/GEO" a little more analytical, etc., while every page
+// stays visibly the same design system and the same lime.
+function HeroAccent({ category }: { category: ServiceCategory }) {
+  const base = 'pointer-events-none absolute inset-0 overflow-hidden';
+  switch (category) {
+    case 'desarrollo':
+      // A faint technical grid, fading out from the top-right corner.
+      return (
+        <div className={base} aria-hidden="true">
+          <div
+            className="absolute -top-10 -right-10 w-[440px] h-[440px] opacity-[0.07]"
+            style={{
+              backgroundImage:
+                'linear-gradient(var(--accent) 1px, transparent 1px), linear-gradient(90deg, var(--accent) 1px, transparent 1px)',
+              backgroundSize: '28px 28px',
+              maskImage: 'radial-gradient(circle at top right, black, transparent 70%)',
+              WebkitMaskImage: 'radial-gradient(circle at top right, black, transparent 70%)',
+            }}
+          />
+        </div>
+      );
+    case 'marketing':
+      // A soft, organic glow — the most visual/dynamic of the five.
+      return (
+        <div className={base} aria-hidden="true">
+          <div
+            className="absolute -top-20 -right-24 w-[480px] h-[340px] rounded-full opacity-[0.14] blur-3xl"
+            style={{ background: 'var(--accent)' }}
+          />
+        </div>
+      );
+    case 'visibilidad':
+      // A thin horizontal "scan line" — analytical, data-readout feel for SEO/GEO.
+      return (
+        <div className={base} aria-hidden="true">
+          <div
+            className="absolute top-[38%] left-0 right-0 h-px opacity-[0.3]"
+            style={{ background: 'linear-gradient(90deg, transparent, var(--accent), transparent)' }}
+          />
+          <div
+            className="absolute top-[38%] left-0 right-0 h-24 -translate-y-12 opacity-[0.06] blur-2xl"
+            style={{ background: 'var(--accent)' }}
+          />
+        </div>
+      );
+    case 'estrategia':
+      // Concentric rings — a radar/roadmap motif, echoing "Radiografía 360".
+      return (
+        <div className={base} aria-hidden="true">
+          {[180, 280, 380].map((size) => (
+            <div
+              key={size}
+              className="absolute top-1/2 -right-16 -translate-y-1/2 rounded-full border"
+              style={{ width: size, height: size, borderColor: 'var(--accent)', opacity: 0.05 + (380 - size) / 3500 }}
+            />
+          ))}
+        </div>
+      );
+    case 'ia':
+      // A small connected-node graph — automation/systems feel.
+      return (
+        <div className={base} aria-hidden="true">
+          <svg className="absolute -top-4 -right-4 w-[320px] h-[320px] opacity-[0.14]" viewBox="0 0 200 200" fill="none">
+            <g stroke="var(--accent)" strokeWidth="1">
+              <line x1="40" y1="40" x2="120" y2="70" />
+              <line x1="120" y1="70" x2="90" y2="150" />
+              <line x1="120" y1="70" x2="170" y2="120" />
+              <line x1="40" y1="40" x2="90" y2="150" />
+            </g>
+            <g fill="var(--accent)">
+              <circle cx="40" cy="40" r="4" />
+              <circle cx="120" cy="70" r="4" />
+              <circle cx="90" cy="150" r="4" />
+              <circle cx="170" cy="120" r="4" />
+            </g>
+          </svg>
+        </div>
+      );
+    default:
+      return null;
+  }
+}
 
 export function ServiceDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -56,8 +143,9 @@ export function ServiceDetailPage() {
   return (
     <article>
       {/* Hero — dark */}
-      <section className="w-full bg-surface-inverse text-white py-16 md:py-24">
-        <div className="max-w-4xl mx-auto px-6">
+      <section className="relative w-full overflow-hidden bg-surface-inverse text-white py-16 md:py-24">
+        <HeroAccent category={service.category} />
+        <div className="relative z-10 max-w-4xl mx-auto px-6">
           <nav aria-label="Ruta de navegación" className="reveal font-sans text-[11px] font-bold uppercase tracking-[0.15em] text-white/50 mb-5">
             <Link to="/" className="hover:text-white transition-colors">Inicio</Link>
             <span className="mx-2">/</span>
@@ -189,7 +277,7 @@ export function ServiceDetailPage() {
                     +
                   </span>
                 </summary>
-                <p className="mt-3 font-sans text-[15px] text-ink-secondary leading-relaxed">{f.a}</p>
+                <p className="faq-answer mt-3 font-sans text-[15px] text-ink-secondary leading-relaxed">{f.a}</p>
               </details>
             ))}
           </RevealStagger>
@@ -209,7 +297,7 @@ export function ServiceDetailPage() {
                 <Link
                   key={r.slug}
                   to={`/servicios/${r.slug}`}
-                  className="group bg-surface rounded-card border border-brand-border p-6 flex flex-col gap-2 transition-all duration-200 ease-out hover:-translate-y-1 hover:border-brand-accent hover:shadow-[0_10px_28px_var(--accent-glow)]"
+                  className="group bg-surface rounded-card border border-brand-border p-6 flex flex-col gap-2 transition-all duration-200 ease-out hover:-translate-y-1 hover:border-brand-accent hover:shadow-[0_10px_28px_var(--accent-glow)] active:scale-[0.98]"
                 >
                   <h3 className="font-sans font-bold text-ink text-[15px]">{r.title}</h3>
                   <p className="font-sans text-[13px] text-ink-secondary leading-relaxed">{r.shortDescription}</p>

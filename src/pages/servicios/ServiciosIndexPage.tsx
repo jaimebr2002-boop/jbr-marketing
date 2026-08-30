@@ -56,7 +56,7 @@ export function ServiciosIndexPage() {
               <Link
                 key={s.slug}
                 to={`/servicios/${s.slug}`}
-                className="group bg-surface rounded-card border border-brand-border p-7 flex flex-col gap-4 transition-all duration-200 ease-out hover:-translate-y-1 hover:border-brand-accent hover:shadow-[0_10px_28px_var(--accent-glow)]"
+                className="group bg-surface rounded-card border border-brand-border p-7 flex flex-col gap-4 transition-all duration-200 ease-out hover:-translate-y-1 hover:border-brand-accent hover:shadow-[0_10px_28px_var(--accent-glow)] active:scale-[0.98]"
               >
                 <div className="flex items-start justify-between gap-4">
                   <span className="font-serif italic text-ink-tertiary text-sm shrink-0 transition-colors duration-200 group-hover:text-brand-accent">{s.n}</span>
