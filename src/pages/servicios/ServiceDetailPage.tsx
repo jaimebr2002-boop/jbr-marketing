@@ -297,7 +297,7 @@ export function ServiceDetailPage() {
                 <Link
                   key={r.slug}
                   to={`/servicios/${r.slug}`}
-                  className="group bg-surface rounded-card border border-brand-border p-6 flex flex-col gap-2 transition-all duration-200 ease-out hover:-translate-y-1 hover:border-brand-accent hover:shadow-[0_10px_28px_var(--accent-glow)] active:scale-[0.98]"
+                  className="group bg-surface rounded-card border border-brand-border p-6 flex flex-col gap-2 transition-[transform,border-color,box-shadow] duration-200 ease-out hover:-translate-y-1 hover:border-brand-accent hover:shadow-[0_10px_28px_var(--accent-glow)] active:scale-[0.98]"
                 >
                   <h3 className="font-sans font-bold text-ink text-[15px]">{r.title}</h3>
                   <p className="font-sans text-[13px] text-ink-secondary leading-relaxed">{r.shortDescription}</p>

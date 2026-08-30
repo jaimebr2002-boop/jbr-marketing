@@ -28,7 +28,7 @@ export function CtaButton({ href, children, variant = 'primary', className = '',
       rel={target === '_blank' ? 'noopener noreferrer' : undefined}
       aria-label={ariaLabel}
       onClick={onClick}
-      className={`group inline-flex items-center gap-2 font-sans font-bold uppercase tracking-[0.12em] text-[13px] px-8 py-4 rounded-full transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-accent ${
+      className={`group inline-flex items-center gap-2 font-sans font-bold uppercase tracking-[0.12em] text-[13px] px-8 py-4 rounded-full transition-[background-color,color,border-color,transform] duration-200 hover:scale-[1.02] active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-accent ${
         isPrimary
           ? 'bg-brand-accent text-accent-ink hover:bg-surface-inverse hover:text-brand-accent'
           : 'bg-transparent text-ink border border-ink hover:bg-surface-inverse hover:text-white hover:border-surface-inverse'

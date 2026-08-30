@@ -6,7 +6,7 @@ import React from 'react';
 // that, so here the premium cue is generous rounding + a fast, soft lime
 // focus glow instead of transparency.
 const fieldBase =
-  'w-full rounded-control border bg-surface text-ink placeholder:text-ink-tertiary px-4 py-3.5 font-sans text-[15px] transition-all duration-150 focus:outline-none';
+  'w-full rounded-control border bg-surface text-ink placeholder:text-ink-tertiary px-4 py-3.5 font-sans text-[15px] transition-[border-color,box-shadow] duration-150 focus:outline-none';
 
 function fieldBorder(hasError?: boolean) {
   if (hasError) return 'border-brand-leak focus:shadow-[0_0_0_4px_var(--leak-soft)]';

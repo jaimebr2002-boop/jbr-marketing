@@ -67,7 +67,7 @@ export function FaqPage() {
                     <details key={item.q} className="group py-5">
                       <summary className="flex items-center justify-between gap-4 cursor-pointer list-none font-sans font-semibold text-ink">
                         {item.q}
-                        <span className="shrink-0 text-ink-secondary transition-all duration-200 group-hover:text-brand-accent group-open:rotate-45" aria-hidden="true">
+                        <span className="shrink-0 text-ink-secondary transition-[color,transform] duration-200 group-hover:text-brand-accent group-open:rotate-45" aria-hidden="true">
                           +
                         </span>
                       </summary>

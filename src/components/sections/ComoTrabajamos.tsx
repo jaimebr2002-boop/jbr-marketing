@@ -53,7 +53,7 @@ export function ComoTrabajamos() {
                 className="flex flex-col gap-2"
               >
                 <span
-                  className={`font-sans text-xs font-bold uppercase tracking-[0.1em] inline-block w-fit px-2 py-1 rounded transition-all duration-500 ${
+                  className={`font-sans text-xs font-bold uppercase tracking-[0.1em] inline-block w-fit px-2 py-1 rounded-full transition-[background-color,color,transform] duration-500 ${
                     isActive ? 'bg-brand-accent text-accent-ink scale-100' : 'bg-surface-inverse text-white/40 scale-95'
                   }`}
                   style={{ transitionDelay: isActive ? `${i * 150}ms` : '0ms' }}

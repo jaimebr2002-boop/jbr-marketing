@@ -169,7 +169,7 @@ export function DiagnosticoForm() {
       <button
         type="submit"
         disabled={status === 'submitting'}
-        className="mt-1 inline-flex items-center justify-center gap-2 font-sans font-bold uppercase tracking-[0.1em] text-[13px] px-8 py-4 rounded-full bg-brand-accent text-accent-ink hover:bg-surface-inverse hover:text-brand-accent hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 disabled:opacity-60 disabled:cursor-wait disabled:hover:scale-100"
+        className="mt-1 inline-flex items-center justify-center gap-2 font-sans font-bold uppercase tracking-[0.1em] text-[13px] px-8 py-4 rounded-full bg-brand-accent text-accent-ink hover:bg-surface-inverse hover:text-brand-accent hover:scale-[1.02] active:scale-[0.98] transition-[background-color,color,transform] duration-200 disabled:opacity-60 disabled:cursor-wait disabled:hover:scale-100"
       >
         {status === 'submitting' ? 'Enviando…' : 'Solicitar diagnóstico gratuito'}
       </button>
