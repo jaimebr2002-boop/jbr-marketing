@@ -1,4 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;0,6..72,800;1,6..72,400;1,6..72,500&display=swap');
+/* Google Fonts moved to <link rel="preconnect"> + <link rel="stylesheet">
+   in index.html — a CSS @import here made the browser wait to parse this
+   whole file before it even discovered fonts.googleapis.com existed, then
+   discover fonts.gstatic.com only after THAT response came back: two fully
+   serial round-trips added to the critical path before a single font byte
+   arrives. The <link> tags in <head> let the browser start both connections
+   during initial HTML parsing, in parallel with everything else. */
 @import "tailwindcss";
 
 /* ---------------------------------------------------------------------
@@ -430,6 +436,22 @@ html, body {
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .glass { background: var(--glass-bg-strong); }
   .glass-strong { background: var(--glass-bg-strong); }
+}
+
+/* Lighter blur below 768px — mobile GPUs composite backdrop-filter more
+   expensively, and the navbar's glass pill is the one instance of this
+   that's permanently on screen and recomputing every scroll frame (the
+   others only exist on a couple of static, non-fixed panels). Still reads
+   as glass, just cheaper to keep live the whole time you're on the site. */
+@media (max-width: 767px) {
+  .glass {
+    backdrop-filter: blur(12px) saturate(140%);
+    -webkit-backdrop-filter: blur(12px) saturate(140%);
+  }
+  .glass-strong {
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+  }
 }
 
 /* Subtle lime glow — an accent/state signal (active controls, focus,

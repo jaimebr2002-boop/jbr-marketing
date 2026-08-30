@@ -4,6 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
+    <!-- Google Fonts as real <link> tags (not a CSS @import — see index.css)
+         so the browser can open both connections during initial HTML parsing
+         instead of waiting to discover them inside the CSS bundle. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;0,6..72,800;1,6..72,400;1,6..72,500&display=swap"
+    />
+
     <!--
       Sets data-theme before first paint so there's no light-flash-then-dark
       (or vice versa) on load. Reads an explicit user choice first, then falls
