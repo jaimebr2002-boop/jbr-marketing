@@ -33,9 +33,10 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Anchor links (e.g. "#metodo") only make sense on the home page — same-page
-  // smooth scroll there, or navigate to "/#anchor" from anywhere else so the
-  // hash still resolves once HomePage mounts (see useRouteScroll).
+  // Anchor links (e.g. "#como-trabajamos" — the one nav item without its own
+  // page yet) only make sense on the home page — same-page smooth scroll
+  // there, or navigate to "/#anchor" from anywhere else so the hash still
+  // resolves once HomePage mounts (see useRouteScroll).
   const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
     setIsOpen(false);
@@ -109,32 +110,19 @@ export function Navbar() {
                 )
               )}
               <ThemeToggle theme={theme} onToggle={toggle} />
-              {/* Two framings of the same 30-min call, not two different offers —
-                  some visitors want the structured "diagnóstico" framing, others
-                  just want to talk to Jaime directly without that label. Both
-                  open the identical Cal.com booking link. The secondary one is
-                  xl+ only: at 1024-1279px the 6 nav links + a single CTA already
-                  fill the pill exactly (confirmed against the live layout —
-                  adding a second button there wrapped "Cómo trabajamos" and
-                  "Reunión conmigo" onto two lines each). */}
-              <div className="flex items-center gap-2">
-                <a
-                  href={calLinkWithCampaign('navbar-reunion')}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hidden xl:inline-block font-sans text-[11px] uppercase tracking-[0.1em] whitespace-nowrap border border-brand-border text-ink px-4 py-2.5 rounded-full transition-all duration-200 hover:border-ink hover:scale-[1.03] active:scale-[0.98]"
-                >
-                  Reunión conmigo
-                </a>
-                <a
-                  href={calLinkWithCampaign('navbar-diagnostico')}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-sans text-[11px] uppercase tracking-[0.1em] whitespace-nowrap bg-surface-inverse text-white px-5 py-2.5 rounded-full transition-all duration-200 hover:bg-brand-accent hover:text-accent-ink hover:scale-[1.03] active:scale-[0.98]"
-                >
-                  Diagnóstico gratuito &rarr;
-                </a>
-              </div>
+              {/* One clear CTA now that "Diagnóstico" is its own nav item/page —
+                  having both a "Diagnóstico gratuito" button here AND a
+                  "Diagnóstico" link two items to the left was redundant. This
+                  button's job is specifically the Cal.com call; the nav link
+                  covers the page for anyone who wants to read before booking. */}
+              <a
+                href={calLinkWithCampaign('navbar-cta')}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-sans text-[11px] uppercase tracking-[0.1em] whitespace-nowrap bg-surface-inverse text-white px-5 py-2.5 rounded-full transition-all duration-200 hover:bg-brand-accent hover:text-accent-ink hover:scale-[1.03] active:scale-[0.98]"
+              >
+                Agendar llamada &rarr;
+              </a>
             </nav>
 
             {/* Compact header (mobile + tablet): theme toggle + persistent mini-CTA
@@ -150,7 +138,7 @@ export function Navbar() {
                 rel="noopener noreferrer"
                 className="font-sans text-[11px] uppercase tracking-[0.05em] bg-surface-inverse text-white px-2.5 py-2.5 rounded-full"
               >
-                Diagnóstico
+                Agendar
               </a>
               <button
                 className="flex flex-col justify-center items-center w-11 h-11 gap-[5px] shrink-0"
@@ -209,16 +197,7 @@ export function Navbar() {
               tabIndex={isOpen ? 0 : -1}
               className="mt-2 inline-flex items-center justify-center gap-2 text-center font-sans text-sm font-semibold uppercase tracking-[0.06em] bg-brand-accent text-accent-ink px-5 py-4 rounded-full"
             >
-              Reserva tu diagnóstico gratuito &rarr;
-            </a>
-            <a
-              href={calLinkWithCampaign('navbar-mobile-reunion')}
-              target="_blank"
-              rel="noopener noreferrer"
-              tabIndex={isOpen ? 0 : -1}
-              className="mt-2 inline-flex items-center justify-center gap-2 text-center font-sans text-sm font-semibold uppercase tracking-[0.06em] border border-brand-border text-ink px-5 py-4 rounded-full"
-            >
-              O una reunión conmigo, sin más
+              Agendar llamada &rarr;
             </a>
           </nav>
         </div>
