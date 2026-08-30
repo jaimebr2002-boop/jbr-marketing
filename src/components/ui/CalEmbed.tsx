@@ -7,13 +7,18 @@ declare global {
 }
 
 const CAL_LINK_PATH = 'jaime-bernaldez-reina/30min';
+const CAL_FALLBACK_URL = `https://cal.com/${CAL_LINK_PATH}`;
 
 // Cal.com's official inline embed, loaded lazily via scroll proximity — the
 // calendar is always visible once you reach this section (no click needed),
 // but the ~heavy embed script + iframe still only load once the section is
 // actually about to enter view, not on initial page load. Nobody who never
 // scrolls this far pays for it.
-function loadCalScript() {
+//
+// onLoadError fires if the injected <script> itself fails (ad-blocker,
+// offline, cal.com outage) — previously nothing listened for this at all,
+// so a blocked script just left a permanently empty box with no explanation.
+function loadCalScript(onLoadError: () => void) {
   if (window.Cal) return;
   (function (C: any, A: string, L: string) {
     const p = (a: any, ar: any) => a.q.push(ar);
@@ -25,7 +30,10 @@ function loadCalScript() {
         if (!cal.loaded) {
           cal.ns = {};
           cal.q = cal.q || [];
-          d.head.appendChild(d.createElement('script')).src = A;
+          const script = d.createElement('script');
+          script.src = A;
+          script.onerror = onLoadError;
+          d.head.appendChild(script);
           cal.loaded = true;
         }
         if (args[0] === L) {
@@ -60,6 +68,7 @@ export function CalEmbed() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
   const [ready, setReady] = useState(false);
+  const [loadError, setLoadError] = useState(false);
 
   useEffect(() => {
     const el = containerRef.current;
@@ -80,34 +89,60 @@ export function CalEmbed() {
   useEffect(() => {
     if (!shouldLoad) return;
     try {
-      loadCalScript();
+      // Read the page's actual theme instead of hardcoding 'light', so the
+      // calendar doesn't render as a bright white box inside a dark-mode
+      // section — same fallback logic index.html's inline script already
+      // uses to pick an initial theme.
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      loadCalScript(() => setLoadError(true));
       window.Cal!('inline', {
         elementOrSelector: '#cal-inline-embed',
         calLink: CAL_LINK_PATH,
         config: { layout: 'month_view' },
       });
       window.Cal!('ui', {
-        theme: 'light',
-        styles: { branding: { brandColor: '#B4FF00' } },
+        theme: isDark ? 'dark' : 'light',
+        styles: { branding: { brandColor: isDark ? '#C3FF33' : '#B4FF00' } },
         hideEventTypeDetails: false,
         layout: 'month_view',
       });
-      const t = window.setTimeout(() => setReady(true), 300);
+      // Cal's own "linkReady" event fires once the iframe has actually
+      // painted — a real signal instead of guessing a fixed delay, which
+      // either wastes time on a fast connection or reveals the placeholder
+      // too early on a slow one. A timeout stays as a backstop in case the
+      // event is ever missed, so the placeholder can't hang forever.
+      window.Cal!('on', { action: 'linkReady', callback: () => setReady(true) });
+      const t = window.setTimeout(() => setReady(true), 4000);
       return () => window.clearTimeout(t);
     } catch {
-      setReady(false);
+      setLoadError(true);
     }
   }, [shouldLoad]);
 
   return (
-    <div ref={containerRef} className="relative w-full max-h-[640px] overflow-y-auto rounded-panel border border-brand-border bg-surface">
+    <div ref={containerRef} className="relative w-full max-h-[640px] overflow-y-auto overflow-x-hidden rounded-panel border border-brand-border bg-surface">
       {/* The Cal target div is never given React-managed children — Cal's script
           injects an iframe into it directly, and letting React also try to
           render/remove children there causes DOM-reconciliation errors. */}
       <div id="cal-inline-embed" className="w-full min-h-[560px]" />
-      {!ready && (
+      {!ready && !loadError && (
         <div className="absolute inset-0 flex items-center justify-center bg-surface pointer-events-none">
           <p className="font-sans text-sm text-ink-tertiary">Cargando calendario…</p>
+        </div>
+      )}
+      {loadError && (
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-surface text-center px-6">
+          <p className="font-sans text-sm text-ink-secondary max-w-xs">
+            No se ha podido cargar el calendario. Puedes reservar directamente aquí:
+          </p>
+          <a
+            href={CAL_FALLBACK_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-sans text-sm font-bold uppercase tracking-[0.08em] text-ink underline underline-offset-4 decoration-brand-accent decoration-2"
+          >
+            Abrir cal.com &rarr;
+          </a>
         </div>
       )}
     </div>
