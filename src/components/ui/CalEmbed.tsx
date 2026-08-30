@@ -120,7 +120,7 @@ export function CalEmbed() {
   }, [shouldLoad]);
 
   return (
-    <div ref={containerRef} className="relative w-full max-h-[640px] overflow-y-auto overflow-x-hidden rounded-panel border border-brand-border bg-surface">
+    <div ref={containerRef} className="glass-strong relative w-full max-h-[640px] overflow-y-auto overflow-x-hidden rounded-panel">
       {/* The Cal target div is never given React-managed children — Cal's script
           injects an iframe into it directly, and letting React also try to
           render/remove children there causes DOM-reconciliation errors. */}

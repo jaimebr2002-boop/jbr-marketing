@@ -180,7 +180,7 @@ export function DiagnosticoPage() {
                     +
                   </span>
                 </summary>
-                <p className="mt-3 font-sans text-ink-secondary text-sm leading-relaxed max-w-xl">{item.a}</p>
+                <p className="faq-answer mt-3 font-sans text-ink-secondary text-sm leading-relaxed max-w-xl">{item.a}</p>
               </details>
             ))}
           </RevealStagger>
@@ -211,7 +211,9 @@ export function DiagnosticoPage() {
             </p>
           </Reveal>
           <Reveal className="mt-10 max-w-xl">
-            <DiagnosticoForm />
+            <div className="glass-subtle rounded-panel p-6 md:p-8">
+              <DiagnosticoForm />
+            </div>
           </Reveal>
         </div>
       </section>
