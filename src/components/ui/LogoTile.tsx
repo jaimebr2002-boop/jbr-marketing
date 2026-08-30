@@ -20,14 +20,28 @@ interface LogoTileProps {
 // sizing ported over 1:1 made mobile feel oversized and left too few logos
 // on screen at once, so mobile stays close to its original ~36-40px density
 // (slightly nudged up for legibility) while desktop is untouched.
+//
+// The fixed-light chip behind every logo exists because several of the
+// supplied PNGs have a baked-in dark wordmark (measured: chatgpt.png is
+// literally 100% pure black, retell/claude/gohighlevel/n8n similarly
+// near-black) — perfectly legible on the light theme's white surface, but
+// nearly invisible once the section flips to its dark surface. Rather than
+// re-export five brand assets, every logo sits on a small always-white
+// plate (--surface-fixed-light, intentionally not theme-reactive) so
+// dark-on-transparent artwork stays readable in both themes; in light mode
+// the plate is the same white as the page, so nothing visibly changes there.
 export function LogoTile({ src, alt, className = '' }: LogoTileProps) {
   return (
     <div className={`group flex items-center justify-center h-10 md:h-20 w-[112px] md:w-[220px] shrink-0 px-2.5 md:px-4 ${className}`}>
-      <img
-        src={src}
-        alt={alt}
-        className="max-h-full max-w-full w-auto h-auto object-contain transition-transform duration-300 group-hover:scale-110"
-      />
+      <div className="flex items-center justify-center h-full w-full rounded-control bg-surface-fixed-light px-3 md:px-4">
+        <img
+          src={src}
+          alt={alt}
+          loading="lazy"
+          decoding="async"
+          className="max-h-[65%] max-w-full w-auto h-auto object-contain transition-transform duration-300 group-hover:scale-110"
+        />
+      </div>
     </div>
   );
 }

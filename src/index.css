@@ -14,6 +14,7 @@
   --surface: #FFFFFF;
   --surface-inverse: #111111;   /* always-dark chips/sections — never flips light */
   --surface-inverse-alt: #1A1A1A;
+  --surface-fixed-light: #FFFFFF; /* always-light backing — never flips dark; see LogoTile */
 
   --ink: #111111;
   --ink-secondary: #666666;
@@ -138,6 +139,7 @@
   --color-surface: var(--surface);
   --color-surface-inverse: var(--surface-inverse);
   --color-surface-inverse-alt: var(--surface-inverse-alt);
+  --color-surface-fixed-light: var(--surface-fixed-light);
 
   --color-ink: var(--ink);
   --color-ink-secondary: var(--ink-secondary);
