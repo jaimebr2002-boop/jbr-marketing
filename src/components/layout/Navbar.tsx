@@ -89,13 +89,20 @@ export function Navbar() {
 
             {/* Desktop nav — lg+ only, see note above on why md was too tight */}
             <nav className="hidden lg:flex items-center gap-4 xl:gap-6" aria-label="Navegación principal">
-              {navLinks.map((link) =>
-                link.href.startsWith('/') ? (
-                  <Link
-                    key={link.label}
-                    to={link.href}
-                    className="relative font-sans text-[12px] font-medium uppercase tracking-[0.08em] whitespace-nowrap text-ink-secondary hover:text-ink transition-colors duration-200 py-2"
-                  >
+              {navLinks.map((link) => {
+                // Route links (Servicios/FAQ/Diagnóstico) get a small
+                // permanent underline when you're actually on that page (or
+                // a sub-page of it, e.g. /servicios/seo still lights up
+                // "Servicios") — distinct from the hover color-change, which
+                // is transient. The one anchor link ("Cómo trabajamos") has
+                // no URL of its own to compare against, so it never lights up.
+                const isRoute = link.href.startsWith('/');
+                const isActive = isRoute && location.pathname.startsWith(link.href);
+                const linkClassName = `relative font-sans text-[12px] font-medium uppercase tracking-[0.08em] whitespace-nowrap py-2 border-b-2 transition-colors duration-200 ${
+                  isActive ? 'text-ink border-brand-accent' : 'text-ink-secondary hover:text-ink border-transparent'
+                }`;
+                return isRoute ? (
+                  <Link key={link.label} to={link.href} className={linkClassName} aria-current={isActive ? 'page' : undefined}>
                     {link.label}
                   </Link>
                 ) : (
@@ -103,12 +110,12 @@ export function Navbar() {
                     key={link.label}
                     href={isHome ? link.href : `/${link.href}`}
                     onClick={(e) => handleAnchorClick(e, link.href)}
-                    className="relative font-sans text-[12px] font-medium uppercase tracking-[0.08em] whitespace-nowrap text-ink-secondary hover:text-ink transition-colors duration-200 py-2"
+                    className={linkClassName}
                   >
                     {link.label}
                   </a>
-                )
-              )}
+                );
+              })}
               <ThemeToggle theme={theme} onToggle={toggle} />
               {/* One clear CTA now that "Diagnóstico" is its own nav item/page —
                   having both a "Diagnóstico gratuito" button here AND a
@@ -119,7 +126,7 @@ export function Navbar() {
                 href={calLinkWithCampaign('navbar-cta')}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-sans text-[11px] uppercase tracking-[0.1em] whitespace-nowrap bg-surface-inverse text-white px-5 py-2.5 rounded-full transition-all duration-200 hover:bg-brand-accent hover:text-accent-ink hover:scale-[1.03] active:scale-[0.98]"
+                className="font-sans text-[11px] uppercase tracking-[0.1em] whitespace-nowrap bg-surface-inverse text-white px-5 py-2.5 rounded-full transition-[background-color,color,transform] duration-200 hover:bg-brand-accent hover:text-accent-ink hover:scale-[1.03] active:scale-[0.98]"
               >
                 Agendar llamada &rarr;
               </a>
