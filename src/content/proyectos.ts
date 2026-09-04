@@ -52,14 +52,15 @@ export const proyectos: Proyecto[] = [
     titulo: 'CRM a medida',
     categoria: 'crm',
     cliente: 'Grupo Hyundai',
-    descripcion: 'CRM a medida para Grupo Hyundai.',
+    descripcion: 'CRM a medida para gestión comercial: pipeline de leads por etapas, calendario de seguimiento y ficha de cliente.',
   },
   {
     slug: 'amana',
     titulo: 'App de gestión interna',
     categoria: 'app',
     cliente: 'Amana',
-    descripcion: 'Aplicación a medida para la gestión interna de Amana, bar de referencia de la noche de Oviedo.',
+    descripcion:
+      'App de gestión interna para el control de plantilla del local, bar de referencia de la noche de Oviedo: fichaje por PIN sin usuario, distinción entre personal fijo y refuerzos puntuales, y liquidación de pagos pendientes.',
   },
   {
     slug: 'app-gavea',
@@ -67,7 +68,7 @@ export const proyectos: Proyecto[] = [
     categoria: 'app',
     cliente: 'Grupo Gavea',
     descripcion:
-      'Diseño de la app y desarrollo de varios de sus módulos para Grupo Gavea, grupo con más de 6 locales de hostelería referentes en Oviedo.',
+      'Diseño de la app y desarrollo de varios de sus módulos para Grupo Gavea, grupo con más de 6 locales de hostelería referentes en Oviedo: kiosko de fichaje, panel de gestión y control APPCC.',
   },
   {
     slug: 'erp-naviser',
