@@ -1,8 +1,13 @@
-// The 12 named services (per the approved list — Microsoft 365 excluded, and the
+// The 13 named services (per the approved list — Microsoft 365 excluded, and the
 // old generic "Inteligencia Artificial" / "Agentes de IA" line items folded into
 // the site's overall positioning instead of listed as standalone services).
 // `category` is only used to pick "related services" on a detail page — the
 // /servicios index itself is a flat editorial list, not a grouped grid.
+//
+// Numbering (the "01", "02"... badges shown in cards) is NOT stored here — it's
+// derived at render time from each list's own array index (see ServiciosResumen
+// and ServiciosIndexPage), so the Home's curated subset and the full index each
+// number 01→N in their own order without ever going out of sync or skipping.
 
 export type ServiceCategory = 'desarrollo' | 'marketing' | 'visibilidad' | 'estrategia' | 'ia';
 
@@ -18,7 +23,6 @@ export interface ServiceStep {
 
 export interface ServiceDetail {
   slug: string;
-  n: string;
   title: string;
   category: ServiceCategory;
   shortDescription: string;
@@ -39,7 +43,6 @@ export interface ServiceDetail {
 export const SERVICES: ServiceDetail[] = [
   {
     slug: 'desarrollo-web',
-    n: '01',
     title: 'Desarrollo Web',
     category: 'desarrollo',
     shortDescription: 'Webs corporativas, landings y experiencias digitales orientadas a conversión.',
@@ -81,7 +84,6 @@ export const SERVICES: ServiceDetail[] = [
   },
   {
     slug: 'redes-sociales',
-    n: '02',
     title: 'Gestión de Redes Sociales',
     category: 'marketing',
     shortDescription: 'Estrategia, contenido y gestión de presencia social.',
@@ -123,7 +125,6 @@ export const SERVICES: ServiceDetail[] = [
   },
   {
     slug: 'campanas-publicitarias',
-    n: '03',
     title: 'Campañas Publicitarias',
     category: 'marketing',
     shortDescription: 'Publicidad digital y campañas orientadas a captación.',
@@ -165,7 +166,6 @@ export const SERVICES: ServiceDetail[] = [
   },
   {
     slug: 'seo',
-    n: '04',
     title: 'SEO y Posicionamiento',
     category: 'visibilidad',
     shortDescription: 'Optimización para buscadores y crecimiento orgánico.',
@@ -207,7 +207,6 @@ export const SERVICES: ServiceDetail[] = [
   },
   {
     slug: 'geo',
-    n: '05',
     title: 'GEO — Generative Engine Optimization',
     category: 'visibilidad',
     shortDescription: 'Optimización de contenido y presencia digital para motores generativos y respuestas de IA.',
@@ -249,7 +248,6 @@ export const SERVICES: ServiceDetail[] = [
   },
   {
     slug: 'formacion-digital',
-    n: '06',
     title: 'Formación Digital',
     category: 'estrategia',
     shortDescription: 'Formación para equipos y empresas en herramientas digitales e inteligencia artificial.',
@@ -291,7 +289,6 @@ export const SERVICES: ServiceDetail[] = [
   },
   {
     slug: 'automatizaciones',
-    n: '07',
     title: 'Automatizaciones',
     category: 'ia',
     shortDescription: 'Automatización de procesos y eliminación de tareas repetitivas.',
@@ -333,7 +330,6 @@ export const SERVICES: ServiceDetail[] = [
   },
   {
     slug: 'diseno-branding',
-    n: '08',
     title: 'Diseño y Branding',
     category: 'marketing',
     shortDescription: 'Identidad visual, diseño y sistemas de marca.',
@@ -375,7 +371,6 @@ export const SERVICES: ServiceDetail[] = [
   },
   {
     slug: 'crm-erp',
-    n: '09',
     title: 'CRM y ERP',
     category: 'desarrollo',
     shortDescription: 'Implementación, integración y optimización de sistemas de gestión.',
@@ -406,7 +401,7 @@ export const SERVICES: ServiceDetail[] = [
     whatWeNeed:
       'Para arrancar hace falta acceso —o la disposición a crearlo— a las herramientas que ya usa el negocio: el Excel o CRM actual si existe, el programa de facturación, el catálogo de productos o servicios, y una persona de referencia en el equipo que conozca el proceso comercial u operativo del día a día. Si hay datos históricos de clientes, pedidos o stock que haya que migrar, conviene tenerlos localizados desde el principio, aunque no estén limpios ni ordenados.',
     whatsNotIncluded:
-      'Esta implementación no incluye el desarrollo de software a medida desde cero: se trabaja sobre plataformas de CRM y ERP ya existentes en el mercado, configuradas e integradas para el caso concreto del cliente. Tampoco incluye la gestión contable o fiscal en sí misma —eso corresponde a la gestoría o asesoría del negocio— ni el mantenimiento indefinido del sistema una vez implementado, que se acuerda aparte si el cliente lo necesita. Cuando el negocio necesita automatizaciones adicionales entre el CRM o el ERP y otras herramientas de marketing o atención al cliente, eso se cubre como un servicio complementario.',
+      'Esta implementación no incluye el desarrollo de software a medida desde cero: se trabaja sobre plataformas de CRM y ERP ya existentes en el mercado, configuradas e integradas para el caso concreto del cliente —si ningún sistema del mercado encaja y hace falta construir uno propio, eso se cubre en el servicio de Apps y software a medida—. Tampoco incluye la gestión contable o fiscal en sí misma —eso corresponde a la gestoría o asesoría del negocio— ni el mantenimiento indefinido del sistema una vez implementado, que se acuerda aparte si el cliente lo necesita. Cuando el negocio necesita automatizaciones adicionales entre el CRM o el ERP y otras herramientas de marketing o atención al cliente, eso se cubre como un servicio complementario.',
     faq: [
       { q: '¿Es mejor empezar por el CRM o por el ERP?', a: 'Depende de dónde esté el problema más urgente. Si las ventas se pierden por falta de seguimiento comercial, se empieza por el CRM; si el caos está en pedidos, stock o facturación, se empieza por el ERP. Muchas pymes acaban necesitando los dos, pero no hace falta implementarlos a la vez: se puede empezar por el que resuelve el dolor más caro ahora mismo.' },
       { q: '¿Tengo que cambiar el sistema de facturación o las herramientas que ya uso?', a: 'No necesariamente. Parte del trabajo de integración consiste precisamente en conectar el CRM o el ERP con lo que el negocio ya utiliza (facturación, web, WhatsApp, email) siempre que sea técnicamente viable, en vez de obligar a sustituirlo todo de golpe.' },
@@ -417,49 +412,88 @@ export const SERVICES: ServiceDetail[] = [
   },
   {
     slug: 'desarrollo-apps',
-    n: '10',
-    title: 'Desarrollo de Apps a Medida',
+    title: 'Apps y Software a Medida',
     category: 'desarrollo',
-    shortDescription: 'Aplicaciones y software adaptados a necesidades concretas del negocio.',
-    h1: 'Software a medida cuando lo genérico no encaja',
+    shortDescription: 'ERPs, CRMs, plataformas internas y aplicaciones a medida para procesos que no caben en software genérico.',
+    h1: 'Software de gestión a medida cuando lo genérico no encaja',
     intro:
-      'Cuando un proceso de negocio no cabe en ninguna herramienta que se vende ya hecha, la alternativa es construir la pieza que falta. El desarrollo de aplicaciones a medida parte de cómo trabaja realmente tu equipo —no de una plantilla— y construye solo lo que necesitas, sin funciones de más que nunca vas a usar. El resultado es una herramienta que encaja con tu operativa, en lugar de obligarte a adaptar tu operativa a ella.',
+      'Cuando un proceso de negocio no cabe en ninguna herramienta que se vende ya hecha, la alternativa es construirlo. Esto va más allá de "una app": cubre desde una aplicación interna para un proceso concreto hasta un ERP completo con gestión de stock, comisiones y tesorería, o un CRM propio con su propio pipeline y panel analítico. Se parte de cómo trabaja realmente tu equipo —no de una plantilla— y se construye solo lo que necesitas, sin funciones de más que nunca vas a usar.',
     valueProp:
-      'Un desarrollo a medida es una aplicación o sistema construido específicamente para un proceso de tu negocio, en lugar de un software genérico que intentas encajar a la fuerza. Tiene sentido cuando ya has probado herramientas estándar —hojas de cálculo, SaaS genéricos, ERPs poco flexibles— y ninguna cubre cómo funciona realmente tu operativa, o cuando pagas licencias con funciones que no usas mientras faltan justo las que necesitas. El objetivo no es tener "una app" por tener tecnología, sino resolver un cuello de botella concreto —gestión de pedidos, control de stock, un flujo interno entre departamentos— con una herramienta que se ajusta a ese proceso, y no al revés.',
+      'Un desarrollo a medida es un sistema de gestión —app interna, ERP, CRM o plataforma completa— construido específicamente para los procesos de tu negocio, en lugar de un software genérico que intentas encajar a la fuerza. Tiene sentido cuando ya has probado herramientas estándar —hojas de cálculo, SaaS genéricos, ERPs poco flexibles— y ninguna cubre cómo funciona realmente tu operativa, o cuando el negocio ha crecido hasta el punto de necesitar varios módulos conectados entre sí: stock, comisiones, tiendas o sedes, objetivos, pipeline comercial. El objetivo no es tener "una app" por tener tecnología, sino resolver de raíz cómo se gestiona el negocio por dentro, con un sistema que se ajusta a ese proceso —y a su escala— en lugar de al revés.',
     benefits: [
       { title: 'Encaja con tu proceso', body: 'Se diseña alrededor de cómo trabaja tu equipo hoy, así que no tienes que torcer tu operativa para que quepa en un software genérico.' },
-      { title: 'Sin funciones de sobra', body: 'Se construye exactamente lo que el negocio necesita, sin módulos ni pantallas que nunca se van a usar.' },
+      { title: 'Escala contigo', body: 'Desde una aplicación para un único proceso hasta un ERP con varios módulos conectados —stock, comisiones, tesorería, CRM propio—, el sistema crece con el negocio en lugar de quedarse corto.' },
       { title: 'El código es tuyo', body: 'No dependes de una licencia externa que puede subir de precio, limitar usuarios o desaparecer si el proveedor cambia de rumbo.' },
     ],
     forYouIf: [
-      'Gestionas un proceso clave en hojas de Excel que se te han quedado pequeñas y que solo tú sabes mantener en pie.',
+      'Gestionas procesos clave en hojas de Excel que se te han quedado pequeñas y que solo tú sabes mantener en pie.',
       'Pagas varias licencias de software que no se hablan entre sí y acabas copiando el mismo dato a mano de una a otra.',
       'Un SaaS genérico te obliga a adaptar tu forma de trabajar a sus casillas y sus límites, en lugar de al revés.',
-      'Un proceso interno —pedidos, reservas, inventario, seguimiento de clientes— depende de la memoria de una persona concreta y no de un sistema.',
+      'Tu negocio ha crecido hasta necesitar varios módulos conectados —stock, comisiones, tiendas o sedes, objetivos comerciales— y ningún sistema estándar los cubre todos a la vez.',
     ],
     process: [
-      { title: 'Diagnóstico del proceso', body: 'Se analiza cómo funciona hoy el proceso que quieres resolver, qué herramientas usas actualmente y dónde se pierde tiempo o se generan errores.' },
-      { title: 'Definición del alcance', body: 'Se acota qué construir primero —la funcionalidad mínima que resuelve el problema real— para no alargar el desarrollo con extras que aún no hacen falta.' },
+      { title: 'Diagnóstico del proceso', body: 'Se analiza cómo funciona hoy lo que quieres resolver, qué herramientas usas actualmente y dónde se pierde tiempo o se generan errores.' },
+      { title: 'Definición del alcance', body: 'Se acota qué construir primero —la funcionalidad mínima que resuelve el problema real— y qué módulos, si los hay, se añaden en fases posteriores.' },
       { title: 'Desarrollo por fases', body: 'Se construye en entregas visibles y revisables, para poder probar y ajustar sobre la marcha en lugar de esperar a un único lanzamiento final.' },
       { title: 'Entrega y traspaso', body: 'Se entrega el software en funcionamiento junto con la documentación y los accesos necesarios para que el equipo lo use de forma autónoma.' },
     ],
     pricingNote:
-      'El coste de un desarrollo a medida depende directamente de su alcance: no es el mismo trabajo automatizar un formulario interno que construir una aplicación con varios módulos y usuarios. Por eso no hay una tarifa cerrada de partida —cualquier cifra dada sin conocer el proceso real sería una estimación al aire, no un presupuesto serio—. El alcance, el tiempo estimado y el coste se concretan en una llamada de diagnóstico inicial sin coste, una vez queda claro qué hay que construir exactamente.',
+      'El coste de un desarrollo a medida depende directamente de su alcance: no es el mismo trabajo automatizar un formulario interno que construir un ERP con varios módulos y usuarios. Por eso no hay una tarifa cerrada de partida —cualquier cifra dada sin conocer el proceso real sería una estimación al aire, no un presupuesto serio—. El alcance, el tiempo estimado y el coste se concretan en una llamada de diagnóstico inicial sin coste, una vez queda claro qué hay que construir exactamente.',
     whatWeNeed:
-      'Para arrancar un desarrollo a medida hace falta, sobre todo, acceso a cómo funciona el proceso real: alguien del equipo que lo conozca de primera mano y pueda explicar los pasos, las excepciones y esos casos raros que no aparecen en ningún manual. Ayuda mucho tener a mano ejemplos concretos de lo que se gestiona hoy —esa hoja de cálculo, ese formulario, esos correos— y acceso a las herramientas o bases de datos actuales si el nuevo sistema tiene que convivir con ellas o sustituirlas. Contar con un único punto de contacto con capacidad de decisión agiliza el proceso, sobre todo a la hora de validar cada fase del desarrollo.',
+      'Para arrancar hace falta, sobre todo, acceso a cómo funciona el proceso real: alguien del equipo que lo conozca de primera mano y pueda explicar los pasos, las excepciones y esos casos raros que no aparecen en ningún manual. Ayuda mucho tener a mano ejemplos concretos de lo que se gestiona hoy —esa hoja de cálculo, ese formulario, esos correos— y acceso a las herramientas o bases de datos actuales si el nuevo sistema tiene que convivir con ellas o sustituirlas. Contar con un único punto de contacto con capacidad de decisión agiliza el proceso, sobre todo a la hora de validar cada fase del desarrollo.',
     whatsNotIncluded:
-      'Un desarrollo a medida no incluye el alojamiento (hosting), los dominios ni las licencias de terceros que la aplicación pueda necesitar para funcionar: esos costes son del cliente y se explican de antemano, no aparecen después como sorpresa. Tampoco cubre el mantenimiento indefinido ni la incorporación continua de funciones nuevas una vez entregado el sistema —eso se plantea aparte, como una mejora o un acuerdo de mantenimiento si el negocio lo necesita—. Y si el problema puede resolverse conectando o ajustando herramientas que ya existen, sin programar nada desde cero, tiene más sentido explorar antes esa vía, más cercana a una automatización de procesos que a un desarrollo a medida.',
+      'Un desarrollo a medida no incluye el alojamiento (hosting), los dominios ni las licencias de terceros que el sistema pueda necesitar para funcionar: esos costes son del cliente y se explican de antemano, no aparecen después como sorpresa. Tampoco cubre el mantenimiento indefinido ni la incorporación continua de funciones nuevas una vez entregado el sistema —eso se plantea aparte, como una mejora o un acuerdo de mantenimiento si el negocio lo necesita—. Y si el problema puede resolverse conectando o configurando un CRM o ERP ya existente en el mercado, sin programar nada desde cero, tiene más sentido explorar antes esa vía —eso es justo lo que cubre el servicio de CRM y ERP.',
     faq: [
-      { q: '¿Cuánto tiempo lleva desarrollar una aplicación a medida?', a: 'Depende por completo del alcance: no es el mismo trabajo automatizar un proceso puntual que construir un sistema con varios módulos y usuarios. El plazo se estima en el diagnóstico inicial, una vez está claro qué hay que construir, y no antes.' },
-      { q: '¿Necesito llegar con los requisitos ya definidos?', a: 'No hace falta un documento cerrado. Es más útil que expliques el problema y cómo trabajas hoy: analizar ese proceso es parte del servicio, y de ahí sale el alcance real de lo que conviene construir.' },
-      { q: '¿Qué pasa si más adelante quiero añadir funciones nuevas?', a: 'El software es tuyo y se construye pensado para poder ampliarse. Añadir funciones más adelante es posible y se plantea como un desarrollo adicional cuando llegue el momento, no como algo incluido de forma indefinida en el proyecto inicial.' },
+      { q: '¿Esto es lo mismo que el servicio de CRM y ERP?', a: 'No. CRM y ERP consiste en seleccionar, configurar e integrar un sistema ya existente en el mercado. Esto es al revés: se construye el sistema desde cero cuando ningún software estándar encaja con el proceso real del negocio, ya sea una app puntual o una plataforma con varios módulos.' },
+      { q: '¿Cuánto tiempo lleva desarrollar un sistema a medida?', a: 'Depende por completo del alcance: no es el mismo trabajo automatizar un proceso puntual que construir una plataforma con varios módulos y usuarios. El plazo se estima en el diagnóstico inicial, una vez está claro qué hay que construir, y no antes.' },
+      { q: '¿Puede crecer más adelante si el negocio lo necesita?', a: 'Sí, el software se construye pensado para poder ampliarse por módulos. Añadir funciones o módulos nuevos más adelante se plantea como un desarrollo adicional cuando llegue el momento, no como algo incluido de forma indefinida en el proyecto inicial.' },
     ],
-    seoTitle: 'Desarrollo de Aplicaciones a Medida | Jaime Bernáldez',
-    seoDescription: 'Desarrollo de aplicaciones a medida para negocios cuyo proceso no encaja en software genérico. Se analiza primero, se programa después.',
+    seoTitle: 'Apps y Software a Medida (ERP, CRM) | Jaime Bernáldez',
+    seoDescription: 'Desarrollo de apps, ERPs y CRMs a medida para negocios cuyo proceso no encaja en software genérico. Se analiza primero, se programa después.',
+  },
+  {
+    slug: 'chatbots-agentes-ia',
+    title: 'Chatbots y Agentes de IA',
+    category: 'ia',
+    shortDescription: 'Chatbots y agentes de voz con IA para gestionar citas, avisos y llamadas sin depender de que alguien esté siempre disponible.',
+    h1: 'Chatbots y agentes de voz que atienden cuando tú no puedes',
+    intro:
+      'Un chatbot o un agente de voz con IA se encarga de tareas de atención que hoy dependen de que alguien esté disponible en el momento justo: agendar una cita, confirmar una asistencia, pedir una reseña o contestar una llamada fuera de horario. Se conecta a tu calendario, tu WhatsApp o tu centralita telefónica y sigue reglas claras sobre qué puede resolver solo y cuándo debe derivar a una persona.',
+    valueProp:
+      'Los chatbots y agentes de voz con IA gestionan conversaciones repetitivas —agendar, confirmar, recordar, preguntar por una reseña, atender una llamada entrante— sin que una persona tenga que estar disponible para cada una de ellas. Está pensado para negocios donde la atención al cliente depende de que alguien conteste el WhatsApp o descuelgue el teléfono a tiempo, y donde eso se traduce en citas perdidas, llamadas sin contestar o seguimientos que se olvidan. El chatbot o el agente de voz no sustituye el trato humano en lo que de verdad lo necesita: se ocupa de la parte repetitiva y deja a las personas la conversación donde aportan criterio real.',
+    benefits: [
+      { title: 'Disponible fuera de horario', body: 'Agenda, confirma o recibe una llamada aunque no haya nadie despierto o disponible en ese momento.' },
+      { title: 'Menos huecos y olvidos', body: 'Los recordatorios de asistencia y las confirmaciones dejan de depender de que alguien se acuerde de mandarlos a tiempo.' },
+      { title: 'Deriva cuando toca', body: 'Sigue reglas claras sobre qué puede resolver solo y cuándo debe pasar la conversación a una persona.' },
+    ],
+    forYouIf: [
+      'Pierdes citas o reservas porque nadie contesta el WhatsApp o el teléfono a tiempo.',
+      'Alguien de tu equipo dedica horas cada semana a mandar recordatorios y confirmaciones de asistencia a mano.',
+      'Te gustaría pedir reseñas a clientes satisfechos pero nunca hay tiempo de hacerlo de forma sistemática.',
+      'Recibes llamadas fuera de tu horario de atención y las pierdes, o interrumpen a alguien que no debería atenderlas.',
+    ],
+    process: [
+      { title: 'Mapeo de la conversación', body: 'Se analiza qué preguntas y gestiones se repiten más a menudo, y qué información necesita el chatbot o el agente para resolverlas solo.' },
+      { title: 'Conexión con tus herramientas', body: 'Se integra con tu calendario, WhatsApp Business o centralita telefónica, para que agende, confirme o derive sin que alguien tenga que hacerlo a mano.' },
+      { title: 'Reglas de derivación', body: 'Se definen los límites claros de qué resuelve el chatbot o agente por su cuenta y en qué punto exacto debe pasar la conversación a una persona.' },
+      { title: 'Prueba y ajuste', body: 'Se pone a funcionar con casos reales, se revisan las conversaciones y se ajustan las respuestas antes de darlo por cerrado.' },
+    ],
+    pricingNote:
+      'El coste depende del canal (chat de texto o voz), de cuántas integraciones hace falta construir —calendario, CRM, centralita— y de la complejidad de las reglas de conversación. No se ofrece una tarifa cerrada sin conocer el caso: el alcance y el presupuesto se concretan en la llamada de diagnóstico inicial, gratuita.',
+    whatWeNeed:
+      'Para empezar hace falta acceso a las herramientas que va a usar el chatbot o agente —calendario, WhatsApp Business, CRM o centralita telefónica— y una persona de contacto que conozca cómo se gestionan hoy esas conversaciones en la práctica, incluidas las excepciones habituales.',
+    whatsNotIncluded:
+      'Este servicio no incluye la automatización de procesos internos que no impliquen conversación con el cliente —eso corresponde al servicio de Automatizaciones— ni el desarrollo de un sistema de gestión completo como un CRM o ERP propio, que se cubre en Apps y software a medida. Tampoco se garantiza que el chatbot o el agente resuelva el 100% de las conversaciones sin derivar a una persona: las reglas de derivación son parte del diseño, no un fallo del sistema.',
+    faq: [
+      { q: '¿Esto es lo mismo que una automatización de procesos?', a: 'Está relacionado pero no es lo mismo. Una automatización mueve datos o dispara acciones internas sin conversación de por medio; un chatbot o agente de voz mantiene una conversación real con el cliente, por chat o por llamada, y puede combinarse con automatizaciones detrás.' },
+      { q: '¿El agente de voz suena natural o se nota que es IA?', a: 'Suena natural en la mayoría de conversaciones cortas y estructuradas —agendar, confirmar, dar una información concreta—, pero como en cualquier IA conversacional, cuanto más se sale la llamada del guion previsto, más conviene tener una regla clara de cuándo derivar a una persona.' },
+      { q: '¿Puede integrarse con el WhatsApp o la centralita que ya uso?', a: 'En la mayoría de casos sí, siempre que la herramienta ofrezca alguna vía de conexión (API oficial, integración directa). Se revisa caso por caso en el diagnóstico antes de comprometer nada.' },
+    ],
+    seoTitle: 'Chatbots y Agentes de Voz con IA | Jaime Bernáldez',
+    seoDescription: 'Chatbots y agentes de voz con IA para agendar citas, confirmar asistencia, pedir reseñas y atender llamadas, con reglas claras de derivación a una persona.',
   },
   {
     slug: 'estrategia-digital',
-    n: '11',
     title: 'Estrategia Digital',
     category: 'estrategia',
     shortDescription: 'Diagnóstico, estrategia y priorización de acciones digitales.',
@@ -501,7 +535,6 @@ export const SERVICES: ServiceDetail[] = [
   },
   {
     slug: 'videos-ia',
-    n: '12',
     title: 'Producción de Vídeos y Spots con Inteligencia Artificial',
     category: 'marketing',
     shortDescription:

@@ -12,7 +12,7 @@ export function ServiciosIndexPage() {
   usePageMeta({
     title: `Servicios de Consultoría de IA y Tecnología Digital | ${BRAND_NAME}`,
     description:
-      'Los 12 servicios con los que resuelvo lo que detecto en el diagnóstico: desarrollo web, automatizaciones, SEO, GEO, marketing, CRM/ERP, apps a medida y producción de vídeo con IA.',
+      'Los 13 servicios con los que resuelvo lo que detecto en el diagnóstico: desarrollo web, apps y software a medida, chatbots y agentes de IA, automatizaciones, SEO, GEO, marketing, CRM/ERP y producción de vídeo con IA.',
     path: '/servicios',
     jsonLd: [
       {
@@ -36,7 +36,7 @@ export function ServiciosIndexPage() {
             Servicios
           </p>
           <h1 className="reveal font-sans font-bold leading-[1.08] text-[clamp(2.1rem,5.5vw,3.5rem)] text-balance max-w-3xl">
-            Doce disciplinas, un mismo criterio: <em className="font-serif italic font-medium">resolver lo que de verdad importa.</em>
+            Trece disciplinas, un mismo criterio: <em className="font-serif italic font-medium">resolver lo que de verdad importa.</em>
           </h1>
           <p className="reveal mt-6 font-sans text-white/70 leading-relaxed max-w-xl">
             No vendo tecnología porque sí. Cada uno de estos servicios existe porque resuelve un tipo concreto de
@@ -52,14 +52,14 @@ export function ServiciosIndexPage() {
       <section className="w-full bg-canvas py-16 md:py-20">
         <div className="max-w-5xl mx-auto px-6">
           <RevealStagger as="div" className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {SERVICES.map((s) => (
+            {SERVICES.map((s, i) => (
               <Link
                 key={s.slug}
                 to={`/servicios/${s.slug}`}
                 className="group bg-surface rounded-card border border-brand-border p-7 flex flex-col gap-4 transition-[transform,border-color,box-shadow] duration-200 ease-out hover:-translate-y-1 hover:border-brand-accent hover:shadow-[0_10px_28px_var(--accent-glow)] active:scale-[0.98]"
               >
                 <div className="flex items-start justify-between gap-4">
-                  <span className="font-serif italic text-ink-tertiary text-sm shrink-0 transition-colors duration-200 group-hover:text-brand-accent">{s.n}</span>
+                  <span className="font-serif italic text-ink-tertiary text-sm shrink-0 transition-colors duration-200 group-hover:text-brand-accent">{String(i + 1).padStart(2, '0')}</span>
                   <span
                     className="text-ink-tertiary group-hover:text-brand-accent group-hover:translate-x-0.5 transition-[color,transform] duration-200"
                     aria-hidden="true"

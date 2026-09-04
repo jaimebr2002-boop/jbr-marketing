@@ -6,12 +6,26 @@ import { CtaButton } from '../ui/Button';
 import { RevealStagger } from '../ui/Reveal';
 import { SectionHeading } from '../ui/SectionHeading';
 
-// Was a 12-row text list of every service — now a curated showcase of 6,
+// Was a 12-row text list of every service — now a curated showcase of 8,
 // as cards (same visual language as the /servicios index's own cards:
 // border, lift + accent border + glow on hover), with a clear "Ver todos"
-// escape hatch to the full 12 at /servicios. The Home's job is to prove
+// escape hatch to the full list at /servicios. The Home's job is to prove
 // there's real depth to explore, not to list everything itself.
-const FEATURED_SLUGS = ['desarrollo-web', 'automatizaciones', 'seo', 'geo', 'estrategia-digital', 'crm-erp'];
+//
+// The "01"–"08" badge is NOT s.n (that field no longer exists) — it's this
+// array's own map index, so Home always numbers correlatively in exactly
+// the order below, independent of where each slug sits in the full
+// SERVICES array used by /servicios.
+const FEATURED_SLUGS = [
+  'desarrollo-web',
+  'desarrollo-apps',
+  'chatbots-agentes-ia',
+  'automatizaciones',
+  'crm-erp',
+  'seo',
+  'geo',
+  'estrategia-digital',
+];
 
 export function ServiciosResumen() {
   const featured = FEATURED_SLUGS.map(getServiceBySlug).filter((s) => s !== undefined);
@@ -22,19 +36,19 @@ export function ServiciosResumen() {
         <SectionHeading
           kicker="SERVICIOS"
           headlinePre="Localizado el problema, esto es "
-          headlineEmphasis="con lo que lo resolvemos."
+          headlineEmphasis="con lo que lo resuelvo."
           subhead="No empiezo por la tecnología, pero aquí tienes algunos de los servicios que uso para resolver lo que detecto: IA y automatización, desarrollo, marketing y estrategia."
         />
 
-        <RevealStagger as="div" className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {featured.map((s) => (
+        <RevealStagger as="div" className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {featured.map((s, i) => (
             <Link
               key={s.slug}
               to={`/servicios/${s.slug}`}
               className="group bg-surface rounded-card border border-brand-border p-6 flex flex-col gap-4 transition-[transform,border-color,box-shadow] duration-200 ease-out hover:-translate-y-1 hover:border-brand-accent hover:shadow-[0_10px_28px_var(--accent-glow)] active:scale-[0.98]"
             >
               <div className="flex items-start justify-between gap-4">
-                <span className="font-serif italic text-ink-tertiary text-sm shrink-0 transition-colors duration-200 group-hover:text-brand-accent">{s.n}</span>
+                <span className="font-serif italic text-ink-tertiary text-sm shrink-0 transition-colors duration-200 group-hover:text-brand-accent">{String(i + 1).padStart(2, '0')}</span>
                 <span className="text-ink-tertiary group-hover:text-brand-accent group-hover:translate-x-0.5 transition-[color,transform] duration-200" aria-hidden="true">
                   →
                 </span>
