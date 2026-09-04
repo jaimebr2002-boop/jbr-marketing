@@ -4,64 +4,48 @@
 // functionality. A project described soberly with no numbers is correct; a
 // project with a guessed stat is a bug.
 //
-// No `imagen`/`url` field yet: there are no real screenshots or live links
-// approved to publish per project. Add them later exactly like the pattern
-// in content/clients.ts — set the field on the entry, no component changes
-// needed. Same for a future `slug`-based detail page: this schema already
-// carries `slug`, so routing `/proyectos/:slug` in later work is additive.
+// Order matters and IS the priority: this array is deliberately sorted by
+// weight of the brand/scope (Hyundai group work first, down to the smaller
+// single-client chatbots), and every place that renders it — Home's
+// featured subset, the /proyectos full list — numbers 01→N from this same
+// array order, never from a stored field. Reordering this file is the only
+// change needed to reorder the site.
+//
+// Gavea and Naviser are described by what was actually built (design + several
+// modules), not framed as a "collaboration" — that's a deliberate wording
+// choice, not an oversight.
+//
+// No `imagen`/`url` field on client projects: no real screenshots or live
+// links are approved to publish for internal/client systems. `slug` is
+// already here so a future `/proyectos/:slug` detail page is additive, not a
+// rewrite of these components.
+export type ProyectoCategoria = 'app' | 'plataforma' | 'crm' | 'erp' | 'chatbot' | 'agente-voz' | 'video';
+
 export interface Proyecto {
   slug: string;
   titulo: string;
-  categoria: 'web' | 'app' | 'chatbot' | 'video' | 'crm';
+  categoria: ProyectoCategoria;
   cliente?: string;
   descripcion: string;
-  destacado?: boolean;
+  stack?: string[];
 }
 
 export const proyectos: Proyecto[] = [
   {
-    slug: 'el-casto',
-    titulo: 'El Casto',
-    categoria: 'web',
-    cliente: 'El Casto',
-    descripcion: 'Web para El Casto, bar de referencia en Oviedo.',
-    destacado: true,
-  },
-  {
-    slug: 'aguaducho',
-    titulo: 'Aguaducho',
-    categoria: 'web',
-    cliente: 'Aguaducho',
-    descripcion: 'Web para negocio local.',
-  },
-  {
-    slug: 'wonder-clinic',
-    titulo: 'Wonder Clinic',
-    categoria: 'web',
-    cliente: 'Wonder Clinic',
-    descripcion: 'Web para negocio local.',
-  },
-  {
-    slug: 'mamba-negra',
-    titulo: 'Mamba Negra',
-    categoria: 'web',
-    cliente: 'Mamba Negra',
-    descripcion: 'Web para negocio local.',
-  },
-  {
     slug: 'tasacion-hyundai-omoda-byd',
-    titulo: 'Tasación de coches a medida',
+    titulo: 'App de tasación de coches a medida',
     categoria: 'app',
     cliente: 'Grupo Hyundai, OMODA y BYD',
-    descripcion: 'Desarrollo de app de tasación de coches a medida del cliente, para Grupo Hyundai, OMODA y BYD en Asturias.',
-    destacado: true,
+    descripcion:
+      'App de tasación de coches a medida del proceso del concesionario para Grupo Hyundai, OMODA y BYD en Asturias, más una landing de captación de tasaciones.',
   },
   {
     slug: 'subastas-hyundai',
-    titulo: 'Subastas de vehículos',
-    categoria: 'app',
+    titulo: 'Plataforma de subastas de vehículos',
+    categoria: 'plataforma',
     cliente: 'Grupo Hyundai',
-    descripcion: 'Aplicación de subastas de vehículos para Grupo Hyundai.',
+    descripcion:
+      'Plataforma B2B de subastas de vehículos: subastas activas con contador, puja en vivo con galería e historial, gestión de stock con chat de negociación, seguimiento de pujas, favoritos, notificaciones y panel analítico con KPIs.',
   },
   {
     slug: 'crm-hyundai',
@@ -69,51 +53,79 @@ export const proyectos: Proyecto[] = [
     categoria: 'crm',
     cliente: 'Grupo Hyundai',
     descripcion: 'CRM a medida para Grupo Hyundai.',
-    destacado: true,
+  },
+  {
+    slug: 'amana',
+    titulo: 'App de gestión interna',
+    categoria: 'app',
+    cliente: 'Amana',
+    descripcion: 'Aplicación a medida para la gestión interna de Amana, bar de referencia de la noche de Oviedo.',
+  },
+  {
+    slug: 'app-gavea',
+    titulo: 'Diseño y desarrollo de app a medida',
+    categoria: 'app',
+    cliente: 'Grupo Gavea',
+    descripcion:
+      'Diseño de la app y desarrollo de varios de sus módulos para Grupo Gavea, grupo con más de 6 locales de hostelería referentes en Oviedo.',
+  },
+  {
+    slug: 'erp-naviser',
+    titulo: 'ERP interno a medida',
+    categoria: 'erp',
+    cliente: 'Grupo Naviser',
+    descripcion:
+      'Diseño de la app y desarrollo de varios de sus módulos para el ERP interno de Grupo Naviser, grupo de telefonía del norte de España: motor de comisiones por línea de producto con reglas por territorio y equipo, liquidaciones, tesorería, CRM y pipeline, gestión de tiendas y stands, objetivos y rankings, automatizaciones y API con webhooks.',
+    stack: ['Next.js', 'Supabase (PostgreSQL con RLS)', 'Vercel'],
   },
   {
     slug: 'chatbot-ponce-de-leon',
-    titulo: 'Chatbot para gestión de citas',
+    titulo: 'Sistema de comunicación con pacientes',
     categoria: 'chatbot',
     cliente: 'Clínica Ponce de León',
     descripcion:
-      'Chatbot para la Clínica Ponce de León: agendamiento de citas, recordatorios de asistencia y confirmación, solicitud de reseñas, y automatizaciones a medida.',
-    destacado: true,
+      'Sistema de comunicación con pacientes multi-sede: agendamiento de citas, recordatorios de asistencia y confirmación, solicitud de reseñas y automatizaciones a medida.',
+    stack: ['GoHighLevel', 'WhatsApp Business API'],
   },
   {
     slug: 'chatbot-orgaz-dental',
     titulo: 'Chatbot con automatizaciones',
     categoria: 'chatbot',
     cliente: 'Clínica Orgaz Dental',
-    descripcion: 'Chatbot para Clínica Orgaz Dental con automatizaciones a medida.',
+    descripcion: 'Chatbot con automatizaciones a medida para Clínica Orgaz Dental.',
+  },
+  {
+    slug: 'agente-voz-rehberger',
+    titulo: 'Agente de voz con IA',
+    categoria: 'agente-voz',
+    cliente: 'Clínica Rehberger',
+    descripcion: 'Agente de voz con IA que atiende llamadas y agenda citas, integrado con calendario.',
+    stack: ['Retell AI', 'Twilio'],
   },
   {
     slug: 'videos-naviser-segurma',
     titulo: 'Vídeos con IA y creatividades',
     categoria: 'video',
     cliente: 'Grupo Naviser y Segurma',
-    descripcion: 'Vídeos con inteligencia artificial y creatividades para Grupo Naviser y Segurma.',
-    destacado: true,
+    descripcion: 'Vídeos con inteligencia artificial y creatividades publicitarias para Grupo Naviser y Segurma.',
   },
-  {
-    slug: 'amana',
-    titulo: 'Gestión interna a medida',
-    categoria: 'app',
-    cliente: 'Amana',
-    descripcion: 'Aplicación a medida para Amana, bar de referencia de la noche de Oviedo, para la gestión interna.',
-  },
-  {
-    slug: 'app-gavea',
-    titulo: 'Aplicación a medida — participación',
-    categoria: 'app',
-    cliente: 'Grupo Gavea',
-    descripcion: 'Participación en la aplicación a medida para Grupo Gavea, grupo con más de 6 locales de hostelería referentes en Oviedo.',
-  },
-  {
-    slug: 'app-naviser',
-    titulo: 'Aplicación a medida — participación',
-    categoria: 'app',
-    cliente: 'Grupo Naviser',
-    descripcion: 'Participación en la aplicación a medida para Grupo Naviser, grupo de telefonía del norte de España.',
-  },
+];
+
+// The "más de 30 webs" block — a lighter, separate showcase from the client
+// projects above (no categoria/stack, most have no url yet). Only named
+// businesses appear here on purpose, not an exhaustive list. `url` is set
+// literally, verbatim, only where one was actually supplied — leave it
+// undefined rather than guess or shorten one.
+export interface Web {
+  nombre: string;
+  descripcion?: string;
+  url?: string;
+}
+
+export const webs: Web[] = [
+  { nombre: 'El Casto', descripcion: 'Bar de referencia en Oviedo.', url: 'https://elcasto.vercel.app/' },
+  { nombre: 'El Aguaducho' },
+  { nombre: 'Wonder Clinic' },
+  { nombre: 'Mamba Negra', descripcion: 'Web más carta interactiva por QR.' },
+  { nombre: 'Molino de la Romera', url: 'https://molino-de-la-romera.vercel.app/' },
 ];

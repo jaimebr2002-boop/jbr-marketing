@@ -5,19 +5,23 @@ import { RevealStagger } from '../ui/Reveal';
 import { SectionHeading } from '../ui/SectionHeading';
 
 const CATEGORIA_LABEL: Record<string, string> = {
-  web: 'Web',
   app: 'App a medida',
-  chatbot: 'Chatbot',
-  video: 'Vídeo con IA',
+  plataforma: 'Plataforma',
   crm: 'CRM',
+  erp: 'ERP',
+  chatbot: 'Chatbot',
+  'agente-voz': 'Agente de voz',
+  video: 'Vídeo con IA',
 };
 
+// Top 6 of proyectos.ts, in that array's own order — no stored "featured"
+// flag: the array order IS the priority (see content/proyectos.ts), so
+// slicing it is the only thing that needs to change to reorder Home.
 // Cards are deliberately not links: there's no /proyectos/:slug detail page
-// yet (that's a later phase). This section only proves real work exists and
-// points to the full list at /proyectos — same "featured subset + Ver todos"
-// pattern as ServiciosResumen, just without a per-card destination for now.
+// yet (that's a later phase). The full 10 plus the "más de 30 webs" block
+// live on /proyectos — Home only proves real work exists and points there.
 export function ProyectosResumen() {
-  const featured = proyectos.filter((p) => p.destacado);
+  const featured = proyectos.slice(0, 6);
 
   return (
     <section id="proyectos" className="w-full bg-surface py-20 md:py-28">
@@ -26,7 +30,7 @@ export function ProyectosResumen() {
           kicker="PROYECTOS"
           headlinePre="No es una lista de servicios. Es "
           headlineEmphasis="lo que ya está funcionando."
-          subhead="Más de 30 webs creadas y funcionando para negocios locales, además de apps a medida, CRMs, chatbots y vídeo con IA para clientes reales."
+          subhead="Apps a medida, plataformas, ERPs, CRMs, chatbots y vídeo con IA para clientes reales — además de más de 30 webs creadas y funcionando para negocios locales."
         />
 
         <RevealStagger as="div" className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
