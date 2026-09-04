@@ -8,6 +8,7 @@ import chatgpt from '../../assets/tools/chatgpt.png';
 import gohighlevel from '../../assets/tools/gohighlevel.png';
 import retell from '../../assets/tools/retell.png';
 import nanobanana from '../../assets/tools/nanobanana.png';
+import codex from '../../assets/tools/codex.png';
 
 // Real assets only (see /PAGINA WEB in the project) — no stock logos, and no
 // "Make" tile since that logo file wasn't found among the provided assets.
@@ -16,12 +17,21 @@ import nanobanana from '../../assets/tools/nanobanana.png';
 // list itself must never contain the same tool twice.
 //
 // `src: null` marks a confirmed tool whose logo file hasn't been supplied
-// yet (currently Claude Code and Codex — no matching asset exists in
-// /PAGINA WEB): it renders as an honest "logo pendiente" slot via
-// PendingLogoTile instead of a fabricated mark. To add the real asset later:
-// drop the file in src/assets/tools/, import it above, and set that entry's
-// `src` to the import. To add an entirely new tool: append one more
-// { name, src } entry — nothing else needs to change.
+// yet: it renders as an honest "logo pendiente" slot via PendingLogoTile
+// instead of a fabricated mark. To add the real asset later: drop the file
+// in src/assets/tools/, import it above, and set that entry's `src` to the
+// import. To add an entirely new tool: append one more { name, src } entry —
+// nothing else needs to change.
+//
+// Claude Code dropped: "Claude AI" above already covers the brand, and
+// listing both read as two logos for the same company.
+//
+// codex.png: the supplied source (logo codex.jfif) was a flattened JPEG with
+// no alpha channel — its "transparent" background had been baked in as a
+// near-white/light-gray fill (not pure white), which would show as a faint
+// square behind the logo on this tile's white plate. Chroma-keyed that
+// background back out (low-saturation, bright pixels → transparent) so it
+// sits flush like every other logo here; the icon itself is untouched.
 const TOOLS = [
   { name: 'Higgsfield', src: higgsfield },
   { name: 'n8n', src: n8n },
@@ -30,8 +40,7 @@ const TOOLS = [
   { name: 'GoHighLevel', src: gohighlevel },
   { name: 'Retell AI', src: retell },
   { name: 'Nano Banana', src: nanobanana },
-  { name: 'Claude Code', src: null },
-  { name: 'Codex', src: null },
+  { name: 'Codex', src: codex },
 ];
 
 export function ToolsMarquee() {
@@ -53,7 +62,7 @@ export function ToolsMarquee() {
           Marquee only takes one duration, and mobile/desktop need different
           ones for the same perceived speed. */}
       <Marquee
-        ariaLabel="Herramientas y plataformas: Higgsfield, n8n, Claude AI, ChatGPT, GoHighLevel, Retell AI, Nano Banana, Claude Code, Codex"
+        ariaLabel="Herramientas y plataformas: Higgsfield, n8n, Claude AI, ChatGPT, GoHighLevel, Retell AI, Nano Banana, Codex"
         durationSeconds={58}
         className="tools-marquee"
       >
