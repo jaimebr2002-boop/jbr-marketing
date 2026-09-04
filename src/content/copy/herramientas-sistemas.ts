@@ -5,7 +5,7 @@
 export const servicios = {
   kicker: 'SERVICIOS',
   headlinePre: 'Localizado el problema, esto es ',
-  headlineEmphasis: 'con lo que lo resolvemos.',
+  headlineEmphasis: 'con lo que lo resuelvo.',
   intro:
     'No empiezo por la tecnología, pero aquí tienes los servicios — IA y automatización, desarrollo de apps y software, marketing y captación, web y diseño — que uso para resolver lo que detecto.',
   permission:

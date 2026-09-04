@@ -216,10 +216,10 @@ export function ServiceDetailPage() {
         </div>
       </section>
 
-      {/* Cómo trabajamos — dark */}
+      {/* Cómo trabajo — dark */}
       <section className="w-full bg-surface-inverse text-white py-16 md:py-24">
         <div className="max-w-4xl mx-auto px-6">
-          <p className="reveal font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-white/50 mb-4">Cómo trabajamos</p>
+          <p className="reveal font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-white/50 mb-4">Cómo trabajo</p>
           <h2 className="reveal font-sans font-bold text-[clamp(1.5rem,3.2vw,2.1rem)] leading-[1.15] text-balance max-w-xl">
             El proceso, paso a paso.
           </h2>

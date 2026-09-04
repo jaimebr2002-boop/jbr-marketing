@@ -47,7 +47,7 @@ export function FaqPage() {
           </h1>
           <p className="reveal mt-6 font-sans text-white/70 leading-relaxed max-w-xl">
             Todo lo que suelen preguntarme antes de reservar un diagnóstico, organizado por tema. Si no encuentras tu
-            duda aquí, la resolvemos directamente en la llamada.
+            duda aquí, la resuelvo directamente en la llamada.
           </p>
         </div>
       </section>

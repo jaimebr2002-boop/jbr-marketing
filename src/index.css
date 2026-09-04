@@ -180,7 +180,13 @@ body {
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px;
+  /* Measured against the real fixed navbar (getBoundingClientRect), not
+     guessed: 86px on desktop, 92px on mobile (the compact header's
+     theme-toggle + mini-CTA + hamburger row runs slightly taller than the
+     desktop nav row). The old 80px was *under* both, so an anchor-scrolled
+     heading could land partly behind the pill. 92px + ~30px breathing
+     room, rounded. */
+  scroll-padding-top: 120px;
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
