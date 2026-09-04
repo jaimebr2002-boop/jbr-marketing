@@ -3,6 +3,7 @@ import { Hero } from '../components/sections/Hero';
 import { ToolsMarquee } from '../components/sections/ToolsMarquee';
 import { Problema } from '../components/sections/Problema';
 import { ServiciosResumen } from '../components/sections/ServiciosResumen';
+import { ProyectosResumen } from '../components/sections/ProyectosResumen';
 import { Sistemas } from '../components/sections/Sistemas';
 import { ComoTrabajamos } from '../components/sections/ComoTrabajamos';
 import { FAQ } from '../components/sections/FAQ';
@@ -19,6 +20,10 @@ import { CTAFinal } from '../components/sections/CTAFinal';
 // not rendered here for now — there are no real clients yet to show, and an
 // empty/placeholder section doesn't earn a spot on a shorter Home; swap it
 // back in once there's something real.
+//
+// ProyectosResumen added afterwards (position 05), once real project data
+// existed to show — it's proof-of-work right after the services pitch, not
+// a return to the old "list everything" Home.
 export function HomePage() {
   return (
     <>
@@ -26,11 +31,12 @@ export function HomePage() {
       {/* 02 */} <ToolsMarquee />
       {/* 03 */} <Problema />
       {/* 04 */} <ServiciosResumen />
-      {/* 05 */} <Sistemas />
-      {/* 06 */} <ComoTrabajamos />
-      {/* 07 */} <DiagnosticoDigital />
-      {/* 08 */} <FAQ />
-      {/* 09 */} <CTAFinal />
+      {/* 05 */} <ProyectosResumen />
+      {/* 06 */} <Sistemas />
+      {/* 07 */} <ComoTrabajamos />
+      {/* 08 */} <DiagnosticoDigital />
+      {/* 09 */} <FAQ />
+      {/* 10 */} <CTAFinal />
     </>
   );
 }

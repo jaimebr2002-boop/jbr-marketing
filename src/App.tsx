@@ -4,6 +4,7 @@ import { Layout } from './components/layout/Layout';
 import { HomePage } from './pages/HomePage';
 import { ServiciosIndexPage } from './pages/servicios/ServiciosIndexPage';
 import { ServiceDetailPage } from './pages/servicios/ServiceDetailPage';
+import { ProyectosPage } from './pages/ProyectosPage';
 import { DiagnosticoPage } from './pages/DiagnosticoPage';
 import { FaqPage } from './pages/FaqPage';
 import { AvisoLegalPage } from './pages/legal/AvisoLegalPage';
@@ -19,6 +20,7 @@ export default function App() {
           <Route index element={<HomePage />} />
           <Route path="servicios" element={<ServiciosIndexPage />} />
           <Route path="servicios/:slug" element={<ServiceDetailPage />} />
+          <Route path="proyectos" element={<ProyectosPage />} />
           <Route path="diagnostico" element={<DiagnosticoPage />} />
           <Route path="faq" element={<FaqPage />} />
           <Route path="aviso-legal" element={<AvisoLegalPage />} />

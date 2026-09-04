@@ -112,6 +112,7 @@ export const footer = {
 // content to justify its own /metodologia page yet.
 export const navLinks = [
   { label: 'Servicios', href: '/servicios' },
+  { label: 'Proyectos', href: '/proyectos' },
   { label: 'Cómo trabajamos', href: '#como-trabajamos' },
   { label: 'FAQ', href: '/faq' },
   { label: 'Diagnóstico', href: '/diagnostico' },
