@@ -3,12 +3,18 @@ import { whatsappLink } from '../../config/brand';
 
 // Floating WhatsApp entry point — a secondary conversation channel, never a
 // replacement for the primary diagnostic CTA (cal.com).
+//
+// Pinned to the left (mirrored from the original right-side placement):
+// the GoHighLevel chat widget (index.html) loads its own bubble in the
+// default bottom-right corner, and that isn't configurable from here, so
+// this moved to the opposite corner instead of guessing a vertical offset
+// that could still collide with it.
 export function WhatsAppButton() {
   const [showTooltip, setShowTooltip] = useState(false);
 
   return (
     <div
-      className="fixed z-[998] right-4 md:right-6"
+      className="fixed z-[998] left-4 md:left-6"
       style={{ bottom: 'calc(16px + env(safe-area-inset-bottom, 0px))' }}
     >
       <a
@@ -25,10 +31,11 @@ export function WhatsAppButton() {
         <span className="absolute inset-0 rounded-full animate-wa-pulse" aria-hidden="true" />
         <WhatsAppIcon className="w-6 h-6 md:w-7 md:h-7 relative" />
 
-        {/* Desktop hover tooltip */}
+        {/* Desktop hover tooltip — flipped to open rightward now that the
+            button sits on the left edge, so it never runs off-screen. */}
         <span
           role="tooltip"
-          className={`hidden md:block absolute right-full mr-3 whitespace-nowrap rounded bg-surface-inverse text-white text-xs font-sans px-3 py-2 transition-opacity duration-200 ${
+          className={`hidden md:block absolute left-full ml-3 whitespace-nowrap rounded bg-surface-inverse text-white text-xs font-sans px-3 py-2 transition-opacity duration-200 ${
             showTooltip ? 'opacity-100' : 'opacity-0 pointer-events-none'
           }`}
         >

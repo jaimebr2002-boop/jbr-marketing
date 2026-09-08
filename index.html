@@ -158,5 +158,10 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <!-- GoHighLevel chat widget — loads its own floating bubble, bottom-right,
+         on every route. Kept out of React/useEffect on purpose so it's not
+         tied to any one page's mount/unmount. See WhatsAppButton.tsx: its
+         position was moved to the opposite corner to avoid overlap. -->
+    <script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6aa0377077b246510fc24ed7"></script>
   </body>
 </html>
