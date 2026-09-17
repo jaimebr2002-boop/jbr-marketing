@@ -10,9 +10,9 @@ export function ServiciosIndexPage() {
   const navigate = useNavigate();
 
   usePageMeta({
-    title: `Servicios de Consultoría de IA y Tecnología Digital | ${BRAND_NAME}`,
+    title: `Servicios de IA, web y software | ${BRAND_NAME}`,
     description:
-      'Los 13 servicios con los que resuelvo lo que detecto en el diagnóstico: desarrollo web, apps y software a medida, chatbots y agentes de IA, automatizaciones, SEO, GEO, marketing, CRM/ERP y producción de vídeo con IA.',
+      'Desarrollo web, software a medida, automatizaciones, chatbots y agentes de IA desde Oviedo para empresas de toda España y otros países.',
     path: '/servicios',
     jsonLd: [
       {

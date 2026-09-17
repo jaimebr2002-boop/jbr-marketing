@@ -7,6 +7,7 @@ import { ServiceDetailPage } from './pages/servicios/ServiceDetailPage';
 import { ProyectosPage } from './pages/ProyectosPage';
 import { DiagnosticoPage } from './pages/DiagnosticoPage';
 import { FaqPage } from './pages/FaqPage';
+import { AsturiasPage } from './pages/AsturiasPage';
 import { AvisoLegalPage } from './pages/legal/AvisoLegalPage';
 import { PoliticaPrivacidadPage } from './pages/legal/PoliticaPrivacidadPage';
 import { PoliticaCookiesPage } from './pages/legal/PoliticaCookiesPage';
@@ -23,6 +24,7 @@ export default function App() {
           <Route path="proyectos" element={<ProyectosPage />} />
           <Route path="diagnostico" element={<DiagnosticoPage />} />
           <Route path="faq" element={<FaqPage />} />
+          <Route path="asturias" element={<AsturiasPage />} />
           <Route path="aviso-legal" element={<AvisoLegalPage />} />
           <Route path="politica-privacidad" element={<PoliticaPrivacidadPage />} />
           <Route path="politica-cookies" element={<PoliticaCookiesPage />} />

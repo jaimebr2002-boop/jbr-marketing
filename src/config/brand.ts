@@ -11,9 +11,12 @@
 export const BRAND_NAME = 'Jaime Bernáldez';
 export const POSITIONING = 'Consultoría de IA · Tecnología Digital';
 
-// Placeholder production domain. Replace with the real domain once purchased —
-// used for canonical URL, Open Graph, and Schema.org @id / url fields.
-export const SITE_URL = 'https://example.com';
+// Current production URL. Keep this value aligned with Vercel, robots.txt,
+// sitemap.xml and the static metadata in index.html. When a custom domain is
+// connected, change all of them in the same release and add a permanent redirect.
+export const SITE_URL = 'https://jbr-marketing.vercel.app';
+
+export const SERVICE_AREAS = ['Oviedo', 'Gijón', 'Avilés', 'Asturias', 'España'];
 
 export const CONSULTANT = {
   name: 'Jaime Bernáldez',

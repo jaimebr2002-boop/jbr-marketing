@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
-import { BRAND_NAME, SITE_URL, calLinkWithCampaign } from '../../config/brand';
+import { BRAND_NAME, SERVICE_AREAS, SITE_URL, calLinkWithCampaign } from '../../config/brand';
 import { usePageMeta } from '../../hooks/usePageMeta';
 import { getRelatedServices, getServiceBySlug, type ServiceCategory } from '../../content/services';
 import { CtaButton } from '../../components/ui/Button';
@@ -125,7 +125,7 @@ export function ServiceDetailPage() {
         name: service.title,
         description: service.shortDescription,
         provider: { '@type': 'ProfessionalService', name: `${BRAND_NAME} — Consultoría de IA`, url: SITE_URL },
-        areaServed: 'España',
+        areaServed: SERVICE_AREAS.map((name) => ({ '@type': 'AdministrativeArea', name })),
         url: `${SITE_URL}${path}`,
       },
       {

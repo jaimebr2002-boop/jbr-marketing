@@ -9,6 +9,7 @@ import { ComoTrabajamos } from '../components/sections/ComoTrabajamos';
 import { FAQ } from '../components/sections/FAQ';
 import { DiagnosticoDigital } from '../components/sections/DiagnosticoDigital';
 import { CTAFinal } from '../components/sections/CTAFinal';
+import { LocalPresence } from '../components/sections/LocalPresence';
 
 // Reduced from 16 stacked sections to 9 (Fase 2 architecture pass): Fugas,
 // Oportunidades and Resultados merged into Problema; Método merged into
@@ -29,14 +30,15 @@ export function HomePage() {
     <>
       {/* 01 */} <Hero />
       {/* 02 */} <ToolsMarquee />
-      {/* 03 */} <Problema />
-      {/* 04 */} <ServiciosResumen />
-      {/* 05 */} <ProyectosResumen />
-      {/* 06 */} <Sistemas />
-      {/* 07 */} <ComoTrabajamos />
-      {/* 08 */} <DiagnosticoDigital />
-      {/* 09 */} <FAQ />
-      {/* 10 */} <CTAFinal />
+      {/* 03 */} <LocalPresence />
+      {/* 04 */} <Problema />
+      {/* 05 */} <ServiciosResumen />
+      {/* 06 */} <ProyectosResumen />
+      {/* 07 */} <Sistemas />
+      {/* 08 */} <ComoTrabajamos />
+      {/* 09 */} <DiagnosticoDigital />
+      {/* 10 */} <FAQ />
+      {/* 11 */} <CTAFinal />
     </>
   );
 }

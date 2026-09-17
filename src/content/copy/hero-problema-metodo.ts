@@ -1,9 +1,9 @@
 export const hero = {
-  kicker: 'JAIME BERNÁLDEZ · CONSULTOR DE IA PARA EMPRESAS',
+  kicker: 'JAIME BERNÁLDEZ · CONSULTOR DE IA DESDE OVIEDO',
   headlinePre: 'Encuentro en tu negocio el tiempo, el dinero y los clientes que estás perdiendo ',
   headlineEmphasis: 'sin darte cuenta.',
   subhead:
-    'Analizo procesos, equipo, herramientas y captación para detectar pérdidas reales — y solo entonces decido si la solución es IA, automatización, desarrollo o marketing.',
+    'Desde Oviedo, ayudo a empresas de Asturias, toda España y otros mercados a detectar pérdidas reales en procesos, herramientas y captación — y solo entonces decido si la solución es IA, automatización, desarrollo o marketing.',
   cta: 'Reserva tu diagnóstico gratuito',
   microcopy: '15 minutos, directamente con Jaime Bernáldez.',
 };

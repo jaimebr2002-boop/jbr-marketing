@@ -36,36 +36,35 @@
       NAMING PENDING: the brand name shown across the UI is Jaime's real name
       (see BRAND_NAME in src/config/brand.ts) rather than an invented company
       name — naming (Umbral / Escruta / Cauce / Zarium) is still pending formal
-      OEPM/EUIPO + domain + social verification. SITE_URL below is a placeholder
-      (https://example.com) until a real domain is registered — update
-      canonical/og:url/schema @id/url together when both are decided.
+      OEPM/EUIPO + domain + social verification. The canonical URL below uses
+      the current Vercel production domain until a custom domain is connected.
     -->
-    <title>Consultor de IA para Empresas | Jaime Bernáldez — Detecto Fugas Ocultas</title>
+    <title>Jaime Bernáldez | IA, web y software desde Oviedo</title>
     <meta
       name="description"
-      content="Consultor de IA y tecnología digital para empresas. Analizo tu negocio, detecto dónde pierdes tiempo, dinero y clientes, y lo resuelvo con IA, automatización, desarrollo y marketing."
+      content="Consultoría de IA, desarrollo web, software a medida y automatización para empresas de Asturias, toda España y proyectos internacionales."
     />
-    <link rel="canonical" href="https://example.com/" />
+    <link rel="canonical" href="https://jbr-marketing.vercel.app/" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Jaime Bernáldez — Consultoría de IA" />
-    <meta property="og:title" content="Consultor de IA para Empresas | Jaime Bernáldez" />
+    <meta property="og:title" content="Jaime Bernáldez | IA, web y software desde Oviedo" />
     <meta
       property="og:description"
-      content="Analizo tu negocio, detecto dónde pierdes tiempo, dinero y clientes, y lo resuelvo con IA, automatización, desarrollo y marketing. Diagnóstico gratis."
+      content="Soluciones de desarrollo web, software, automatización y agentes de IA desde Oviedo para empresas de cualquier lugar. Diagnóstico inicial gratuito."
     />
-    <meta property="og:url" content="https://example.com/" />
+    <meta property="og:url" content="https://jbr-marketing.vercel.app/" />
     <meta property="og:locale" content="es_ES" />
     <!-- OG_IMAGE_PLACEHOLDER: no share image has been supplied yet. Add one (1200x630)
          and point og:image / twitter:image at it once available. -->
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Consultor de IA para Empresas | Jaime Bernáldez" />
+    <meta name="twitter:title" content="Jaime Bernáldez | IA, web y software desde Oviedo" />
     <meta
       name="twitter:description"
-      content="Analizo tu negocio, detecto dónde pierdes tiempo, dinero y clientes, y lo resuelvo con IA, automatización, desarrollo y marketing."
+      content="Desarrollo web, software a medida, automatizaciones y agentes de IA para empresas de Asturias, España y otros mercados."
     />
 
     <meta name="theme-color" content="#111111" />
@@ -87,11 +86,11 @@
       {
         "@context": "https://schema.org",
         "@type": "Person",
-        "@id": "https://example.com/#jaime",
+        "@id": "https://jbr-marketing.vercel.app/#jaime",
         "name": "Jaime Bernáldez",
         "jobTitle": "Consultor de Inteligencia Artificial para Empresas",
-        "url": "https://example.com/",
-        "worksFor": { "@id": "https://example.com/#organizacion" },
+        "url": "https://jbr-marketing.vercel.app/",
+        "worksFor": { "@id": "https://jbr-marketing.vercel.app/#organizacion" },
         "knowsAbout": [
           "Inteligencia artificial aplicada a negocio",
           "Automatización de procesos",
@@ -110,27 +109,35 @@
       {
         "@context": "https://schema.org",
         "@type": "ProfessionalService",
-        "@id": "https://example.com/#organizacion",
+        "@id": "https://jbr-marketing.vercel.app/#organizacion",
         "name": "Jaime Bernáldez — Consultoría de IA",
-        "url": "https://example.com/",
+        "url": "https://jbr-marketing.vercel.app/",
         "description": "Consultoría de inteligencia artificial y tecnología digital para empresas: análisis de negocio, detección de fugas de tiempo, dinero y clientes, e implementación de soluciones con IA, automatización, desarrollo web y de apps, y marketing digital.",
-        "founder": { "@id": "https://example.com/#jaime" },
-        "areaServed": "España",
+        "founder": { "@id": "https://jbr-marketing.vercel.app/#jaime" },
+        "telephone": "+34722785142",
+        "email": "jaimebernaldezimpulsa@gmail.com",
+        "areaServed": [
+          { "@type": "City", "name": "Oviedo" },
+          { "@type": "City", "name": "Gijón" },
+          { "@type": "City", "name": "Avilés" },
+          { "@type": "AdministrativeArea", "name": "Asturias" },
+          { "@type": "Country", "name": "España" }
+        ],
         "sameAs": ["https://www.linkedin.com/in/jaimebernaldez/"],
         "makesOffer": [
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "serviceType": "Desarrollo Web", "url": "https://example.com/servicios/desarrollo-web" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "serviceType": "Gestión de Redes Sociales", "url": "https://example.com/servicios/redes-sociales" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "serviceType": "Campañas Publicitarias", "url": "https://example.com/servicios/campanas-publicitarias" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "serviceType": "SEO y Posicionamiento", "url": "https://example.com/servicios/seo" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "serviceType": "GEO — Generative Engine Optimization", "url": "https://example.com/servicios/geo" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "serviceType": "Formación Digital", "url": "https://example.com/servicios/formacion-digital" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "serviceType": "Automatizaciones", "url": "https://example.com/servicios/automatizaciones" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "serviceType": "Diseño y Branding", "url": "https://example.com/servicios/diseno-branding" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "serviceType": "CRM y ERP", "url": "https://example.com/servicios/crm-erp" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "serviceType": "Apps y Software a Medida", "url": "https://example.com/servicios/desarrollo-apps" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "serviceType": "Chatbots y Agentes de IA", "url": "https://example.com/servicios/chatbots-agentes-ia" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "serviceType": "Estrategia Digital", "url": "https://example.com/servicios/estrategia-digital" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "serviceType": "Producción de Vídeos y Spots con IA", "url": "https://example.com/servicios/videos-ia" } }
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "serviceType": "Desarrollo Web", "url": "https://jbr-marketing.vercel.app/servicios/desarrollo-web" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "serviceType": "Gestión de Redes Sociales", "url": "https://jbr-marketing.vercel.app/servicios/redes-sociales" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "serviceType": "Campañas Publicitarias", "url": "https://jbr-marketing.vercel.app/servicios/campanas-publicitarias" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "serviceType": "SEO y Posicionamiento", "url": "https://jbr-marketing.vercel.app/servicios/seo" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "serviceType": "GEO — Generative Engine Optimization", "url": "https://jbr-marketing.vercel.app/servicios/geo" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "serviceType": "Formación Digital", "url": "https://jbr-marketing.vercel.app/servicios/formacion-digital" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "serviceType": "Automatizaciones", "url": "https://jbr-marketing.vercel.app/servicios/automatizaciones" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "serviceType": "Diseño y Branding", "url": "https://jbr-marketing.vercel.app/servicios/diseno-branding" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "serviceType": "CRM y ERP", "url": "https://jbr-marketing.vercel.app/servicios/crm-erp" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "serviceType": "Apps y Software a Medida", "url": "https://jbr-marketing.vercel.app/servicios/desarrollo-apps" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "serviceType": "Chatbots y Agentes de IA", "url": "https://jbr-marketing.vercel.app/servicios/chatbots-agentes-ia" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "serviceType": "Estrategia Digital", "url": "https://jbr-marketing.vercel.app/servicios/estrategia-digital" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "serviceType": "Producción de Vídeos y Spots con IA", "url": "https://jbr-marketing.vercel.app/servicios/videos-ia" } }
         ]
       }
     </script>
@@ -138,9 +145,9 @@
       {
         "@context": "https://schema.org",
         "@type": "WebSite",
-        "url": "https://example.com/",
+        "url": "https://jbr-marketing.vercel.app/",
         "name": "Jaime Bernáldez — Consultoría de IA",
-        "publisher": { "@id": "https://example.com/#organizacion" },
+        "publisher": { "@id": "https://jbr-marketing.vercel.app/#organizacion" },
         "inLanguage": "es-ES"
       }
     </script>
@@ -149,8 +156,8 @@
         "@context": "https://schema.org",
         "@type": "Service",
         "serviceType": "Diagnóstico de negocio con IA",
-        "provider": { "@id": "https://example.com/#organizacion" },
-        "areaServed": "España",
+        "provider": { "@id": "https://jbr-marketing.vercel.app/#organizacion" },
+        "areaServed": ["Oviedo", "Gijón", "Avilés", "Asturias", "España"],
         "description": "Análisis inicial del negocio para detectar dónde se está perdiendo tiempo, dinero y clientes, previo a cualquier recomendación tecnológica."
       }
     </script>

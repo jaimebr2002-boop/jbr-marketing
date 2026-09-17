@@ -22,6 +22,4 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-# TODO: update once the final production domain is set (see SITE_URL in
-# src/config/brand.ts — must match this value).
-Sitemap: https://example.com/sitemap.xml
+Sitemap: https://jbr-marketing.vercel.app/sitemap.xml
