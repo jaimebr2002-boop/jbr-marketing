@@ -3,19 +3,16 @@ import { Marquee } from '../ui/Marquee';
 import { LogoTile } from '../ui/LogoTile';
 import { clients } from '../../content/clients';
 
-// No client logos exist yet — see src/content/clients.ts. This renders a discreet,
-// clearly-a-placeholder state instead of inventing names/logos. The moment
-// `clients` gets populated, the same marquee treatment used for tools/logos
-// (infinite loop, fade edges, pause on hover) takes over automatically.
 export function ClientsMarquee() {
   return (
     <section id="casos" className="w-full bg-canvas py-20 md:py-24">
       <div className="max-w-3xl mx-auto px-6 text-center reveal">
-        <p className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-ink-tertiary mb-4">Casos y clientes</p>
-        <h2 className="font-sans font-bold text-ink text-[clamp(1.6rem,3.5vw,2.25rem)]">Preparado para casos reales.</h2>
+        <p className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-ink-tertiary mb-4">Clientes</p>
+        <h2 className="font-sans font-bold text-ink text-[clamp(1.6rem,3.5vw,2.25rem)]">
+          Marcas que han confiado en mi trabajo.
+        </h2>
         <p className="mt-4 font-sans text-ink-secondary leading-relaxed max-w-lg mx-auto">
-          Todavía no hay clientes ni casos publicados bajo este posicionamiento. En cuanto existan, con su
-          autorización explícita, aparecerán aquí — con nombre y resultado real, nunca inventados.
+          Una selección de empresas con las que he trabajado en proyectos de desarrollo, automatización y contenido digital.
         </p>
       </div>
 
