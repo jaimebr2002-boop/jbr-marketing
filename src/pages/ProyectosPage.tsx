@@ -23,9 +23,9 @@ export function ProyectosPage() {
   const navigate = useNavigate();
 
   usePageMeta({
-    title: `Proyectos | ${BRAND_NAME}`,
+    title: `Proyectos de software a medida | ${BRAND_NAME}`,
     description:
-      'Apps a medida, plataformas, ERPs, CRMs, chatbots y vídeo con IA para clientes reales, además de más de 30 webs creadas y funcionando para negocios locales.',
+      'Apps, ERP y software a medida para empresas como Grupo Naviser y Hyundai. Desarrollo desde Oviedo para Asturias, España y otros mercados.',
     path: '/proyectos',
     jsonLd: [
       {
@@ -52,8 +52,8 @@ export function ProyectosPage() {
             No es una lista de servicios. Es <em className="font-serif italic font-medium">lo que ya está funcionando.</em>
           </h1>
           <p className="reveal mt-6 font-sans text-white/70 leading-relaxed max-w-xl">
-            Apps a medida, plataformas, ERPs, CRMs, chatbots y vídeo con IA para clientes reales — desde un grupo de
-            tasación de coches hasta un ERP interno para un grupo de telefonía.
+            Desde Oviedo desarrollo software y aplicaciones a medida para empresas de Asturias, España y otros mercados.
+            Aquí puedes ver casos reales como los módulos del ERP interno de Grupo Naviser, apps de gestión, CRM y plataformas.
           </p>
         </div>
       </section>
