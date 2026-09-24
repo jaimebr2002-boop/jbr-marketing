@@ -18,8 +18,8 @@ interface LogoTileProps {
 // ever visible at once, reading as a premium partners marquee rather than a
 // dense row of small icons. Mobile keeps its own, smaller tier: the desktop
 // sizing ported over 1:1 made mobile feel oversized and left too few logos
-// on screen at once, so mobile stays close to its original ~36-40px density
-// (slightly nudged up for legibility) while desktop is untouched.
+// on screen at once, so mobile uses a modest 44px / 124px tier for legibility
+// while desktop remains untouched.
 //
 // The fixed-light chip behind every logo exists because several of the
 // supplied PNGs have a baked-in dark wordmark (measured: chatgpt.png is
@@ -32,14 +32,14 @@ interface LogoTileProps {
 // the plate is the same white as the page, so nothing visibly changes there.
 export function LogoTile({ src, alt, className = '' }: LogoTileProps) {
   return (
-    <div className={`group flex items-center justify-center h-10 md:h-20 w-[112px] md:w-[220px] shrink-0 px-2.5 md:px-4 ${className}`}>
+    <div className={`group flex items-center justify-center h-11 md:h-20 w-[124px] md:w-[220px] shrink-0 px-2.5 md:px-4 ${className}`}>
       <div className="flex items-center justify-center h-full w-full rounded-control bg-surface-fixed-light border border-transparent transition-[border-color,box-shadow] duration-300 group-hover:border-brand-accent group-hover:shadow-[0_0_16px_var(--accent-glow)] px-3 md:px-4">
         <img
           src={src}
           alt={alt}
           loading="lazy"
           decoding="async"
-          className="max-h-[65%] max-w-full w-auto h-auto object-contain transition-transform duration-300 group-hover:scale-110"
+          className="max-h-[72%] md:max-h-[65%] max-w-full w-auto h-auto object-contain transition-transform duration-300 group-hover:scale-110"
         />
       </div>
     </div>
@@ -54,7 +54,7 @@ export function LogoTile({ src, alt, className = '' }: LogoTileProps) {
 export function PendingLogoTile({ name, className = '' }: { name: string; className?: string }) {
   return (
     <div
-      className={`flex items-center justify-center h-10 md:h-20 w-[112px] md:w-[220px] shrink-0 px-2.5 md:px-4 ${className}`}
+      className={`flex items-center justify-center h-11 md:h-20 w-[124px] md:w-[220px] shrink-0 px-2.5 md:px-4 ${className}`}
       title={`${name} — logo pendiente de incorporar`}
     >
       <span className="w-full text-center rounded-control border border-dashed border-brand-border px-2 py-1.5 md:px-3 md:py-2.5 font-sans text-[9.5px] md:text-[11px] font-semibold uppercase tracking-[0.04em] text-ink-tertiary leading-tight">
