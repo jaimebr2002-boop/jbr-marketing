@@ -5,6 +5,7 @@ import mambaNegraLogo from '../assets/clients/mamba-negra.png';
 import naviserLogo from '../assets/clients/naviser.png';
 import segurmaLogo from '../assets/clients/segurma.png';
 import bexieLogo from '../assets/clients/bexie.png';
+import laLeyendaDelGalloLogo from '../assets/clients/la-leyenda-del-gallo.png';
 
 export interface Client {
   name: string;
@@ -21,4 +22,5 @@ export const clients: Client[] = [
   { name: 'Grupo Naviser', logo: naviserLogo },
   { name: 'Segurma', logo: segurmaLogo },
   { name: 'Bexie Energy', logo: bexieLogo },
+  { name: 'La Leyenda del Gallo', logo: laLeyendaDelGalloLogo },
 ];
