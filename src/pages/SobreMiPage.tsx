@@ -4,6 +4,7 @@ import { BRAND_NAME, SITE_URL, calLinkWithCampaign } from '../config/brand';
 import { usePageMeta } from '../hooks/usePageMeta';
 import { CtaButton } from '../components/ui/Button';
 import { Reveal, RevealStagger } from '../components/ui/Reveal';
+import jaimePortrait from '../assets/jaime-bernaldez.jpeg';
 
 const servicios = [
   { title: 'Desarrollo web', text: 'Webs y landing pages construidas para explicar bien tu oferta y facilitar el contacto.', href: '/servicios/desarrollo-web' },
@@ -75,14 +76,21 @@ export function SobreMiPage() {
         <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-[0.65fr_1.35fr] gap-10 md:gap-16 items-start">
           <Reveal>
             <div className="corner-marks max-w-[300px] mx-auto md:mx-0">
-              <div className="aspect-[4/5] rounded bg-surface-inverse text-white flex flex-col justify-between p-7">
-                <span className="font-serif text-6xl text-brand-accent">JB</span>
-                <div>
+              <figure className="relative aspect-[4/5] overflow-hidden rounded-card bg-surface-inverse ring-1 ring-brand-border/60 shadow-xl">
+                <img
+                  src={jaimePortrait}
+                  alt="Jaime Bernáldez, consultor de IA y tecnología digital en Oviedo"
+                  width={1080}
+                  height={1080}
+                  loading="lazy"
+                  className="h-full w-full object-cover object-[center_34%]"
+                />
+                <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/45 to-transparent px-6 pb-6 pt-20 text-white">
                   <p className="font-sans font-bold text-xl">Jaime Bernáldez</p>
-                  <p className="mt-1 font-sans text-sm text-white/60">IA · Web · Software</p>
-                  <p className="mt-5 font-sans text-[10px] uppercase tracking-[0.18em] text-white/50">Oviedo · Asturias</p>
-                </div>
-              </div>
+                  <p className="mt-1 font-sans text-sm text-white/75">IA · Web · Software</p>
+                  <p className="mt-4 font-sans text-[10px] uppercase tracking-[0.18em] text-white/65">Oviedo · Asturias</p>
+                </figcaption>
+              </figure>
             </div>
           </Reveal>
           <Reveal>

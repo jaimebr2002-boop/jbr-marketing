@@ -7,6 +7,7 @@ import { CtaButton, CtaMicrocopy } from '../components/ui/Button';
 import { Reveal, RevealStagger } from '../components/ui/Reveal';
 import { DiagnosticoForm } from '../components/sections/DiagnosticoForm';
 import { HablemosCalCom } from '../components/sections/HablemosCalCom';
+import jaimePortrait from '../assets/jaime-bernaldez.jpeg';
 
 // What the diagnostic call actually reviews — the same checklist that used
 // to live duplicated inside the Home's embedded-form section; here it
@@ -131,14 +132,21 @@ export function DiagnosticoPage() {
         <div className="max-w-4xl mx-auto px-6">
           <Reveal className="grid grid-cols-1 md:grid-cols-[minmax(0,38%)_1fr] gap-10 md:gap-14 items-start">
             <div className="corner-marks">
-              <div className="aspect-[4/5] w-full max-w-[280px] mx-auto md:max-w-none rounded bg-surface-inverse text-white flex flex-col justify-between p-7">
-                <span className="font-serif text-6xl text-brand-accent">JB</span>
-                <div>
+              <figure className="relative aspect-[4/5] w-full max-w-[280px] mx-auto md:max-w-none overflow-hidden rounded-card bg-surface-inverse ring-1 ring-brand-border/60 shadow-xl">
+                <img
+                  src={jaimePortrait}
+                  alt="Jaime Bernáldez, consultor de IA y tecnología digital en Oviedo"
+                  width={1080}
+                  height={1080}
+                  loading="lazy"
+                  className="h-full w-full object-cover object-[center_34%]"
+                />
+                <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/45 to-transparent px-6 pb-6 pt-20 text-white">
                   <span className="block font-sans font-bold text-xl">{jaime.name}</span>
-                  <span className="mt-1 block font-sans text-sm text-white/60">{jaime.role}</span>
-                  <span className="mt-5 block font-sans text-[10px] uppercase tracking-[0.15em] text-white/50">Oviedo · Asturias</span>
-                </div>
-              </div>
+                  <span className="mt-1 block font-sans text-sm text-white/75">{jaime.role}</span>
+                  <span className="mt-4 block font-sans text-[10px] uppercase tracking-[0.15em] text-white/65">Oviedo · Asturias</span>
+                </figcaption>
+              </figure>
             </div>
             <div>
               <p className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-ink-tertiary mb-3">{jaime.kicker}</p>
