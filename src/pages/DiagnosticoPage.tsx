@@ -131,13 +131,12 @@ export function DiagnosticoPage() {
         <div className="max-w-4xl mx-auto px-6">
           <Reveal className="grid grid-cols-1 md:grid-cols-[minmax(0,38%)_1fr] gap-10 md:gap-14 items-start">
             <div className="corner-marks">
-              <div className="aspect-[4/5] w-full max-w-[280px] mx-auto md:max-w-none rounded bg-canvas-alt flex items-center justify-center text-center px-6">
-                {/* No photo supplied yet — honest placeholder, not a generated stand-in. */}
+              <div className="aspect-[4/5] w-full max-w-[280px] mx-auto md:max-w-none rounded bg-surface-inverse text-white flex flex-col justify-between p-7">
+                <span className="font-serif text-6xl text-brand-accent">JB</span>
                 <div>
-                  <span className="block font-serif text-4xl text-ink-tertiary">JB</span>
-                  <span className="mt-2 block font-sans text-[10px] uppercase tracking-[0.15em] text-ink-tertiary">
-                    Foto pendiente
-                  </span>
+                  <span className="block font-sans font-bold text-xl">{jaime.name}</span>
+                  <span className="mt-1 block font-sans text-sm text-white/60">{jaime.role}</span>
+                  <span className="mt-5 block font-sans text-[10px] uppercase tracking-[0.15em] text-white/50">Oviedo · Asturias</span>
                 </div>
               </div>
             </div>
@@ -151,6 +150,9 @@ export function DiagnosticoPage() {
                 <span className="text-brand-accent">{jaime.bioYears}</span>
                 {jaime.bioPost}
               </p>
+              <Link to="/sobre-mi" className="mt-5 inline-block font-sans text-sm font-semibold text-ink border-b-2 border-brand-accent pb-1 hover:text-brand-accent transition-colors">
+                Conoce más sobre Jaime →
+              </Link>
               <ul className="mt-6 flex flex-col gap-3">
                 {jaime.bullets.map((b) => (
                   <li key={b} className="font-sans text-sm text-ink-secondary flex gap-2.5">

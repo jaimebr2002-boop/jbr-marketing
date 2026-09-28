@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { createContext, useContext, useEffect } from 'react';
 import { SITE_URL } from '../config/brand';
 
 interface PageMetaOptions {
@@ -8,6 +8,8 @@ interface PageMetaOptions {
   /** Extra JSON-LD objects to inject for this page only (Service, BreadcrumbList, FAQPage...). */
   jsonLd?: object[];
 }
+
+export const PageMetaCaptureContext = createContext<((meta: PageMetaOptions) => void) | null>(null);
 
 function setMetaTag(selector: string, attr: 'content', value: string, createAttrs?: Record<string, string>) {
   let el = document.head.querySelector(selector) as HTMLMetaElement | null;
@@ -24,6 +26,9 @@ function setMetaTag(selector: string, attr: 'content', value: string, createAttr
 // JSON-LD script tags, cleaning its own tags up on unmount so navigating away
 // never leaves a stale <script type="application/ld+json"> from a previous page.
 export function usePageMeta({ title, description, path, jsonLd }: PageMetaOptions) {
+  const capturePageMeta = useContext(PageMetaCaptureContext);
+  capturePageMeta?.({ title, description, path, jsonLd });
+
   useEffect(() => {
     const prevTitle = document.title;
     document.title = title;

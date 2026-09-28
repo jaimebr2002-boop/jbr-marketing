@@ -18,13 +18,13 @@ export const diagnostico = {
 export const jaime = {
   kicker: 'QUIÉN HACE EL DIAGNÓSTICO',
   name: 'Jaime Bernáldez',
-  role: 'Consultor de Inteligencia Artificial',
-  headline: 'El diagnóstico no lo hace un formulario. Lo hago yo.',
+  role: 'Consultor de IA y tecnología digital',
+  headline: 'Primero entiendo el negocio. Después, la tecnología.',
   bioPre:
-    'Trabajo con negocios que saben que la IA y la automatización pueden ayudarles, pero no saben por dónde empezar ni qué de todo eso les afecta de verdad. Antes de hablar de herramientas, reviso cómo funciona tu negocio hoy: qué procesos consumen tiempo, dónde se pierden leads y qué decisiones se toman a mano pudiendo no serlo. Llevo ',
-  bioYears: '[AÑOS DE EXPERIENCIA]',
+    'Soy consultor independiente de IA y tecnología digital en Oviedo. Ayudo a empresas a detectar tareas manuales, oportunidades de automatización y mejoras en su presencia online. Mi manera de trabajar es ',
+  bioYears: 'entender el problema antes de elegir la solución',
   bioPost:
-    ' haciendo este tipo de análisis para empresas que querían crecer sin adivinar en qué invertir primero. Cada diagnóstico inicial lo reviso yo — no es un cuestionario automatizado ni un comercial leyendo un guion.',
+    ': puede ser desarrollo web, software a medida, inteligencia artificial o marketing digital, según lo que realmente necesite cada negocio. En el diagnóstico inicial hablas directamente conmigo, no con un formulario ni con un equipo comercial.',
   bullets: [
     'Empiezo por el negocio, no por la tecnología: decido si la solución es IA, automatización, desarrollo o marketing después de entender qué te frena, nunca antes.',
     'No recomiendo una herramienta porque sea nueva o esté de moda — la recomiendo si cierra algo concreto que he visto en tu caso.',

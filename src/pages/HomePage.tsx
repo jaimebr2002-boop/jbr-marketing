@@ -11,6 +11,7 @@ import { DiagnosticoDigital } from '../components/sections/DiagnosticoDigital';
 import { CTAFinal } from '../components/sections/CTAFinal';
 import { LocalPresence } from '../components/sections/LocalPresence';
 import { ClientsMarquee } from '../components/sections/ClientsMarquee';
+import { usePageMeta } from '../hooks/usePageMeta';
 
 // Reduced from 16 stacked sections to 9 (Fase 2 architecture pass): Fugas,
 // Oportunidades and Resultados merged into Problema; Método merged into
@@ -22,6 +23,12 @@ import { ClientsMarquee } from '../components/sections/ClientsMarquee';
 // existed to show — it's proof-of-work right after the services pitch, not
 // a return to the old "list everything" Home.
 export function HomePage() {
+  usePageMeta({
+    title: 'Jaime Bernáldez | Desarrollo web, IA y software en Oviedo',
+    description: 'Consultor tecnológico en Oviedo. Desarrollo web, software a medida, automatización y agentes de IA para empresas de Asturias, España y proyectos internacionales.',
+    path: '/',
+  });
+
   return (
     <>
       {/* 01 */} <Hero />

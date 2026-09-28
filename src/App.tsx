@@ -12,25 +12,33 @@ import { AvisoLegalPage } from './pages/legal/AvisoLegalPage';
 import { PoliticaPrivacidadPage } from './pages/legal/PoliticaPrivacidadPage';
 import { PoliticaCookiesPage } from './pages/legal/PoliticaCookiesPage';
 import { NotFoundPage } from './pages/NotFoundPage';
+import { SobreMiPage } from './pages/SobreMiPage';
 
 export default function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route element={<Layout />}>
-          <Route index element={<HomePage />} />
-          <Route path="servicios" element={<ServiciosIndexPage />} />
-          <Route path="servicios/:slug" element={<ServiceDetailPage />} />
-          <Route path="proyectos" element={<ProyectosPage />} />
-          <Route path="diagnostico" element={<DiagnosticoPage />} />
-          <Route path="faq" element={<FaqPage />} />
-          <Route path="asturias" element={<AsturiasPage />} />
-          <Route path="aviso-legal" element={<AvisoLegalPage />} />
-          <Route path="politica-privacidad" element={<PoliticaPrivacidadPage />} />
-          <Route path="politica-cookies" element={<PoliticaCookiesPage />} />
-          <Route path="*" element={<NotFoundPage />} />
-        </Route>
-      </Routes>
+      <AppRoutes />
     </BrowserRouter>
+  );
+}
+
+export function AppRoutes() {
+  return (
+    <Routes>
+      <Route element={<Layout />}>
+        <Route index element={<HomePage />} />
+        <Route path="servicios" element={<ServiciosIndexPage />} />
+        <Route path="servicios/:slug" element={<ServiceDetailPage />} />
+        <Route path="proyectos" element={<ProyectosPage />} />
+        <Route path="sobre-mi" element={<SobreMiPage />} />
+        <Route path="diagnostico" element={<DiagnosticoPage />} />
+        <Route path="faq" element={<FaqPage />} />
+        <Route path="asturias" element={<AsturiasPage />} />
+        <Route path="aviso-legal" element={<AvisoLegalPage />} />
+        <Route path="politica-privacidad" element={<PoliticaPrivacidadPage />} />
+        <Route path="politica-cookies" element={<PoliticaCookiesPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Route>
+    </Routes>
   );
 }

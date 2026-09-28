@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { faq } from '../../content/copy';
 
@@ -9,26 +9,19 @@ import { faq } from '../../content/copy';
 const HOME_FAQ = faq.filter((item) => item.home);
 
 export function FAQ() {
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
-    script.id = 'faqpage-schema';
-    script.text = JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'FAQPage',
-      mainEntity: HOME_FAQ.map((item) => ({
-        '@type': 'Question',
-        name: item.q,
-        acceptedAnswer: { '@type': 'Answer', text: item.a },
-      })),
-    });
-    document.head.appendChild(script);
-    return () => {
-      document.getElementById('faqpage-schema')?.remove();
-    };
-  }, []);
+  const faqSchema = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: HOME_FAQ.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: { '@type': 'Answer', text: item.a },
+    })),
+  }).replace(/</g, '\\u003c');
 
   return (
+    <>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: faqSchema }} />
     <section id="faq" className="w-full bg-surface py-20 md:py-28">
       <div className="max-w-3xl mx-auto px-6">
         <h2 className="reveal font-sans font-bold text-ink text-[clamp(1.75rem,4vw,2.5rem)]">Preguntas frecuentes</h2>
@@ -57,5 +50,6 @@ export function FAQ() {
         </div>
       </div>
     </section>
+    </>
   );
 }

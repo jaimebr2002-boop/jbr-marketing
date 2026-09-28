@@ -41,5 +41,6 @@
 
 - Servicios: https://jbr-marketing.vercel.app/servicios
 - Proyectos: https://jbr-marketing.vercel.app/proyectos
+- Sobre Jaime Bernáldez: https://jbr-marketing.vercel.app/sobre-mi
 - Diagnóstico: https://jbr-marketing.vercel.app/diagnostico
 - Preguntas frecuentes: https://jbr-marketing.vercel.app/faq
