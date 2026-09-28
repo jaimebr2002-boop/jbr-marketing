@@ -7,7 +7,6 @@ import { CtaButton, CtaMicrocopy } from '../components/ui/Button';
 import { Reveal, RevealStagger } from '../components/ui/Reveal';
 import { DiagnosticoForm } from '../components/sections/DiagnosticoForm';
 import { HablemosCalCom } from '../components/sections/HablemosCalCom';
-import jaimePortrait from '../assets/jaime-bernaldez.jpeg';
 
 // What the diagnostic call actually reviews — the same checklist that used
 // to live duplicated inside the Home's embedded-form section; here it
@@ -134,7 +133,7 @@ export function DiagnosticoPage() {
             <div className="corner-marks">
               <figure className="relative aspect-[4/5] w-full max-w-[280px] mx-auto md:max-w-none overflow-hidden rounded-card bg-surface-inverse ring-1 ring-brand-border/60 shadow-xl">
                 <img
-                  src={jaimePortrait}
+                  src="/images/jaime-bernaldez.jpeg"
                   alt="Jaime Bernáldez, consultor de IA y tecnología digital en Oviedo"
                   width={1080}
                   height={1080}

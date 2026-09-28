@@ -4,7 +4,6 @@ import { BRAND_NAME, SITE_URL, calLinkWithCampaign } from '../config/brand';
 import { usePageMeta } from '../hooks/usePageMeta';
 import { CtaButton } from '../components/ui/Button';
 import { Reveal, RevealStagger } from '../components/ui/Reveal';
-import jaimePortrait from '../assets/jaime-bernaldez.jpeg';
 
 const servicios = [
   { title: 'Desarrollo web', text: 'Webs y landing pages construidas para explicar bien tu oferta y facilitar el contacto.', href: '/servicios/desarrollo-web' },
@@ -78,7 +77,7 @@ export function SobreMiPage() {
             <div className="corner-marks max-w-[300px] mx-auto md:mx-0">
               <figure className="relative aspect-[4/5] overflow-hidden rounded-card bg-surface-inverse ring-1 ring-brand-border/60 shadow-xl">
                 <img
-                  src={jaimePortrait}
+                  src="/images/jaime-bernaldez.jpeg"
                   alt="Jaime Bernáldez, consultor de IA y tecnología digital en Oviedo"
                   width={1080}
                   height={1080}
